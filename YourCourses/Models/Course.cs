@@ -14,8 +14,11 @@ namespace YourCourses.Models
         [Key]
         public int CourseId { get; set; } //1,2,3, ...
 
-        [StringLength(1000)]
-        public string CourseType { get; set; } //interactive or quiz 
+        [Required]
+        public CourseType CourseType { get; set; }
+
+        //[StringLength(1000)]
+        //public string CourseType { get; set; } //interactive or quiz 
 
         [Required]
         [StringLength(1000)]

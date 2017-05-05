@@ -15,6 +15,9 @@ namespace YourCourses.Models
         public DbSet<SubLecture> SubLectures { get; set; }
         public DbSet<Practice> Practices { get; set; }
         public DbSet<CorrectAnswer> CorrectAnswers { get; set; }
+        public DbSet<CourseType> CourseTypes { get; set; }
+        public DbSet<Image> Images { get; set; }
+
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

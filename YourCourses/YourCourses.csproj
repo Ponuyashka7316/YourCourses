@@ -206,12 +206,38 @@
     <Compile Include="Migrations\201705050935257_overrideAttributes.Designer.cs">
       <DependentUpon>201705050935257_overrideAttributes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705051000319_Populate_Name_Table.cs" />
+    <Compile Include="Migrations\201705051000319_Populate_Name_Table.Designer.cs">
+      <DependentUpon>201705051000319_Populate_Name_Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705051010420_PopulateCorseTypeTable.cs" />
+    <Compile Include="Migrations\201705051010420_PopulateCorseTypeTable.Designer.cs">
+      <DependentUpon>201705051010420_PopulateCorseTypeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705051020039_recover.cs" />
+    <Compile Include="Migrations\201705051020039_recover.Designer.cs">
+      <DependentUpon>201705051020039_recover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705051022406_insert.cs" />
+    <Compile Include="Migrations\201705051022406_insert.Designer.cs">
+      <DependentUpon>201705051022406_insert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705051036224_AddImage.cs" />
+    <Compile Include="Migrations\201705051036224_AddImage.Designer.cs">
+      <DependentUpon>201705051036224_AddImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705051041481_InsertIntoImage.cs" />
+    <Compile Include="Migrations\201705051041481_InsertIntoImage.Designer.cs">
+      <DependentUpon>201705051041481_InsertIntoImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\CorrectAnswer.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\CourseType.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Lecture.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Practice.cs" />
@@ -308,6 +334,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705050935257_overrideAttributes.resx">
       <DependentUpon>201705050935257_overrideAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051000319_Populate_Name_Table.resx">
+      <DependentUpon>201705051000319_Populate_Name_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051010420_PopulateCorseTypeTable.resx">
+      <DependentUpon>201705051010420_PopulateCorseTypeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051020039_recover.resx">
+      <DependentUpon>201705051020039_recover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051022406_insert.resx">
+      <DependentUpon>201705051022406_insert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051036224_AddImage.resx">
+      <DependentUpon>201705051036224_AddImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705051041481_InsertIntoImage.resx">
+      <DependentUpon>201705051041481_InsertIntoImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

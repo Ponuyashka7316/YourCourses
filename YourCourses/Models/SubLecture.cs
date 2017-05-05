@@ -17,8 +17,8 @@ namespace YourCourses.Models
         [StringLength(1000)]
         public string SubName { get; set; } //sublect. name
 
-        [Required]
-        public byte SubImageType { get; set; } //it's define the type of sublection(only lection or lection + practice) determines the type of image(three images from the Content folder)
+        
+        public Image Image { get; set; } //it's define the type of sublection(only lection or lection + practice) determines the type of image(three images from the Content folder)
 
         [Required]
         public string LectureAdminOutput { get; set; } // it is the lecture text
