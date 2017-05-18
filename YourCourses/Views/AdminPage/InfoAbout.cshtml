@@ -1,0 +1,18 @@
+﻿@*@model YourCourses.Models.*@
+@{
+    ViewBag.Title = "CreateCourse";
+}
+
+<h2>Admin Page</h2>
+<p class="text-left">Данная страница предоставляет возможность:</p>
+<ol>
+    <li>Просматривать информацию обо всех пользователях</li>
+    <li>Редактировать информацию обо всех пользователях</li>
+    <li>Создавать новый курс</li>
+    <li>Удалять курс</li>
+
+</ol>
+<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+<button type="button" width ="20" onclick="location.href='@Url.Action("About", "Home")'" class="btn btn-primary btn-lg btn-block" >Создать курс</button>
+<button type="button" onclick="location.href='@Url.Action("", "")'" class="btn btn-danger btn-lg btn-block ">Удалить</button>
+

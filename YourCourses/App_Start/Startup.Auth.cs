@@ -58,11 +58,11 @@ namespace YourCourses
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "142282019918-h5ibrj96bb4peduag9bj05tr3mg881m3.apps.googleusercontent.com",
+                ClientSecret = "vab8UB7BokSKGfUyU5gRol48"
+            });
         }
     }
 }

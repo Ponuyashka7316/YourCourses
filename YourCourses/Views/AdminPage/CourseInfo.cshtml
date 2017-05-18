@@ -1,0 +1,28 @@
+﻿@model Tuple<YourCourses.Models.Course, YourCourses.Models.CourseType>
+@{
+    ViewBag.Title = "Create Course";
+}
+
+
+<h2>Edit Course Info</h2>
+@using (Html.BeginForm("CourseInfo", "AdminPage"))
+{
+    <div class="form-group">
+        <label for="">Название курса</label>
+        <input type="email" class="form-control" id="" placeholder="Title">
+    </div>
+    <div class="form-group">
+        <label for="">Информация о курсе</label>
+        <input type="email" class="form-control" id="" placeholder="Info">
+    </div>
+   
+    
+    
+
+    <div class="checkbox">
+        <label>
+            <input type="checkbox"> Check me out
+        </label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+}

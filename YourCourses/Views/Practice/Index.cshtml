@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Пример работы онлайн-компилятора";
+}
+<script src="~/Scripts/codemirror-2.37/lib/codemirror.js"></script>
+<script src="~/Scripts/codemirror-2.37/mode/clike/clike.js" type="text/javascript"></script>
+<link href="~/Scripts/codemirror-2.37/lib/codemirror.css" rel="stylesheet" type="text/css" />
+<link href="~/Scripts/codemirror-2.37/theme/twilight.css" rel="stylesheet" type="text/css" />
+
+<h2>Sample</h2>
+
+@using (Html.BeginForm( "Index", "Practice"))
+{
+    @Html.TextArea("sampleCode", (string)ViewBag.sampleCode, new {  rows = "20", cols = "120" })
+    <input type="submit" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Practice")'"/>
+    
+}
+</br>
+@using (Html.BeginForm())
+{
+    @Html.TextArea("OutPut", (string)ViewBag.result, new { @class = "form-control", rows = "5", cols = "620" })
+    
+}
+
+<script>
+
+    var editor = CodeMirror.fromTextArea(document.getElementById("sampleCode"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: "text/x-csharp"
+    });
+</script> 
