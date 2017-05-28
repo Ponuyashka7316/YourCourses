@@ -34,7 +34,7 @@ namespace HelloWorld
         }
 
         [HttpPost]
-        public ActionResult Index(string code)
+        public ActionResult Out(string code)
         {
             CSharpCodeProvider provider = new CSharpCodeProvider();
             CompilerParameters parameters = new CompilerParameters();
@@ -54,16 +54,16 @@ namespace HelloWorld
                     sb.AppendLine(String.Format("Error ({0}): {1}", error.ErrorNumber, error.ErrorText));
                 }
 
-
-                throw new InvalidOperationException(sb.ToString());
+                ViewBag.result = sb;
+               // throw new InvalidOperationException(sb.ToString());
             }
             else
             {
-
+                ViewBag.result = "21313";
             }
-            ViewBag.result = results.Output.ToString();
+            //ViewBag.result =results.Output.ToString();
 
-            return View();
+            return PartialView();
 
         }
     }

@@ -408,6 +408,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -452,6 +454,7 @@
     <Content Include="Views\AdminPage\InfoAbout.cshtml" />
     <Content Include="Views\AdminPage\CourseInfo.cshtml" />
     <Content Include="Views\Practice\Index.cshtml" />
+    <Content Include="Views\Practice\Out.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
