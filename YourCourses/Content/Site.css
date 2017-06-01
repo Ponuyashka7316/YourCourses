@@ -22,3 +22,32 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.Courses {
+    list-style:none;
+}
+
+.Courses > li .Name {
+        background: #99ccff;
+        color: #000066;
+        text-align: left;
+        width: inherit;
+    }
+.Courses > li .namecourse {
+        font-size: large;
+        background: #6666ff;
+        color: #ffffff;
+        text-align: left;
+    }
+
+
+.Courses > li {
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+.Courses > li .Details {
+    /*position:absolute;
+    
+    left:70px;*/
+    }

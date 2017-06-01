@@ -55,6 +55,9 @@
     <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -213,6 +216,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminPageController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\CoursesListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PracticeController.cs" />
@@ -255,6 +260,10 @@
     <Compile Include="Migrations\201705051041481_InsertIntoImage.Designer.cs">
       <DependentUpon>201705051041481_InsertIntoImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706011214110_Lect.cs" />
+    <Compile Include="Migrations\201706011214110_Lect.Designer.cs">
+      <DependentUpon>201706011214110_Lect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -269,6 +278,8 @@
     <Compile Include="Models\SubLecture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CourseFormViewModel.cs" />
+    <Compile Include="ViewModels\LecturesFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-YourCourses-20170505085850.mdf" />
@@ -455,6 +466,14 @@
     <Content Include="Views\AdminPage\CourseInfo.cshtml" />
     <Content Include="Views\Practice\Index.cshtml" />
     <Content Include="Views\Practice\Out.cshtml" />
+    <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
+    <Content Include="Views\Courses\Details.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\CoursesList\Index.cshtml" />
+    <Content Include="Views\CoursesList\Lecture.cshtml" />
+    <Content Include="Views\CoursesList\CreateLectureView.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -502,6 +521,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705051041481_InsertIntoImage.resx">
       <DependentUpon>201705051041481_InsertIntoImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706011214110_Lect.resx">
+      <DependentUpon>201706011214110_Lect.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

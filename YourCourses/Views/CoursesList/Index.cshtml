@@ -1,0 +1,40 @@
+﻿@model IEnumerable<YourCourses.Models.Course>
+
+<ul class="Courses">
+    @foreach (var Course in Model)
+    {
+
+        <li>
+            <div >
+                
+                <span class="namecourse">Название курса</span>
+                <span class="Name">@Course.CourseName.ToString(); </span>
+            </div>
+            <div class="Details">
+                Описание курса <br>
+                @Course.CourseInfo
+            </div>
+            <div>
+                <span class="DateTime">
+                    Дата создания
+                    @Course.DateOfCourseCreation.ToString("D");
+                </span>
+                <span class="Actor">
+                    Создатель курса
+                    @Course.Artist.UserName
+                    
+                </span>
+
+            </div>
+            <div class="Type">
+                Тип курса
+                @Course.CourseType.Type
+            </div>
+            <p><a class="btn btn-default" >Learn more &raquo;</a></p>
+            @Html.ActionLink("Learn more", "Lecture", "CoursesList", new { id = Course.CourseId }, "");
+        </li>
+    }
+
+</ul>
+
+

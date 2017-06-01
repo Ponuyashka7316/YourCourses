@@ -16,5 +16,8 @@ namespace YourCourses.Models
         public int LectureId { get; set; }
 
         public List<SubLecture> SubLectures { get; set; } //Every Lecture contain many Subs
+
+        [Required]
+        public int Course_CourseId { get; set; }
     }
 }
