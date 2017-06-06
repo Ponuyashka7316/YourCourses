@@ -222,6 +222,7 @@
     <Compile Include="Controllers\LecturesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PracticeController.cs" />
+    <Compile Include="Controllers\SubLecturesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -241,9 +242,21 @@
     <Compile Include="Migrations\201706050556536_tryToCreateOneToMany.Designer.cs">
       <DependentUpon>201706050556536_tryToCreateOneToMany.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706060534245_sublect.cs" />
-    <Compile Include="Migrations\201706060534245_sublect.Designer.cs">
-      <DependentUpon>201706060534245_sublect.cs</DependentUpon>
+    <Compile Include="Migrations\201706060630256_sublect.cs" />
+    <Compile Include="Migrations\201706060630256_sublect.Designer.cs">
+      <DependentUpon>201706060630256_sublect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706060645431_AddArtistToSublect.cs" />
+    <Compile Include="Migrations\201706060645431_AddArtistToSublect.Designer.cs">
+      <DependentUpon>201706060645431_AddArtistToSublect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706060654527_AddRatingForSublect.cs" />
+    <Compile Include="Migrations\201706060654527_AddRatingForSublect.Designer.cs">
+      <DependentUpon>201706060654527_AddRatingForSublect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706060757428_AddPracticeFK.cs" />
+    <Compile Include="Migrations\201706060757428_AddPracticeFK.Designer.cs">
+      <DependentUpon>201706060757428_AddPracticeFK.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -457,6 +470,8 @@
     <Content Include="Views\Lectures\Details.cshtml" />
     <Content Include="Views\Lectures\Edit.cshtml" />
     <Content Include="Views\Lectures\Index.cshtml" />
+    <Content Include="Views\SubLectures\Index.cshtml" />
+    <Content Include="Views\SubLectures\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -492,8 +507,17 @@
     <EmbeddedResource Include="Migrations\201706050556536_tryToCreateOneToMany.resx">
       <DependentUpon>201706050556536_tryToCreateOneToMany.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706060534245_sublect.resx">
-      <DependentUpon>201706060534245_sublect.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706060630256_sublect.resx">
+      <DependentUpon>201706060630256_sublect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706060645431_AddArtistToSublect.resx">
+      <DependentUpon>201706060645431_AddArtistToSublect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706060654527_AddRatingForSublect.resx">
+      <DependentUpon>201706060654527_AddRatingForSublect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706060757428_AddPracticeFK.resx">
+      <DependentUpon>201706060757428_AddPracticeFK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

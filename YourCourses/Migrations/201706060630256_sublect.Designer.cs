@@ -13,7 +13,7 @@ namespace YourCourses.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201706060534245_sublect"; }
+            get { return "201706060630256_sublect"; }
         }
         
         string IMigrationMetadata.Source

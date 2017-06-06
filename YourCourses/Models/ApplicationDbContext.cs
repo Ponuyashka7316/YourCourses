@@ -6,8 +6,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
+
 namespace YourCourses.Models
 {
+    
     public class ApplicationDbContext: IdentityDbContext<ApplicationUser>
     {
         public DbSet<Course> Courses { get; set; }
@@ -20,7 +22,7 @@ namespace YourCourses.Models
 
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("aspnet-YourCourses-20170505085850", throwIfV1Schema: false)
         {
         }
 

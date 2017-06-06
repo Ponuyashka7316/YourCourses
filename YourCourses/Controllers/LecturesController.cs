@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -50,6 +51,7 @@ namespace YourCourses.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LectureId,LectureName,CourseCourseId")] Lecture lecture)
         {
+           
             if (ModelState.IsValid)
             {
                 db.Lectures.Add(lecture);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -23,8 +24,12 @@ namespace YourCourses.Models
         [Required]
         public string TestsForUserInput { get; set; }   //user input tests
 
-        public List<CorrectAnswer> CorrectAnswer { get; set; } //contain true result/results for this practice
+        [Required]
+        public int SublectureSubId { get; set; }
 
-        public SubLecture Sublectures { get; set; }
+        public virtual List<CorrectAnswer> CorrectAnswer { get; set; } //contain true result/results for this practice
+
+        [ForeignKey("SublectureSubId")]
+        public virtual SubLecture Sublectures { get; set; }
     }
 }
