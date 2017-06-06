@@ -1,4 +1,49 @@
-﻿
+﻿@model IEnumerable<YourCourses.Models.Lecture>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="~/Content/bootstrap.min.css">
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
 <p>Lectures</p>
 <label for="">@ViewBag.id</label>
-@Html.ActionLink(" + ", "CreateLectureView", "CoursesList", new { id = ViewBag.id }, "");
+@Html.ActionLink(" Добавить лекцию ", "Create", "lectures");
+
+@foreach (var l in Model)
+{
+    <br>
+    @l.LectureName
+}
+@foreach (var lecture in Model)
+{
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse1">@lecture.LectureName</a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+                <ul class="list-group">
+                    <li class="list-group-item">@lecture.LectureName</li>
+                    <li class="list-group-item">@lecture.LectureName</li>
+                    <li class="list-group-item">@lecture.LectureName</li>
+                </ul>
+                @*<div class="panel-footer">@lecture.Course.CourseName</div>*@
+            </div>
+        </div>
+    </div>
+}
+<style>
+    /* Icon when the collapsible content is shown */
+    .btn:after {
+        font-family: "Glyphicons Halflings";
+        content: "\e114";
+        float: right;
+        margin-left: 15px;
+    }
+    /* Icon when the collapsible content is hidden */
+    .btn.collapsed:after {
+        content: "\e080";
+    }
+</style>

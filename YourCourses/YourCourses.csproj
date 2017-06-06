@@ -219,50 +219,31 @@
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\CoursesListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LecturesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PracticeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705050706205_InitialModel.cs" />
-    <Compile Include="Migrations\201705050706205_InitialModel.Designer.cs">
-      <DependentUpon>201705050706205_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\201706030515051_add_fk.cs" />
+    <Compile Include="Migrations\201706030515051_add_fk.Designer.cs">
+      <DependentUpon>201706030515051_add_fk.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705050827496_CreateFirstTables.cs" />
-    <Compile Include="Migrations\201705050827496_CreateFirstTables.Designer.cs">
-      <DependentUpon>201705050827496_CreateFirstTables.cs</DependentUpon>
+    <Compile Include="Migrations\201706030521241_ArtistId.cs" />
+    <Compile Include="Migrations\201706030521241_ArtistId.Designer.cs">
+      <DependentUpon>201706030521241_ArtistId.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705050935257_overrideAttributes.cs" />
-    <Compile Include="Migrations\201705050935257_overrideAttributes.Designer.cs">
-      <DependentUpon>201705050935257_overrideAttributes.cs</DependentUpon>
+    <Compile Include="Migrations\201706030532187_addctypeId.cs" />
+    <Compile Include="Migrations\201706030532187_addctypeId.Designer.cs">
+      <DependentUpon>201706030532187_addctypeId.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705051000319_Populate_Name_Table.cs" />
-    <Compile Include="Migrations\201705051000319_Populate_Name_Table.Designer.cs">
-      <DependentUpon>201705051000319_Populate_Name_Table.cs</DependentUpon>
+    <Compile Include="Migrations\201706050556536_tryToCreateOneToMany.cs" />
+    <Compile Include="Migrations\201706050556536_tryToCreateOneToMany.Designer.cs">
+      <DependentUpon>201706050556536_tryToCreateOneToMany.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705051010420_PopulateCorseTypeTable.cs" />
-    <Compile Include="Migrations\201705051010420_PopulateCorseTypeTable.Designer.cs">
-      <DependentUpon>201705051010420_PopulateCorseTypeTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705051020039_recover.cs" />
-    <Compile Include="Migrations\201705051020039_recover.Designer.cs">
-      <DependentUpon>201705051020039_recover.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705051022406_insert.cs" />
-    <Compile Include="Migrations\201705051022406_insert.Designer.cs">
-      <DependentUpon>201705051022406_insert.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705051036224_AddImage.cs" />
-    <Compile Include="Migrations\201705051036224_AddImage.Designer.cs">
-      <DependentUpon>201705051036224_AddImage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705051041481_InsertIntoImage.cs" />
-    <Compile Include="Migrations\201705051041481_InsertIntoImage.Designer.cs">
-      <DependentUpon>201705051041481_InsertIntoImage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706011214110_Lect.cs" />
-    <Compile Include="Migrations\201706011214110_Lect.Designer.cs">
-      <DependentUpon>201706011214110_Lect.cs</DependentUpon>
+    <Compile Include="Migrations\201706060534245_sublect.cs" />
+    <Compile Include="Migrations\201706060534245_sublect.Designer.cs">
+      <DependentUpon>201706060534245_sublect.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -280,12 +261,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CourseFormViewModel.cs" />
     <Compile Include="ViewModels\LecturesFormViewModel.cs" />
+    <Compile Include="ViewModels\SubLectureFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-YourCourses-20170505085850.mdf" />
-    <Content Include="App_Data\aspnet-YourCourses-20170505085850_log.ldf">
-      <DependentUpon>aspnet-YourCourses-20170505085850.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -400,6 +378,7 @@
     <Content Include="Scripts\codemirror-2.37\mode\pascal\LICENSE" />
     <Content Include="Scripts\codemirror-2.37\mode\coffeescript\LICENSE" />
     <Content Include="Scripts\codemirror-2.37\LICENSE" />
+    <Content Include="ClassDiagram2.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\codemirror-2.37\theme\ambiance-mobile.css" />
     <Content Include="Scripts\codemirror-2.37\theme\ambiance.css" />
@@ -473,9 +452,15 @@
     <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\CoursesList\Index.cshtml" />
     <Content Include="Views\CoursesList\Lecture.cshtml" />
-    <Content Include="Views\CoursesList\CreateLectureView.cshtml" />
+    <Content Include="Views\Lectures\Create.cshtml" />
+    <Content Include="Views\Lectures\Delete.cshtml" />
+    <Content Include="Views\Lectures\Details.cshtml" />
+    <Content Include="Views\Lectures\Edit.cshtml" />
+    <Content Include="Views\Lectures\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
@@ -495,35 +480,20 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705050706205_InitialModel.resx">
-      <DependentUpon>201705050706205_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706030515051_add_fk.resx">
+      <DependentUpon>201706030515051_add_fk.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705050827496_CreateFirstTables.resx">
-      <DependentUpon>201705050827496_CreateFirstTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706030521241_ArtistId.resx">
+      <DependentUpon>201706030521241_ArtistId.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705050935257_overrideAttributes.resx">
-      <DependentUpon>201705050935257_overrideAttributes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706030532187_addctypeId.resx">
+      <DependentUpon>201706030532187_addctypeId.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705051000319_Populate_Name_Table.resx">
-      <DependentUpon>201705051000319_Populate_Name_Table.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706050556536_tryToCreateOneToMany.resx">
+      <DependentUpon>201706050556536_tryToCreateOneToMany.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705051010420_PopulateCorseTypeTable.resx">
-      <DependentUpon>201705051010420_PopulateCorseTypeTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705051020039_recover.resx">
-      <DependentUpon>201705051020039_recover.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705051022406_insert.resx">
-      <DependentUpon>201705051022406_insert.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705051036224_AddImage.resx">
-      <DependentUpon>201705051036224_AddImage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705051041481_InsertIntoImage.resx">
-      <DependentUpon>201705051041481_InsertIntoImage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706011214110_Lect.resx">
-      <DependentUpon>201706011214110_Lect.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706060534245_sublect.resx">
+      <DependentUpon>201706060534245_sublect.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

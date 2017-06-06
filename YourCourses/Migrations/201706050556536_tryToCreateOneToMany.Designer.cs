@@ -7,13 +7,13 @@ namespace YourCourses.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddImage : IMigrationMetadata
+    public sealed partial class tryToCreateOneToMany : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddImage));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(tryToCreateOneToMany));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705051036224_AddImage"; }
+            get { return "201706050556536_tryToCreateOneToMany"; }
         }
         
         string IMigrationMetadata.Source

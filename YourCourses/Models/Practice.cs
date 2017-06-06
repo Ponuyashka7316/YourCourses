@@ -8,8 +8,8 @@ namespace YourCourses.Models
 {
     public class Practice
     {
-        [Required]
-        public ApplicationUser Artist { get; set; } //Belonging to the user
+        //[Required]
+        //public ApplicationUser Artist { get; set; } //Belonging to the user
 
         [Required]
         public int PracticeId { get; set; }
@@ -24,5 +24,7 @@ namespace YourCourses.Models
         public string TestsForUserInput { get; set; }   //user input tests
 
         public List<CorrectAnswer> CorrectAnswer { get; set; } //contain true result/results for this practice
+
+        public SubLecture Sublectures { get; set; }
     }
 }

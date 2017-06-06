@@ -28,42 +28,50 @@ namespace YourCourses.Controllers
 
         public ActionResult Lecture(int? id)
         {
+            var upcoming = db.Lectures
+                    .Where(c => c.CourseCourseId == id);
             if (id.HasValue)
             {
                 ViewBag.id = id.Value;
             }
-            return View();
+            return View(upcoming);
         }
+
         /// <summary>
-        /// 
+        /// create lecture for current course
         /// </summary>
         /// <param name="id">Current course id</param>
         /// <returns></returns>
-        public ActionResult CreateLectureView(int? id) // current course id
-        {
-            if (id.HasValue)
-            {
-                ViewBag.courseId = id.Value ;
-            }
-            return View();
-        }
+        //public ActionResult CreateLectureView(int? id) // current course id
+        //{
+        //    if (id.HasValue)
+        //    {
+        //        ViewBag.courseId = id.Value ;
+        //    }
+        //    return View();
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Authorize]
+        //public ActionResult CreateLecture(LecturesFormViewModel viewModel)
+        //{
+        //   // Course course = db.Courses.First(p => p.CourseId == ViewBag.courseId);
+        //    Lecture lecture = new Lecture
+        //    {
+        //        LectureName = viewModel.Name,
+        //        //CourseCourseId = viewModel.Course_CourseId,
 
-        public ActionResult CreateLecture(LecturesFormViewModel viewModel)
-        {
 
-            var lecture = new Lecture
-            {
-                LectureName = viewModel.Name,
-                
-            };
+        //    };
 
-            if (ModelState.IsValid)
-            {
-                db.Lectures.Add(lecture);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(lecture);
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        //course.Lectures = new List<Lecture> { lecture };
+        //        //db.Courses.Add(course);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(lecture);
+        //}
     }
 }

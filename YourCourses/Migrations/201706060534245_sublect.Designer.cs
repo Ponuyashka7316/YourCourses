@@ -7,13 +7,13 @@ namespace YourCourses.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CreateFirstTables : IMigrationMetadata
+    public sealed partial class sublect : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateFirstTables));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(sublect));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705050827496_CreateFirstTables"; }
+            get { return "201706060534245_sublect"; }
         }
         
         string IMigrationMetadata.Source
