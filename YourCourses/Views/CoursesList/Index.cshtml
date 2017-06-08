@@ -30,8 +30,8 @@
                 Тип курса
                 @Course.CourseType.Type
             </div>
-            <p><a class="btn btn-default" >Learn more &raquo;</a></p>
-            @Html.ActionLink("Learn more", "Lecture", "CoursesList", new { id = Course.CourseId }, "");
+            <p><a class="btn btn-default" >Name:@Html.ActionLink("Learn more", "Lecture", "CoursesList", new { id = Course.CourseId }, "") &raquo;</a></p>
+            
         </li>
     }
 

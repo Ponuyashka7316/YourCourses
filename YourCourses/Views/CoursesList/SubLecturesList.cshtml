@@ -1,0 +1,18 @@
+﻿@model IEnumerable<YourCourses.Models.SubLecture>
+
+
+@foreach (var items in Model)
+{
+    <br>
+    <br>
+    @Ajax.ActionLink(@items.SubName, "ShowLecture", new { id = items.SubId }, new AjaxOptions { UpdateTargetId = "results1", LoadingElementId = "loading" })
+
+
+}
+<br>
+@Html.ActionLink("Добавить лекцию", "Create", "SubLectures")
+
+<div id="results1"></div>
+
+    <img id="loading" src="@Url.Content("~/Content/Images/gears.gif")" style="display:none" />
+    

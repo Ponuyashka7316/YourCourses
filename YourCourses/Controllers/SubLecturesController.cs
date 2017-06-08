@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using YourCourses.Models;
 using Microsoft.AspNet.Identity;
+using System.Net;
 
 namespace YourCourses.Controllers
 {
@@ -29,7 +30,7 @@ namespace YourCourses.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SubLectureId,SubName,LectureLectureId,LectureAdminOutput")]SubLecture subLecture)
+        public ActionResult Create(SubLecture subLecture)
         {
             var sublect = new SubLecture
             {
@@ -41,15 +42,39 @@ namespace YourCourses.Controllers
 
 
             };
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 db.SubLectures.Add(sublect);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            //}
 
             ViewBag.LectureLectureId = new SelectList(db.Lectures, "LectureId", "LectureName", subLecture.LectureLectureId);
             return View(sublect);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SubLecture subLecture = db.SubLectures.Find(id);
+            if (subLecture == null)
+            {
+                return HttpNotFound();
+            }
+            return View(subLecture);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            SubLecture sublect = db.SubLectures.Find(id);
+            db.SubLectures.Remove(sublect);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
     }
