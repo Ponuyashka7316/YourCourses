@@ -12,6 +12,7 @@ namespace YourCourses.Models
     
     public class ApplicationDbContext: IdentityDbContext<ApplicationUser>
     {
+        //for interactive courses
         public DbSet<Course> Courses { get; set; }
         public DbSet<Lecture> Lectures { get; set; }
         public DbSet<SubLecture> SubLectures { get; set; }
@@ -19,6 +20,11 @@ namespace YourCourses.Models
         public DbSet<CorrectAnswer> CorrectAnswers { get; set; }
         public DbSet<CourseType> CourseTypes { get; set; }
         public DbSet<Image> Images { get; set; }
+
+        //for quiz courses
+        public DbSet<Quiz> Quizs { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Option> Options { get; set; }
 
 
         public ApplicationDbContext()

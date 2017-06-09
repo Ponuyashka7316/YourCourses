@@ -1,0 +1,63 @@
+﻿@model IEnumerable<YourCourses.Models.Practice>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Sublectures.ArtistId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PracticeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PracticeUserInput)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstPart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestsPart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondPart)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sublectures.ArtistId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PracticeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PracticeUserInput)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstPart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestsPart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondPart)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PracticeId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PracticeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PracticeId })
+        </td>
+    </tr>
+}
+
+</table>

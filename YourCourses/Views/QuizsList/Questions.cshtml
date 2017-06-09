@@ -1,0 +1,20 @@
+﻿@model IEnumerable<YourCourses.Models.Question>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+@Html.ActionLink(" Добавить вопрос ", "Create", "Questions");
+
+@foreach (var item in Model)
+{
+    
+    <br>
+    @Ajax.ActionLink(item.Text, "QuestionsList", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "results", LoadingElementId = "loading" })
+    
+    <div id="loading" style="display:none; color:Red; font-weight:bold;">
+        <p>Идет загрузка...</p>
+        <br>
+    </div>
+    <br>
+}
+<br><div id="results"></div> <br>
+
+

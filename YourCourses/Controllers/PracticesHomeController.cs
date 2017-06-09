@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,145 +7,115 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using YourCourses.Models;
-using YourCourses.ViewModels;
 
 namespace YourCourses.Controllers
 {
-    public class CoursesController : Controller
+    public class PracticesHomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Courses
+        // GET: PracticesHome
         public ActionResult Index()
         {
-            return View(db.Courses.ToList());
+            var practices = db.Practices.Include(p => p.Sublectures);
+            return View(practices.ToList());
         }
 
-        // GET: Courses/Details/5
+        // GET: PracticesHome/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Practice practice = db.Practices.Find(id);
+            if (practice == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(practice);
         }
 
-        // GET: Courses/Create
+        // GET: PracticesHome/Create
         public ActionResult Create()
         {
-            var viewModel = new CourseFormViewModel
-            {
-                CourseTypes = db.CourseTypes.ToList()
-            };
-            return View(viewModel);
+            ViewBag.SublectureSubId = new SelectList(db.SubLectures, "SubId", "SubName");
+            return View();
         }
 
-        // POST: Courses/Create
+        // POST: PracticesHome/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
-        // [Bind(Include = "CourseId,CourseName,CourseInfo,Date,Time,CourseType")] CourseFormViewModel viewModel
         [HttpPost]
-        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CourseFormViewModel viewModel)
+        public ActionResult Create([Bind(Include = "PracticeId,PracticeName,PracticeUserInput,FirstPart,TestsPart,SecondPart,SublectureSubId")] Practice practice)
         {
-
-            //var artist = db.Users.Single(u=>u.Id==artistId);
-            //var courseType = db.CourseTypes.Single(t=>t.Id==viewModel.Type);
-            var course = new Course
-            {
-                ArtistId = User.Identity.GetUserId(),
-                CourseName = viewModel.CourseName,
-                DateOfCourseCreation = DateTime.Parse(string.Format("{0} {1}", viewModel.Date, viewModel.Time)),
-                CourseTypeId = viewModel.Type,
-                CourseInfo = viewModel.CourseInfo
-          
-
-            };
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
+                db.Practices.Add(practice);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(course);
+            ViewBag.SublectureSubId = new SelectList(db.SubLectures, "SubId", "SubName", practice.SublectureSubId);
+            return View(practice);
         }
 
-        // GET: Courses/Edit/5
+        // GET: PracticesHome/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
-                
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Practice practice = db.Practices.Find(id);
+            if (practice == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            ViewBag.SublectureSubId = new SelectList(db.SubLectures, "SubId", "SubName", practice.SublectureSubId);
+            return View(practice);
         }
 
-        // POST: Courses/Edit/5
+        // POST: PracticesHome/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CourseFormViewModel viewModel)
+        public ActionResult Edit([Bind(Include = "PracticeId,PracticeName,PracticeUserInput,FirstPart,TestsPart,SecondPart,SublectureSubId")] Practice practice)
         {
-            var artistId = User.Identity.GetUserId();
-            var artist = db.Users.Single(u => u.Id == artistId);
-            var courseType = db.CourseTypes.Single(t => t.Id == viewModel.Type);
-            var courseId = db.CourseTypes.Single(t => t.Id == viewModel.CourseId);
-            var course = new Course
-            {
-                
-                Artist = artist,
-                CourseName = viewModel.CourseName,
-                DateOfCourseCreation = viewModel.DateTime,
-                CourseType = courseType,
-                CourseInfo = viewModel.CourseInfo
-            };
-
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;
+                db.Entry(practice).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(course);
+            ViewBag.SublectureSubId = new SelectList(db.SubLectures, "SubId", "SubName", practice.SublectureSubId);
+            return View(practice);
         }
 
-        // GET: Courses/Delete/5
+        // GET: PracticesHome/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Practice practice = db.Practices.Find(id);
+            if (practice == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(practice);
         }
 
-        // POST: Courses/Delete/5
+        // POST: PracticesHome/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
+            Practice practice = db.Practices.Find(id);
+            db.Practices.Remove(practice);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

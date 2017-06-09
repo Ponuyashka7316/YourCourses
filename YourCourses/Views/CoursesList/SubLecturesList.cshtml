@@ -1,4 +1,5 @@
-﻿@model IEnumerable<YourCourses.Models.SubLecture>
+﻿@{Layout = null;}
+@model IEnumerable<YourCourses.Models.SubLecture>
 
 
 @foreach (var items in Model)
@@ -11,6 +12,8 @@
 }
 <br>
 @Html.ActionLink("Добавить лекцию", "Create", "SubLectures")
+<br>
+@Html.ActionLink("Добавить практику", "Create", "PracticesHome")
 
 <div id="results1"></div>
 

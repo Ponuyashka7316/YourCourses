@@ -22,7 +22,13 @@ namespace YourCourses.Models
         public string PracticeUserInput { get; set; } //user input text from textArea, Sets the default value for textArea
 
         [Required]
-        public string TestsForUserInput { get; set; }   //user input tests
+        public string FirstPart { get; set; }   //first part
+
+        public string TestsPart { get; set; }   //not visible for user
+
+        public string SecondPart { get; set; }    //second part after USER INPUT ("PracticeUserInput" prop)
+
+        public double Mark { get; set; }    //middle users votes for the practice
 
         [Required]
         public int SublectureSubId { get; set; }

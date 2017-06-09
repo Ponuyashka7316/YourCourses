@@ -1,0 +1,27 @@
+﻿@model IEnumerable<YourCourses.Models.Option>
+@{
+    Layout = null;
+}
+@using (Html.BeginForm())
+{
+    foreach (var item in Model)
+    {
+        <br>
+        
+            var Answer = item.Status;
+
+         
+        <label>@Html.RadioButton("ABC", item.Text)@item.Text</label>
+
+            }
+            
+    <input type="submit" value="Submit" class="btn btn-default" />
+}
+
+
+
+@ViewBag.rate
+@Html.ActionLink(" Добавить вариант ответа ", "Create", "Options");
+
+
+

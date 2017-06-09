@@ -29,6 +29,7 @@ namespace YourCourses.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create(SubLecture subLecture)
         {

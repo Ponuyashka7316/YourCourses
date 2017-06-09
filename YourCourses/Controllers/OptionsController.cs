@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,145 +7,115 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using YourCourses.Models;
-using YourCourses.ViewModels;
 
 namespace YourCourses.Controllers
 {
-    public class CoursesController : Controller
+    public class OptionsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Courses
+        // GET: Options
         public ActionResult Index()
         {
-            return View(db.Courses.ToList());
+            var options = db.Options.Include(o => o.Questions);
+            return View(options.ToList());
         }
 
-        // GET: Courses/Details/5
+        // GET: Options/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Option option = db.Options.Find(id);
+            if (option == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(option);
         }
 
-        // GET: Courses/Create
+        // GET: Options/Create
         public ActionResult Create()
         {
-            var viewModel = new CourseFormViewModel
-            {
-                CourseTypes = db.CourseTypes.ToList()
-            };
-            return View(viewModel);
+            ViewBag.QuestionId = new SelectList(db.Questions, "Id", "Text");
+            return View();
         }
 
-        // POST: Courses/Create
+        // POST: Options/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
-        // [Bind(Include = "CourseId,CourseName,CourseInfo,Date,Time,CourseType")] CourseFormViewModel viewModel
         [HttpPost]
-        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CourseFormViewModel viewModel)
+        public ActionResult Create( Option option)
         {
-
-            //var artist = db.Users.Single(u=>u.Id==artistId);
-            //var courseType = db.CourseTypes.Single(t=>t.Id==viewModel.Type);
-            var course = new Course
-            {
-                ArtistId = User.Identity.GetUserId(),
-                CourseName = viewModel.CourseName,
-                DateOfCourseCreation = DateTime.Parse(string.Format("{0} {1}", viewModel.Date, viewModel.Time)),
-                CourseTypeId = viewModel.Type,
-                CourseInfo = viewModel.CourseInfo
-          
-
-            };
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
+                db.Options.Add(option);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(course);
+            ViewBag.QuestionId = new SelectList(db.Questions, "Id", "Text", option.QuestionId);
+            return View(option);
         }
 
-        // GET: Courses/Edit/5
+        // GET: Options/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
-                
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Option option = db.Options.Find(id);
+            if (option == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            ViewBag.QuestionId = new SelectList(db.Questions, "Id", "Text", option.QuestionId);
+            return View(option);
         }
 
-        // POST: Courses/Edit/5
+        // POST: Options/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CourseFormViewModel viewModel)
+        public ActionResult Edit([Bind(Include = "Id,Status,QuestionId")] Option option)
         {
-            var artistId = User.Identity.GetUserId();
-            var artist = db.Users.Single(u => u.Id == artistId);
-            var courseType = db.CourseTypes.Single(t => t.Id == viewModel.Type);
-            var courseId = db.CourseTypes.Single(t => t.Id == viewModel.CourseId);
-            var course = new Course
-            {
-                
-                Artist = artist,
-                CourseName = viewModel.CourseName,
-                DateOfCourseCreation = viewModel.DateTime,
-                CourseType = courseType,
-                CourseInfo = viewModel.CourseInfo
-            };
-
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;
+                db.Entry(option).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(course);
+            ViewBag.QuestionId = new SelectList(db.Questions, "Id", "Text", option.QuestionId);
+            return View(option);
         }
 
-        // GET: Courses/Delete/5
+        // GET: Options/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Option option = db.Options.Find(id);
+            if (option == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(option);
         }
 
-        // POST: Courses/Delete/5
+        // POST: Options/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
+            Option option = db.Options.Find(id);
+            db.Options.Remove(option);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

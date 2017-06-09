@@ -1,0 +1,66 @@
+﻿@model YourCourses.Models.Practice
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Practice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sublectures.ArtistId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sublectures.ArtistId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PracticeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PracticeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PracticeUserInput)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PracticeUserInput)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstPart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstPart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TestsPart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TestsPart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondPart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondPart)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PracticeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

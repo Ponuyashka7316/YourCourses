@@ -1,0 +1,35 @@
+﻿@model IEnumerable<YourCourses.Models.Quiz>
+
+<ul class="Quiz">
+    @foreach (var Quiz in Model)
+    {
+
+        <li>
+            <div>
+
+                <span class="namecourse">Название курса</span>
+                <span class="Name">@Quiz.Name; </span>
+            </div>
+            <div class="Details">
+                Описание курса <br>
+                @Html.Raw(Quiz.Info)
+            </div>
+            <div>
+                
+                <span class="Actor">
+                    Создатель курса
+                    @Quiz.Artist.UserName
+
+                </span>
+
+            </div>
+           
+            <p><a class="btn btn-default">Name:@Html.ActionLink("Learn more", "Questions", "QuizsList", new { id = Quiz.Id }, "") &raquo;</a></p>
+
+        </li>
+    }
+
+</ul>
+
+
+

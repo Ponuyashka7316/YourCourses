@@ -1,5 +1,15 @@
-﻿@model YourCourses.Models.SubLecture
+﻿@{
+    Layout = null;
+}
+@model YourCourses.Models.SubLecture
+<br>
+<br>
+@Html.Raw(@Model.LectureAdminOutput);
+<br>
 
-    @Model.LectureAdminOutput
+@Ajax.ActionLink("Показать практическую часть ", "ShowPractice", new { id = Model.SubId }, new AjaxOptions { UpdateTargetId = "results2", LoadingElementId = "loading" })
+<div role="separator" class="divider"></div>
+<div id="results2"></div>
 
+<img id="loading" src="@Url.Content("~/Content/Images/gears.gif")" style="display:none" />
 
