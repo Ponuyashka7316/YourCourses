@@ -19,6 +19,7 @@ namespace YourCourses.Controllers
         }
         // GET: About
         //  Start Admin Page
+        [Authorize(Roles = "admin")]
         public ActionResult InfoAbout()
         {
             
@@ -26,6 +27,7 @@ namespace YourCourses.Controllers
         }
 
         //Create CourseInfo
+        [Authorize(Roles = "admin")]
         public ActionResult CourseInfo()
         {
             CourseTypes = _context.CourseTypes.ToList();

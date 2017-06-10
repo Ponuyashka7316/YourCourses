@@ -17,6 +17,7 @@ namespace YourCourses.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Courses
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(db.Courses.ToList());

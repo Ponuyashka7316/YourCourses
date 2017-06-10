@@ -47,6 +47,7 @@ namespace YourCourses.Controllers
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PracticeId,PracticeName,PracticeUserInput,FirstPart,TestsPart,SecondPart,SublectureSubId")] Practice practice)
         {
@@ -81,6 +82,7 @@ namespace YourCourses.Controllers
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PracticeId,PracticeName,PracticeUserInput,FirstPart,TestsPart,SecondPart,SublectureSubId")] Practice practice)
         {

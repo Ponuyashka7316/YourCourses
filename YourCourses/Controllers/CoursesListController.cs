@@ -13,6 +13,7 @@ using Microsoft.CSharp;
 using System.Reflection;
 using System.Net;
 using Microsoft.AspNet.Identity;
+using System.Security.Permissions;
 
 namespace YourCourses.Controllers
 {
@@ -103,58 +104,50 @@ namespace YourCourses.Controllers
 
         public ActionResult ShowEditorArea(string Code)
         {
-            ViewBag.result = CompileAndRun(Code);// CompileAndRun(Code);
+            ViewBag.result = EvalCode("Program", "Main",Code);// CompileAndRun(Code);
             return View();
+        }
+
+        private string EvalCode(string typeName, string methodName, string sourceCode)
+        {
+            string output = "Output ";
+            
+            var compiler = CodeDomProvider.CreateProvider("CSharp");
+            var parameters = new CompilerParameters
+            {
+                CompilerOptions = "/t:library",
+                GenerateInMemory = true,
+                IncludeDebugInformation = true
+            };
+            var results = compiler.CompileAssemblyFromSource(parameters, sourceCode);
+
+            if (!results.Errors.HasErrors)
+            {
+                var assembly = results.CompiledAssembly;
+                var evaluatorType = assembly.GetType(typeName);
+                var evaluator = Activator.CreateInstance(evaluatorType);
+
+                output += (string)InvokeMethod(evaluatorType, methodName, evaluator, new object[] { output });
+                return output;
+            }
+
+            output+= "\r\nHouston, we have a problem at compile time!";
+            return results.Errors.Cast<CompilerError>().Aggregate(output, (current, ce) => current + string.Format("\r\nline {0}: {1}", ce.Line, ce.ErrorText));
+        }
+
+        [FileIOPermission(SecurityAction.Deny, Unrestricted = true)]
+        private object InvokeMethod(Type evaluatorType, string methodName, object evaluator, object[] methodParams)
+        {
+            return evaluatorType.InvokeMember(methodName, BindingFlags.InvokeMethod, null, evaluator, methodParams);
         }
 
         static string CompileAndRun(string code)
         {
-            string result = string.Empty;
-            ICodeCompiler loCompiler = new CSharpCodeProvider().CreateCompiler();
-            CompilerParameters loParameters = new CompilerParameters();
+            var result = String.Empty;
+            result += code;
 
-            var lcCode = code;
+           
 
-            loParameters.GenerateInMemory = false;
-            CompilerResults loCompiled =
-           loCompiler.CompileAssemblyFromSource(loParameters, lcCode);
-            if (loCompiled.Errors.HasErrors)
-            {
-                string lcErrorMsg = "";
-
-                lcErrorMsg = loCompiled.Errors.Count.ToString() + " Errors:";
-                for (int x = 0; x < loCompiled.Errors.Count; x++)
-                    lcErrorMsg = lcErrorMsg + "\r\nLine: " +
-                                 loCompiled.Errors[x].Line.ToString() + " - " +
-                                 loCompiled.Errors[x].ErrorText;
-
-                result = (lcErrorMsg + "\r\n\r\n" + lcCode);
-                return result;
-            }
-            Assembly loAssembly = loCompiled.CompiledAssembly;
-            object loObject = loAssembly.CreateInstance("MyNamespace.MyClass");
-            if (loObject == null)
-            {
-                result = "Couldn't load class.";
-                return result;
-            }
-            object[] loCodeParms = new object[1];
-            loCodeParms[0] = "West Wind Technologies";
-
-            try
-            {
-                object loResult = loObject.GetType().InvokeMember(
-                                 "Main", BindingFlags.InvokeMethod,
-                                 null, loObject, loCodeParms);
-
-                DateTime ltNow = (DateTime)loResult;
-                result = "Method Call Result:\r\n\r\n" +
-                                loResult.ToString();
-            }
-            catch (Exception loError)
-            {
-                result = loError.Message;
-            }
             return result;
         }
     }

@@ -75,7 +75,7 @@ namespace HelloWorld
 
                 foreach (CompilerError error in results.Errors)
                 {
-                    sb.AppendLine(String.Format("Error ({0}): {1}", error.ErrorNumber, error.ErrorText));
+                    sb.AppendLine(String.Format("Error ({0}): {1}", error.ErrorNumber,  error.ToString()));
                 }
 
                 ViewBag.result = sb.ToString() +" Затрачено времени на запрос: "+ ts.Milliseconds + "мс";
