@@ -15,8 +15,10 @@
 
 <p>Lectures</p>
 <label for="">@ViewBag.id</label>
-@Html.ActionLink(" Добавить модуль ", "Create", "lectures");
-
+@if (User.IsInRole("admin"))
+{
+@Html.ActionLink(" Добавить модуль ", "Create", "Lectures", null, new { @class = "btn btn-outline-info" })
+}
 @*@foreach (var l in Model)
 {
     <br>
@@ -32,6 +34,7 @@
     <div style="margin-right:8px;float:left;">
         <br>
         @Ajax.ActionLink(s.LectureName, "SublecturesList", new { id = s.LectureId }, new AjaxOptions { UpdateTargetId = "results", LoadingElementId = "loading" })
+        
         <div id="results"></div>
         <div id="loading" style="display:none; color:Red; font-weight:bold;">
             <p>Идет загрузка...</p>

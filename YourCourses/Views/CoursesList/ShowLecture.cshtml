@@ -4,7 +4,9 @@
 @model YourCourses.Models.SubLecture
 <br>
 <br>
-@Html.Raw(@Model.LectureAdminOutput);
+<h2>@Html.DisplayFor(Model=>Model.SubName)</h2>
+@Html.TextAreaFor(Model=>Model.LectureAdminOutput))
+
 <br>
 
 @Ajax.ActionLink("Показать практическую часть ", "ShowPractice", new { id = Model.SubId }, new AjaxOptions { UpdateTargetId = "results2", LoadingElementId = "loading" })

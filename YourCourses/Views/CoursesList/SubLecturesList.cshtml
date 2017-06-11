@@ -1,17 +1,19 @@
 ﻿@{Layout = null;}
 @model IEnumerable<YourCourses.Models.SubLecture>
 
-
+<script src="~/Scripts/bootstrap.min.js"></script>
 @foreach (var items in Model)
 {
     <br>
     <br>
-    @Ajax.ActionLink(@items.SubName, "ShowLecture", new { id = items.SubId }, new AjaxOptions { UpdateTargetId = "results1", LoadingElementId = "loading" })
+    @Ajax.ActionLink(@items.SubName, "ShowLecture", new { id = items.SubId },
+    new AjaxOptions { UpdateTargetId = "results1", LoadingElementId = "loading" }, 
+    new { @style = "text-transform:capitalize;",@class = "btn btn-outline-info" })
 
 
 }
 <br>
-@Html.ActionLink("Добавить лекцию", "Create", "SubLectures")
+@Html.ActionLink("Добавить лекцию", "Create", "SubLectures", null, new { @class = "btn btn-outline-info" })
 <br>
 @Html.ActionLink("Добавить практику", "Create", "PracticesHome")
 
