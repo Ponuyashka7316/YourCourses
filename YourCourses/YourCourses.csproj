@@ -244,6 +244,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IQuizManager.cs" />
     <Compile Include="AdminPageViewModel\CourseViewModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -253,79 +254,34 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminPageController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnswerChoicesController.cs" />
+    <Compile Include="Controllers\AnswersController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\CoursesListController.cs" />
+    <Compile Include="Controllers\Home1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LecturesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\PracticeController.cs" />
     <Compile Include="Controllers\PracticesHomeController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\QuizsController.cs" />
-    <Compile Include="Controllers\QuizsListController.cs" />
     <Compile Include="Controllers\SubLecturesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706030515051_add_fk.cs" />
-    <Compile Include="Migrations\201706030515051_add_fk.Designer.cs">
-      <DependentUpon>201706030515051_add_fk.cs</DependentUpon>
+    <Compile Include="Migrations\201706100934162_AddQuiz1.cs" />
+    <Compile Include="Migrations\201706100934162_AddQuiz1.Designer.cs">
+      <DependentUpon>201706100934162_AddQuiz1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706030521241_ArtistId.cs" />
-    <Compile Include="Migrations\201706030521241_ArtistId.Designer.cs">
-      <DependentUpon>201706030521241_ArtistId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706030532187_addctypeId.cs" />
-    <Compile Include="Migrations\201706030532187_addctypeId.Designer.cs">
-      <DependentUpon>201706030532187_addctypeId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706050556536_tryToCreateOneToMany.cs" />
-    <Compile Include="Migrations\201706050556536_tryToCreateOneToMany.Designer.cs">
-      <DependentUpon>201706050556536_tryToCreateOneToMany.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706060630256_sublect.cs" />
-    <Compile Include="Migrations\201706060630256_sublect.Designer.cs">
-      <DependentUpon>201706060630256_sublect.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706060645431_AddArtistToSublect.cs" />
-    <Compile Include="Migrations\201706060645431_AddArtistToSublect.Designer.cs">
-      <DependentUpon>201706060645431_AddArtistToSublect.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706060654527_AddRatingForSublect.cs" />
-    <Compile Include="Migrations\201706060654527_AddRatingForSublect.Designer.cs">
-      <DependentUpon>201706060654527_AddRatingForSublect.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706060757428_AddPracticeFK.cs" />
-    <Compile Include="Migrations\201706060757428_AddPracticeFK.Designer.cs">
-      <DependentUpon>201706060757428_AddPracticeFK.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706080748128_RedactPractideModel.cs" />
-    <Compile Include="Migrations\201706080748128_RedactPractideModel.Designer.cs">
-      <DependentUpon>201706080748128_RedactPractideModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706080825567_AddMark.cs" />
-    <Compile Include="Migrations\201706080825567_AddMark.Designer.cs">
-      <DependentUpon>201706080825567_AddMark.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706090549341_AddQuizModel.cs" />
-    <Compile Include="Migrations\201706090549341_AddQuizModel.Designer.cs">
-      <DependentUpon>201706090549341_AddQuizModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706090552587_AddArtictFK.cs" />
-    <Compile Include="Migrations\201706090552587_AddArtictFK.Designer.cs">
-      <DependentUpon>201706090552587_AddArtictFK.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706090703590_AddQuizInfo.cs" />
-    <Compile Include="Migrations\201706090703590_AddQuizInfo.Designer.cs">
-      <DependentUpon>201706090703590_AddQuizInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706090754317_AddTextToOptionModel.cs" />
-    <Compile Include="Migrations\201706090754317_AddTextToOptionModel.Designer.cs">
-      <DependentUpon>201706090754317_AddTextToOptionModel.cs</DependentUpon>
+    <Compile Include="Migrations\201706101030237_AddFK.cs" />
+    <Compile Include="Migrations\201706101030237_AddFK.Designer.cs">
+      <DependentUpon>201706101030237_AddFK.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Answer.cs" />
+    <Compile Include="Models\AnswerChoices.cs" />
     <Compile Include="Models\AppDbInitializer.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\CorrectAnswer.cs" />
@@ -335,10 +291,10 @@
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Lecture.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Option.cs" />
     <Compile Include="Models\Practice.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Quiz.cs" />
+    <Compile Include="Models\QuizManager.cs" />
     <Compile Include="Models\SubLecture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -568,9 +524,26 @@
     <Content Include="Views\QuizsList\Index.cshtml" />
     <Content Include="Views\QuizsList\Questions.cshtml" />
     <Content Include="Views\QuizsList\QuestionsList.cshtml" />
+    <Content Include="Views\Home1\About.cshtml" />
+    <Content Include="Views\Home1\Index.cshtml" />
+    <Content Include="Views\Home1\ShowResults.cshtml" />
+    <Content Include="Views\AnswerChoices\Create.cshtml" />
+    <Content Include="Views\AnswerChoices\Delete.cshtml" />
+    <Content Include="Views\AnswerChoices\Details.cshtml" />
+    <Content Include="Views\AnswerChoices\Edit.cshtml" />
+    <Content Include="Views\AnswerChoices\Index.cshtml" />
+    <Content Include="Views\Answers\Create.cshtml" />
+    <Content Include="Views\Answers\Delete.cshtml" />
+    <Content Include="Views\Answers\Details.cshtml" />
+    <Content Include="Views\Answers\Edit.cshtml" />
+    <Content Include="Views\Answers\Index.cshtml" />
+    <Content Include="Views\Quizs\Details.cshtml" />
+    <Content Include="Views\Quizs\Edit.cshtml" />
+    <Content Include="Views\SubLectures\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -591,47 +564,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706030515051_add_fk.resx">
-      <DependentUpon>201706030515051_add_fk.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706100934162_AddQuiz1.resx">
+      <DependentUpon>201706100934162_AddQuiz1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706030521241_ArtistId.resx">
-      <DependentUpon>201706030521241_ArtistId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706030532187_addctypeId.resx">
-      <DependentUpon>201706030532187_addctypeId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706050556536_tryToCreateOneToMany.resx">
-      <DependentUpon>201706050556536_tryToCreateOneToMany.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706060630256_sublect.resx">
-      <DependentUpon>201706060630256_sublect.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706060645431_AddArtistToSublect.resx">
-      <DependentUpon>201706060645431_AddArtistToSublect.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706060654527_AddRatingForSublect.resx">
-      <DependentUpon>201706060654527_AddRatingForSublect.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706060757428_AddPracticeFK.resx">
-      <DependentUpon>201706060757428_AddPracticeFK.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706080748128_RedactPractideModel.resx">
-      <DependentUpon>201706080748128_RedactPractideModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706080825567_AddMark.resx">
-      <DependentUpon>201706080825567_AddMark.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706090549341_AddQuizModel.resx">
-      <DependentUpon>201706090549341_AddQuizModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706090552587_AddArtictFK.resx">
-      <DependentUpon>201706090552587_AddArtictFK.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706090703590_AddQuizInfo.resx">
-      <DependentUpon>201706090703590_AddQuizInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706090754317_AddTextToOptionModel.resx">
-      <DependentUpon>201706090754317_AddTextToOptionModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706101030237_AddFK.resx">
+      <DependentUpon>201706101030237_AddFK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,107 +10,112 @@ using YourCourses.Models;
 
 namespace YourCourses.Controllers
 {
-    public class QuizsController : Controller
+    public class AnswerChoicesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Quizs
+        // GET: AnswerChoices
         public ActionResult Index()
         {
-            return View(db.Quizs.ToList());
+            var answerChoices = db.AnswerChoices.Include(a => a.Question);
+            return View(answerChoices.ToList());
         }
 
-        // GET: Quizs/Details/5
+        // GET: AnswerChoices/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Quiz quiz = db.Quizs.Find(id);
-            if (quiz == null)
+            AnswerChoice answerChoice = db.AnswerChoices.Find(id);
+            if (answerChoice == null)
             {
                 return HttpNotFound();
             }
-            return View(quiz);
+            return View(answerChoice);
         }
 
-        // GET: Quizs/Create
+        // GET: AnswerChoices/Create
         public ActionResult Create()
         {
+            ViewBag.QuestionId = new SelectList(db.Questions, "QuestionId", "QuestionText");
             return View();
         }
 
-        // POST: Quizs/Create
+        // POST: AnswerChoices/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "QuizId,StartTime,Duration,EndTime,Score")] Quiz quiz)
+        public ActionResult Create([Bind(Include = "AnswerChoiceId,Choices,QuestionId")] AnswerChoice answerChoice)
         {
             if (ModelState.IsValid)
             {
-                db.Quizs.Add(quiz);
+                db.AnswerChoices.Add(answerChoice);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(quiz);
+            ViewBag.QuestionId = new SelectList(db.Questions, "QuestionId", "QuestionText", answerChoice.QuestionId);
+            return View(answerChoice);
         }
 
-        // GET: Quizs/Edit/5
+        // GET: AnswerChoices/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Quiz quiz = db.Quizs.Find(id);
-            if (quiz == null)
+            AnswerChoice answerChoice = db.AnswerChoices.Find(id);
+            if (answerChoice == null)
             {
                 return HttpNotFound();
             }
-            return View(quiz);
+            ViewBag.QuestionId = new SelectList(db.Questions, "QuestionId", "QuestionText", answerChoice.QuestionId);
+            return View(answerChoice);
         }
 
-        // POST: Quizs/Edit/5
+        // POST: AnswerChoices/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "QuizId,StartTime,Duration,EndTime,Score")] Quiz quiz)
+        public ActionResult Edit([Bind(Include = "AnswerChoiceId,Choices,QuestionId")] AnswerChoice answerChoice)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(quiz).State = EntityState.Modified;
+                db.Entry(answerChoice).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(quiz);
+            ViewBag.QuestionId = new SelectList(db.Questions, "QuestionId", "QuestionText", answerChoice.QuestionId);
+            return View(answerChoice);
         }
 
-        // GET: Quizs/Delete/5
+        // GET: AnswerChoices/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Quiz quiz = db.Quizs.Find(id);
-            if (quiz == null)
+            AnswerChoice answerChoice = db.AnswerChoices.Find(id);
+            if (answerChoice == null)
             {
                 return HttpNotFound();
             }
-            return View(quiz);
+            return View(answerChoice);
         }
 
-        // POST: Quizs/Delete/5
+        // POST: AnswerChoices/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Quiz quiz = db.Quizs.Find(id);
-            db.Quizs.Remove(quiz);
+            AnswerChoice answerChoice = db.AnswerChoices.Find(id);
+            db.AnswerChoices.Remove(answerChoice);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

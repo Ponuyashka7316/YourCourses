@@ -17,7 +17,7 @@ namespace YourCourses.Controllers
         // GET: Questions
         public ActionResult Index()
         {
-            var questions = db.Questions.Include(q => q.Quizs);
+            var questions = db.Questions.Include(q => q.Answers).Include(q => q.Quizs);
             return View(questions.ToList());
         }
 
@@ -39,7 +39,8 @@ namespace YourCourses.Controllers
         // GET: Questions/Create
         public ActionResult Create()
         {
-            ViewBag.QuizId = new SelectList(db.Quizs, "Id", "Name");
+            ViewBag.AnswerId = new SelectList(db.Answers, "AnswerId", "AnswerText");
+            ViewBag.QuizQuizId = new SelectList(db.Quizs, "QuizId", "QuizId");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace YourCourses.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Text,QuizId")] Question question)
+        public ActionResult Create([Bind(Include = "QuestionId,QuestionText,AnswerId,QuizQuizId")] Question question)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +58,8 @@ namespace YourCourses.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.QuizId = new SelectList(db.Quizs, "Id", "Name", question.QuizId);
+            ViewBag.AnswerId = new SelectList(db.Answers, "AnswerId", "AnswerText", question.AnswerId);
+            ViewBag.QuizQuizId = new SelectList(db.Quizs, "QuizId", "QuizId", question.QuizQuizId);
             return View(question);
         }
 
@@ -73,7 +75,8 @@ namespace YourCourses.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.QuizId = new SelectList(db.Quizs, "Id", "Name", question.QuizId);
+            ViewBag.AnswerId = new SelectList(db.Answers, "AnswerId", "AnswerText", question.AnswerId);
+            ViewBag.QuizQuizId = new SelectList(db.Quizs, "QuizId", "QuizId", question.QuizQuizId);
             return View(question);
         }
 
@@ -82,7 +85,7 @@ namespace YourCourses.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Text,QuizId")] Question question)
+        public ActionResult Edit([Bind(Include = "QuestionId,QuestionText,AnswerId,QuizQuizId")] Question question)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +93,8 @@ namespace YourCourses.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.QuizId = new SelectList(db.Quizs, "Id", "Name", question.QuizId);
+            ViewBag.AnswerId = new SelectList(db.Answers, "AnswerId", "AnswerText", question.AnswerId);
+            ViewBag.QuizQuizId = new SelectList(db.Quizs, "QuizId", "QuizId", question.QuizQuizId);
             return View(question);
         }
 

@@ -22,9 +22,15 @@ namespace YourCourses.Models
         public DbSet<Image> Images { get; set; }
 
         //for quiz courses
+        
+
         public DbSet<Quiz> Quizs { get; set; }
+
         public DbSet<Question> Questions { get; set; }
-        public DbSet<Option> Options { get; set; }
+
+        public DbSet<AnswerChoice> AnswerChoices { get; set; }
+
+        public DbSet<Answer> Answers { get; set; }
 
 
         public ApplicationDbContext()

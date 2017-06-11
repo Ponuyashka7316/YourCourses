@@ -11,24 +11,32 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Quizs.ArtistId)
+            @Html.DisplayNameFor(model => model.Answers.AnswerText)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Quizs.ArtistId)
+            @Html.DisplayFor(model => model.Answers.AnswerText)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Text)
+            @Html.DisplayNameFor(model => model.Quizs.QuizId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Text)
+            @Html.DisplayFor(model => model.Quizs.QuizId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionText)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.QuestionId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -104,7 +104,7 @@ namespace YourCourses.Controllers
 
         public ActionResult ShowEditorArea(string Code)
         {
-            ViewBag.result = EvalCode("Program", "Main",Code);// CompileAndRun(Code);
+            ViewBag.result = CompileAndRun(Code);//EvalCode("Program", "Main",Code);// CompileAndRun(Code);
             return View();
         }
 
@@ -143,10 +143,30 @@ namespace YourCourses.Controllers
 
         static string CompileAndRun(string code)
         {
-            var result = String.Empty;
-            result += code;
+            string result;
+            Dictionary<string, string> providerOptions = new Dictionary<string, string>
+                {
+                    {"CompilerVersion", "v3.5"}
+                };
+            CSharpCodeProvider provider = new CSharpCodeProvider(providerOptions);
 
-           
+            CompilerParameters compilerParams = new CompilerParameters
+            {
+                GenerateInMemory = true,
+                GenerateExecutable = false
+            };
+
+            CompilerResults results = provider.CompileAssemblyFromSource(compilerParams, code);
+
+            if (results.Errors.Count != 0)
+            {
+                result = "Error";
+                return result;
+            }
+
+            object o = results.CompiledAssembly.CreateInstance("Program");
+            MethodInfo mi = o.GetType().GetMethod("Main");
+            result=(string)mi.Invoke(o, null);
 
             return result;
         }

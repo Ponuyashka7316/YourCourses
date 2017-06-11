@@ -54,6 +54,39 @@ namespace YourCourses.Controllers
             return View(sublect);
         }
 
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SubLecture sublecture = db.SubLectures.Find(id);
+            if (sublecture == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.LectureLectureId = new SelectList(db.SubLectures, "SubId", "SubName");
+            return View(sublecture);
+
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(SubLecture subLecture)
+        {
+
+             //if (ModelState.IsValid)
+            //{
+            db.Entry(subLecture).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+            //}
+
+            //ViewBag.LectureLectureId = new SelectList(db.Lectures, "LectureId", "LectureName", subLecture.LectureLectureId);
+            return View(subLecture);
+        }
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
