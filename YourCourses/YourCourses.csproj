@@ -278,6 +278,10 @@
     <Compile Include="Migrations\201706101030237_AddFK.Designer.cs">
       <DependentUpon>201706101030237_AddFK.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706110902584_a.cs" />
+    <Compile Include="Migrations\201706110902584_a.Designer.cs">
+      <DependentUpon>201706110902584_a.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Answer.cs" />
@@ -443,6 +447,102 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\latest %281%29\development\jquery.sceditor.bbcode.js" />
+    <Content Include="Scripts\latest %281%29\development\jquery.sceditor.default.css" />
+    <Content Include="Scripts\latest %281%29\development\jquery.sceditor.js" />
+    <Content Include="Scripts\latest %281%29\development\jquery.sceditor.xhtml.js" />
+    <Content Include="Scripts\latest %281%29\development\plugins\bbcode.js" />
+    <Content Include="Scripts\latest %281%29\development\plugins\format.js" />
+    <Content Include="Scripts\latest %281%29\development\plugins\undo.js" />
+    <Content Include="Scripts\latest %281%29\development\plugins\xhtml.js" />
+    <Content Include="Scripts\latest %281%29\development\themes\default.css" />
+    <Content Include="Scripts\latest %281%29\development\themes\famfamfam.png" />
+    <Content Include="Scripts\latest %281%29\development\themes\modern.css" />
+    <Content Include="Scripts\latest %281%29\development\themes\monocons.css" />
+    <Content Include="Scripts\latest %281%29\development\themes\office-toolbar.css" />
+    <Content Include="Scripts\latest %281%29\development\themes\office.css" />
+    <Content Include="Scripts\latest %281%29\development\themes\square.css" />
+    <Content Include="Scripts\latest %281%29\emoticons\alien.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\angel.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\angry.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\blink.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\blush.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\cheerful.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\cool.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\credits.txt" />
+    <Content Include="Scripts\latest %281%29\emoticons\cwy.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\devil.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\dizzy.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\ermm.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\face.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\getlost.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\grin.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\happy.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\heart.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\kissing.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\laughing.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\ninja.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\pinch.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\pouty.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\sad.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\shocked.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\sick.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\sideways.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\silly.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\sleeping.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\smile.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\tongue.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\unsure.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\w00t.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\wassat.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\whistling.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\wink.png" />
+    <Content Include="Scripts\latest %281%29\emoticons\wub.png" />
+    <Content Include="Scripts\latest %281%29\example.html" />
+    <Content Include="Scripts\latest %281%29\languages\ar.js" />
+    <Content Include="Scripts\latest %281%29\languages\ca.js" />
+    <Content Include="Scripts\latest %281%29\languages\cn.js" />
+    <Content Include="Scripts\latest %281%29\languages\cs.js" />
+    <Content Include="Scripts\latest %281%29\languages\de.js" />
+    <Content Include="Scripts\latest %281%29\languages\el.js" />
+    <Content Include="Scripts\latest %281%29\languages\en-US.js" />
+    <Content Include="Scripts\latest %281%29\languages\en.js" />
+    <Content Include="Scripts\latest %281%29\languages\es.js" />
+    <Content Include="Scripts\latest %281%29\languages\et.js" />
+    <Content Include="Scripts\latest %281%29\languages\fa.js" />
+    <Content Include="Scripts\latest %281%29\languages\fr.js" />
+    <Content Include="Scripts\latest %281%29\languages\gl.js" />
+    <Content Include="Scripts\latest %281%29\languages\hu.js" />
+    <Content Include="Scripts\latest %281%29\languages\it.js" />
+    <Content Include="Scripts\latest %281%29\languages\ja.js" />
+    <Content Include="Scripts\latest %281%29\languages\lt.js" />
+    <Content Include="Scripts\latest %281%29\languages\nb.js" />
+    <Content Include="Scripts\latest %281%29\languages\nl.js" />
+    <Content Include="Scripts\latest %281%29\languages\pl.js" />
+    <Content Include="Scripts\latest %281%29\languages\pt-BR.js" />
+    <Content Include="Scripts\latest %281%29\languages\pt.js" />
+    <Content Include="Scripts\latest %281%29\languages\ru.js" />
+    <Content Include="Scripts\latest %281%29\languages\sv.js" />
+    <Content Include="Scripts\latest %281%29\languages\template.js" />
+    <Content Include="Scripts\latest %281%29\languages\tr.js" />
+    <Content Include="Scripts\latest %281%29\languages\tw.js" />
+    <Content Include="Scripts\latest %281%29\languages\uk.js" />
+    <Content Include="Scripts\latest %281%29\languages\vi.js" />
+    <Content Include="Scripts\latest %281%29\minified\jquery.sceditor.bbcode.min.js" />
+    <Content Include="Scripts\latest %281%29\minified\jquery.sceditor.default.min.css" />
+    <Content Include="Scripts\latest %281%29\minified\jquery.sceditor.min.js" />
+    <Content Include="Scripts\latest %281%29\minified\jquery.sceditor.xhtml.min.js" />
+    <Content Include="Scripts\latest %281%29\minified\plugins\bbcode.js" />
+    <Content Include="Scripts\latest %281%29\minified\plugins\format.js" />
+    <Content Include="Scripts\latest %281%29\minified\plugins\undo.js" />
+    <Content Include="Scripts\latest %281%29\minified\plugins\xhtml.js" />
+    <Content Include="Scripts\latest %281%29\minified\themes\default.min.css" />
+    <Content Include="Scripts\latest %281%29\minified\themes\famfamfam.png" />
+    <Content Include="Scripts\latest %281%29\minified\themes\modern.min.css" />
+    <Content Include="Scripts\latest %281%29\minified\themes\monocons.min.css" />
+    <Content Include="Scripts\latest %281%29\minified\themes\office-toolbar.min.css" />
+    <Content Include="Scripts\latest %281%29\minified\themes\office.min.css" />
+    <Content Include="Scripts\latest %281%29\minified\themes\square.min.css" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -540,6 +640,11 @@
     <Content Include="Views\Quizs\Details.cshtml" />
     <Content Include="Views\Quizs\Edit.cshtml" />
     <Content Include="Views\SubLectures\Edit.cshtml" />
+    <Content Include="Scripts\latest %281%29\development\themes\monocons\monocons.eot" />
+    <Content Include="Scripts\latest %281%29\development\themes\monocons\monocons.ttf" />
+    <Content Include="Scripts\latest %281%29\minified\themes\monocons\monocons.eot" />
+    <Content Include="Scripts\latest %281%29\minified\themes\monocons\monocons.ttf" />
+    <Content Include="Scripts\latest %281%29\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -569,6 +674,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706101030237_AddFK.resx">
       <DependentUpon>201706101030237_AddFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706110902584_a.resx">
+      <DependentUpon>201706110902584_a.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

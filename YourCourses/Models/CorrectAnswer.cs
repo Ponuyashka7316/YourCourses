@@ -13,5 +13,7 @@ namespace YourCourses.Models
 
         [Required]
         public string Answer { get; set; } //store the correct answer
+
+        public Practice Practices { get; set; }
     }
 }

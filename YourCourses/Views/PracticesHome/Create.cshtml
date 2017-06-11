@@ -1,5 +1,27 @@
 ﻿@model YourCourses.Models.Practice
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet" href="~/Scripts/latest (1)/minified/themes/default.min.css" />
+<script src="~/Scripts/latest (1)/minified/jquery.sceditor.bbcode.min.js"></script>
+
+
+
+
+
+
+
+ <style>
+     textarea {
+         resize: both;
+         overflow: auto; /* Horizontal and vertical scrollbar*/
+         overflow-y: scroll;
+         height: 300px;
+         width:800px;
+         max-width:1200px;
+         overflow-x: scroll;
+     }
+     </style>
+
 @{
     ViewBag.Title = "Create";
 }
@@ -25,7 +47,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PracticeUserInput, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.PracticeUserInput, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.PracticeUserInput, 10, 110, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PracticeUserInput, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,7 +55,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FirstPart, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.FirstPart, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.FirstPart, 10, 110, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FirstPart, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,7 +63,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TestsPart, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.TestsPart, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.TestsPart, 10, 110, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TestsPart, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -49,7 +71,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SecondPart, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.SecondPart, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.SecondPart, 10, 110,new { htmlAttributes = new {  @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SecondPart, "", new { @class = "text-danger" })
             </div>
         </div>

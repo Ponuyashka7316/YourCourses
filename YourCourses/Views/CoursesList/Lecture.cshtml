@@ -17,41 +17,44 @@
 <label for="">@ViewBag.id</label>
 @if (User.IsInRole("admin"))
 {
-@Html.ActionLink(" Добавить модуль ", "Create", "Lectures", null, new { @class = "btn btn-outline-info" })
+    @Html.ActionLink(" Добавить модуль ", "Create", "Lectures", null, new { @class = "btn btn-outline-info" })
 }
-@*@foreach (var l in Model)
-{
-    <br>
-    @l.LectureName
-}*@
+    @*@foreach (var l in Model)
+        {
+            <br>
+            @l.LectureName
+        }*@
 
 
 
 
-<br />
-@foreach (var s in Model)
+    <br />
+
+    @foreach (var s in Model)
             {
-    <div style="margin-right:8px;float:left;">
-        <br>
-        @Ajax.ActionLink(s.LectureName, "SublecturesList", new { id = s.LectureId }, new AjaxOptions { UpdateTargetId = "results", LoadingElementId = "loading" })
-        
-        <div id="results"></div>
-        <div id="loading" style="display:none; color:Red; font-weight:bold;">
-            <p>Идет загрузка...</p>
-        </div>
-    </div>
-}
+        <div style="margin-right:8px;float:left;">
+            
 
-<style>
-    /* Icon when the collapsible content is shown */
-    .btn:after {
-        font-family: "Glyphicons Halflings";
-        content: "\e114";
-        float: right;
-        margin-left: 15px;
+
+            @Ajax.ActionLink(s.LectureName, "SublecturesList", new { id = s.LectureId },
+           new AjaxOptions { UpdateTargetId = "results", LoadingElementId = "loading" })
+        </div>
+
+        <img id="loading" src="@Url.Content("~/Content/Images/gears.gif")" style="display:none" />
+
     }
-    /* Icon when the collapsible content is hidden */
-    .btn.collapsed:after {
-        content: "\e080";
-    }
-</style>
+<div id="results"></div>
+
+    <style>
+        /* Icon when the collapsible content is shown */
+        .btn:after {
+            font-family: "Glyphicons Halflings";
+            content: "\e114";
+            float: right;
+            margin-left: 15px;
+        }
+        /* Icon when the collapsible content is hidden */
+        .btn.collapsed:after {
+            content: "\e080";
+        }
+    </style>
