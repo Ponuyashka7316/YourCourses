@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
 
-namespace YourCourses.Models
+namespace YourCourses
 {
     public class FiddleExecuteModel
     {
@@ -69,5 +67,4 @@ namespace YourCourses.Models
         public string MemoryUsage { get; set; }
         public string CpuUsage { get; set; }
     }
-
 }

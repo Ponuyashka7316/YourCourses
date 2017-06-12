@@ -92,6 +92,8 @@ namespace YourCourses.Controllers
             {
                 var practice = db.Practices
                     .Where(c => c.SublectureSubId == id);
+
+
                 return View(practice);
 
             }
@@ -104,10 +106,15 @@ namespace YourCourses.Controllers
 
         }
         
-        public string CompileAndRuns(string Code)
+        public ActionResult Show()
         {
 
-            return Code;
+            var model = new FiddleExecuteModel()
+            {
+                CodeBlock = ViewBag.text
+            };
+
+            return View(model);
         }
 
         public ActionResult ShowEditorArea(string Code)
@@ -115,51 +122,14 @@ namespace YourCourses.Controllers
             var model = new FiddleExecuteModel()
             {
                 CodeBlock = Code
+                //ProjectType= ProjectType.Console
             };
 
             return View(model);
-            //ViewBag.result = CompileAndRun(Code);//EvalCode("Program", "Main",Code);// CompileAndRun(Code);
-            //return View();
+           
         }
 
-        //private string EvalCode(string typeName, string methodName, string sourceCode)
-        //{
-        //    string output = "Output ";
-
-        //    var compiler = CodeDomProvider.CreateProvider("CSharp");
-        //    var parameters = new CompilerParameters
-        //    {
-        //        CompilerOptions = "/t:library",
-        //        GenerateInMemory = true,
-        //        IncludeDebugInformation = true
-        //    };
-        //    var results = compiler.CompileAssemblyFromSource(parameters, sourceCode);
-
-        //    if (!results.Errors.HasErrors)
-        //    {
-        //        var assembly = results.CompiledAssembly;
-        //        var evaluatorType = assembly.GetType(typeName);
-        //        var evaluator = Activator.CreateInstance(evaluatorType);
-
-        //        output += (string)InvokeMethod(evaluatorType, methodName, evaluator, new object[] { output });
-        //        return output;
-        //    }
-
-        //    output+= "\r\nHouston, we have a problem at compile time!";
-        //    return results.Errors.Cast<CompilerError>().Aggregate(output, (current, ce) => current + string.Format("\r\nline {0}: {1}", ce.Line, ce.ErrorText));
-        //}
-
-        //[FileIOPermission(SecurityAction.Deny, Unrestricted = true)]
-        //private object InvokeMethod(Type evaluatorType, string methodName, object evaluator, object[] methodParams)
-        //{
-        //    return evaluatorType.InvokeMember(methodName, BindingFlags.InvokeMethod, null, evaluator, methodParams);
-        //}
-
-        //static string CompileAndRun(string code)
-        //{
-        //    string result = "";
-        //return result;
-        //    }
+       
         [HttpPost]
         public JsonResult Execute(string code)
         {

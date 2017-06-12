@@ -23,26 +23,32 @@
 };
 @foreach (var item in Model)
 {
-    
+    ViewBag.text= item.PracticeUserInput.ToString();
     @Html.TextArea("First", item.FirstPart,  new { @class = "form-control", @readonly =true, rows = "15", cols = "200" })
     <br>
-    
-    <br>
+    //@ViewBag.text= item.PracticeUserInput;
+    @*@Ajax.ActionLink(@item.PracticeName, "Show", new {  },
+    new AjaxOptions { UpdateTargetId = "results1", LoadingElementId = "loading3" },
+    new { @style = "text-transform:capitalize;", @class = "btn btn-outline-info" })
+    <div id="results1"></div>*@
+@Html.ActionLink("Пройти практику", "Index","Execute");
 
-    //using (Ajax.BeginForm("ShowEditorArea", new AjaxOptions
-    //{
-    //    UpdateTargetId = "results3",
-    //    LoadingElementId = "loading2",
-    //}))
-    //{
-        <hr>
-        @Html.TextArea("Code", info+"\n"+(string)item.PracticeUserInput, new { rows = "10", cols = "1000" })
+    using (Ajax.BeginForm("ShowEditorArea", new AjaxOptions
+    {
+        UpdateTargetId = "results3",
+        LoadingElementId = "loading2"
+    }))
+    {
+        <br>
+        
+        //@Html.TextArea("Code", info + "\n" + (string)item.PracticeUserInput, new { rows = "10", cols = "1000" })
         <br>
     <button type="button" class="btn btn-success submit">Execute</button>
-    //}
+    }
     <div class="alert alert-warning fade">
         <strong><span class="alert-content"></span></strong>
         </div>
+
         <script type="text/javascript">
 
 			function openAlert(txt) {

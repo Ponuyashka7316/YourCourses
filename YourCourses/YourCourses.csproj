@@ -261,6 +261,7 @@
     <Compile Include="Controllers\AnswersController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\CoursesListController.cs" />
+    <Compile Include="Controllers\ExecuteController.cs" />
     <Compile Include="Controllers\Home1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LecturesController.cs" />
@@ -308,6 +309,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CourseFormViewModel.cs" />
     <Compile Include="ViewModels\LecturesFormViewModel.cs" />
+    <Compile Include="ViewModels\PracticeViewModel.cs" />
     <Compile Include="ViewModels\SubLectureFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -649,6 +651,8 @@
     <Content Include="Scripts\latest %281%29\minified\themes\monocons\monocons.eot" />
     <Content Include="Scripts\latest %281%29\minified\themes\monocons\monocons.ttf" />
     <Content Include="Scripts\latest %281%29\README.md" />
+    <Content Include="Views\CoursesList\Show.cshtml" />
+    <Content Include="Views\Execute\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
