@@ -6,11 +6,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title – приложение ASP.NET</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap.css")
     @Scripts.Render("~/bundles/modernizr")
+
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#myPage">Logo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Test Practice", "Index", "Practice")</li>
+                    <li>@Html.ActionLink("Интерактивные курсы", "Index", "CoursesList")</li>
+                    <li>@Html.ActionLink("Опросы", "Index", "Home1")</li>
+                    <li><a href="#contact">CONTACT</a></li>
+                    <li class="fix" style="color:aqua">@Html.Partial("_LoginPartial")</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <style>
+        .carousel-indicators li {
+            border-color: #1c1a1a;
+        }
+        #dropdown-menu {
+        color:blue;
+        }
+        #myNavbar {
+            background-color: #1c1a1a;
+        }
+        ul {
+            color: #1c1a1a;
+        }
+            .carousel-indicators li.active {
+                background-color: #1c1a1a;
+            }
+        .panel-heading {
+            color: #fff !important;
+            background-color: #1c1918 !important;
+            padding: 25px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+    .navbar {
+    margin-bottom: 0;
+    background-color: #1c1918;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+    }
+    .navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+    }
+    .navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #f4511e !important;
+    background-color: #fff !important;
+    }
+    .navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+    }
+        </style>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -32,7 +105,7 @@
 
             </div>
         </div>
-    </div>
+    </div>*@
     <div class="container body-content">
         @RenderBody()
         <hr />

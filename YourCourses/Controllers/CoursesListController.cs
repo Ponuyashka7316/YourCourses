@@ -9,9 +9,13 @@ using System.Data.Entity;
 using System.Text;
 using System.CodeDom.Compiler;
 using System.IO;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Emit;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CSharp;
 using System.Reflection;
 using System.Net;
+using RestSharp;
 using Microsoft.AspNet.Identity;
 using System.Security.Permissions;
 
@@ -19,6 +23,10 @@ namespace YourCourses.Controllers
 {
     public class CoursesListController : Controller
     {
+        public void CoursesController() {
+
+        }
+        public const string ApiUrl = "https://dotnetfiddle.net/api/fiddles/";
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: CoursesList
         public ActionResult Index()
@@ -95,7 +103,7 @@ namespace YourCourses.Controllers
             }
 
         }
-
+        
         public string CompileAndRuns(string Code)
         {
 
@@ -104,71 +112,131 @@ namespace YourCourses.Controllers
 
         public ActionResult ShowEditorArea(string Code)
         {
-            ViewBag.result = CompileAndRun(Code);//EvalCode("Program", "Main",Code);// CompileAndRun(Code);
-            return View();
-        }
-
-        private string EvalCode(string typeName, string methodName, string sourceCode)
-        {
-            string output = "Output ";
-            
-            var compiler = CodeDomProvider.CreateProvider("CSharp");
-            var parameters = new CompilerParameters
+            var model = new FiddleExecuteModel()
             {
-                CompilerOptions = "/t:library",
-                GenerateInMemory = true,
-                IncludeDebugInformation = true
+                CodeBlock = Code
             };
-            var results = compiler.CompileAssemblyFromSource(parameters, sourceCode);
 
-            if (!results.Errors.HasErrors)
+            return View(model);
+            //ViewBag.result = CompileAndRun(Code);//EvalCode("Program", "Main",Code);// CompileAndRun(Code);
+            //return View();
+        }
+
+        //private string EvalCode(string typeName, string methodName, string sourceCode)
+        //{
+        //    string output = "Output ";
+
+        //    var compiler = CodeDomProvider.CreateProvider("CSharp");
+        //    var parameters = new CompilerParameters
+        //    {
+        //        CompilerOptions = "/t:library",
+        //        GenerateInMemory = true,
+        //        IncludeDebugInformation = true
+        //    };
+        //    var results = compiler.CompileAssemblyFromSource(parameters, sourceCode);
+
+        //    if (!results.Errors.HasErrors)
+        //    {
+        //        var assembly = results.CompiledAssembly;
+        //        var evaluatorType = assembly.GetType(typeName);
+        //        var evaluator = Activator.CreateInstance(evaluatorType);
+
+        //        output += (string)InvokeMethod(evaluatorType, methodName, evaluator, new object[] { output });
+        //        return output;
+        //    }
+
+        //    output+= "\r\nHouston, we have a problem at compile time!";
+        //    return results.Errors.Cast<CompilerError>().Aggregate(output, (current, ce) => current + string.Format("\r\nline {0}: {1}", ce.Line, ce.ErrorText));
+        //}
+
+        //[FileIOPermission(SecurityAction.Deny, Unrestricted = true)]
+        //private object InvokeMethod(Type evaluatorType, string methodName, object evaluator, object[] methodParams)
+        //{
+        //    return evaluatorType.InvokeMember(methodName, BindingFlags.InvokeMethod, null, evaluator, methodParams);
+        //}
+
+        //static string CompileAndRun(string code)
+        //{
+        //    string result = "";
+        //return result;
+        //    }
+        [HttpPost]
+        public JsonResult Execute(string code)
+        {
+
+            var result = ExecuteFiddle(GetConsoleSample(code));
+            return Json(result);
+        }
+
+        private static string ExecuteFiddle(FiddleExecuteModel model)
+        {
+            var client = new RestClient(ApiUrl);
+
+            // execute request through API
+            var request = new RestRequest("execute", Method.POST);
+            request.RequestFormat = DataFormat.Json;
+            request.AddBody(model);
+
+            IRestResponse<FiddleExecuteResult> response = client.Execute<FiddleExecuteResult>(request);
+
+            StringBuilder result = new StringBuilder();
+            if (response.StatusCode != HttpStatusCode.OK)
             {
-                var assembly = results.CompiledAssembly;
-                var evaluatorType = assembly.GetType(typeName);
-                var evaluator = Activator.CreateInstance(evaluatorType);
-
-                output += (string)InvokeMethod(evaluatorType, methodName, evaluator, new object[] { output });
-                return output;
+                result.AppendLine("Failed to execute API request. Here is an answer from API");
+                result.AppendLine("Response Code: " + response.StatusCode);
+                result.AppendLine("Response Body: " + response.Content);
             }
-
-            output+= "\r\nHouston, we have a problem at compile time!";
-            return results.Errors.Cast<CompilerError>().Aggregate(output, (current, ce) => current + string.Format("\r\nline {0}: {1}", ce.Line, ce.ErrorText));
-        }
-
-        [FileIOPermission(SecurityAction.Deny, Unrestricted = true)]
-        private object InvokeMethod(Type evaluatorType, string methodName, object evaluator, object[] methodParams)
-        {
-            return evaluatorType.InvokeMember(methodName, BindingFlags.InvokeMethod, null, evaluator, methodParams);
-        }
-
-        static string CompileAndRun(string code)
-        {
-            string result;
-            Dictionary<string, string> providerOptions = new Dictionary<string, string>
+            else
+            {
+                // write usage statistics
+                foreach (var header in response.Headers)
                 {
-                    {"CompilerVersion", "v3.5"}
-                };
-            CSharpCodeProvider provider = new CSharpCodeProvider(providerOptions);
+                    if (header.Name == "X-RateLimit-Limit")
+                    {
+                        result.AppendLine("Your total per hour limit is " + header.Value);
+                    }
 
-            CompilerParameters compilerParams = new CompilerParameters
-            {
-                GenerateInMemory = true,
-                GenerateExecutable = false
-            };
+                    if (header.Name == "X-RateLimit-Remaining")
+                    {
+                        result.AppendLine("Your remaining executions count per hour is " + header.Value);
+                    }
 
-            CompilerResults results = provider.CompileAssemblyFromSource(compilerParams, code);
+                    if (header.Name == "X-RateLimit-Reset")
+                    {
+                        var epochTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+                        epochTime = epochTime.AddSeconds(int.Parse(header.Value.ToString()));
+                        result.AppendLine("UTC Time when limit will be refreshed " + epochTime);
+                    }
+                }
 
-            if (results.Errors.Count != 0)
-            {
-                result = "Error";
-                return result;
+                result.AppendLine();
+                result.AppendLine("Code output:");
+                result.AppendLine(response.Data.ConsoleOutput);
             }
 
-            object o = results.CompiledAssembly.CreateInstance("Program");
-            MethodInfo mi = o.GetType().GetMethod("Main");
-            result=(string)mi.Invoke(o, null);
+            return result.Replace(Environment.NewLine, "<br/>").ToString();
+        }
 
-            return result;
+        // get code block
+        private static FiddleExecuteModel GetConsoleSample(string code)
+        {
+            return new FiddleExecuteModel()
+            {
+                Compiler = Compiler.Net45,
+                Language = Language.CSharp,
+                ProjectType = ProjectType.Console,
+                CodeBlock = code
+            };
+        }
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 
@@ -210,4 +278,5 @@ namespace YourCourses.Controllers
     //    }
     //    return View(lecture);
     //}
+    
 }

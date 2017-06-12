@@ -2,6 +2,15 @@
   Layout = null;
 }
 @model IEnumerable<YourCourses.Models.Practice>
+<!-- JS includes -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
@@ -20,39 +29,71 @@
     
     <br>
 
-    using (Ajax.BeginForm("ShowEditorArea", new AjaxOptions
-    {
-        UpdateTargetId = "results3",
-        LoadingElementId = "loading",
-    }))
-    {
+    //using (Ajax.BeginForm("ShowEditorArea", new AjaxOptions
+    //{
+    //    UpdateTargetId = "results3",
+    //    LoadingElementId = "loading2",
+    //}))
+    //{
         <hr>
         @Html.TextArea("Code", info+"\n"+(string)item.PracticeUserInput, new { rows = "10", cols = "1000" })
         <br>
-        <input type="submit" class="btn btn-primary" />
-    }
-    <div id="results3"></div>
-    <img id="loading" src="@Url.Content("~/Content/Images/gears.gif")" style="display:none" />
+    <button type="button" class="btn btn-success submit">Execute</button>
+    //}
+    <div class="alert alert-warning fade">
+        <strong><span class="alert-content"></span></strong>
+        </div>
+        <script type="text/javascript">
+
+			function openAlert(txt) {
+				$('.alert-content').html(txt);
+				$('.alert').addClass('in');
+			}
+
+			function closeAlert() {
+				$('.alert').removeClass('in');
+			}
+
+			$(function(){
+
+				$('.submit').click(function(){
+			console.log('yo');
+					if($('form').valid()) {
+
+						$.ajax({
+							url: '@Url.RouteUrl(new{ action="Execute", controller= "CoursesList" })',
+                            data: { code: $('.Code').val()},
+								type: 'POST',
+								success: function(resp) {
+								openAlert(resp);
+						}});
+					}
+					else {
+						closeAlert();
+					}
+				});
+
+			});
+
+        </script>
+
+        <div id="results3"></div>
+        <img id="loading2" src="@Url.Content("~/Content/Images/gears.gif")" style="display:none" />
+
+        }
+
+        <script>
+
+            var editor = CodeMirror.fromTextArea(document.getElementById("Code"), {
+                lineNumbers: true,
+                matchBrackets: true,
+                mode: "text/x-csharp",
+                compiler: true,
+                hint: true,
+                //autohint: true,
+                theme: "lesser-dark"
 
 
-
-
-}
-
-
-
-<script>
-
-    var editor = CodeMirror.fromTextArea(document.getElementById("Code"), {
-        lineNumbers: true,
-        matchBrackets: true,
-        mode: "text/x-csharp",
-        compiler: true,
-        hint: true,
-        //autohint: true,
-        theme: "lesser-dark"
-
-
-    });
-</script>
+            });
+        </script>
 
