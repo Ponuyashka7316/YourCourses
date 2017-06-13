@@ -14,6 +14,7 @@ namespace YourCourses.Models
 
         [Required]
         [StringLength(1000)]
+        [Display(Name = "Название лекции : ")]
         public string LectureName { get; set; } //lecture name
 
         //[Required]
@@ -22,6 +23,7 @@ namespace YourCourses.Models
         public virtual List<SubLecture> SubLectures { get; set; } //Every Lecture contain many Subs
 
         [Required]
+        [Display(Name = "Курс : ")]
         public int CourseCourseId { get; set; }
 
         [ForeignKey("CourseCourseId")]

@@ -21,6 +21,7 @@ namespace YourCourses.Models
         public CourseType CourseType { get; set; }
 
         [Required]
+        [Display(Name = "Тип курса : ")]
         public int CourseTypeId { get; set; }
 
         //[StringLength(1000)]
@@ -28,12 +29,15 @@ namespace YourCourses.Models
 
         [Required]
         [StringLength(1000)]
+        [Display(Name = "Название курса : ")]
         public string CourseName {get; set;}  //The .NET basics, .NET design and so on
 
         [StringLength(2500)]
+        [Display(Name = "Описание курса : ")]
         public string CourseInfo { get; set; }  //some text info about common course
 
         [Required]
+        [Display(Name = "Дата создания курса : ")]
         public DateTime DateOfCourseCreation { get; set; } //date of course creation
 
         

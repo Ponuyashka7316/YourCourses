@@ -23,7 +23,11 @@
 };
 @foreach (var item in Model)
 {
-    ViewBag.text= item.PracticeUserInput.ToString();
+    ViewBag.practiceuserinput= item.PracticeUserInput.ToString();
+    Session["UI"] = item.PracticeUserInput.ToString();
+    Session["FP"] = item.FirstPart.ToString();
+    Session["TEST"] = item.TestsPart.ToString();
+    Session["LP"] = item.PracticeUserInput.ToString();
     @Html.TextArea("First", item.FirstPart,  new { @class = "form-control", @readonly =true, rows = "15", cols = "200" })
     <br>
     //@ViewBag.text= item.PracticeUserInput;
@@ -31,8 +35,20 @@
     new AjaxOptions { UpdateTargetId = "results1", LoadingElementId = "loading3" },
     new { @style = "text-transform:capitalize;", @class = "btn btn-outline-info" })
     <div id="results1"></div>*@
-@Html.ActionLink("Пройти практику", "Index","Execute");
+using (Html.BeginForm("Index","Execute"))
+{
+    <div class="form-group">
+        @Html.HiddenFor(Model => item.PracticeUserInput, new { Value = (string)ViewBag.practiceuserinput })
+        <div class="col-md-10">
+            <input type="submit" value="Приступить к выполнению практической части" class="btn btn-default" />
+        </div>
+    </div>
 
+}
+@if (User.IsInRole("admin")|| User.IsInRole("user"))
+{
+@Html.ActionLink("Приступить к выполнению практической части", "Index", "Execute");
+}
     using (Ajax.BeginForm("ShowEditorArea", new AjaxOptions
     {
         UpdateTargetId = "results3",

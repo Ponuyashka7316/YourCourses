@@ -10,7 +10,7 @@
 <link href="~/Scripts/codemirror-2.37/lib/codemirror.css" rel="stylesheet" type="text/css" />
 <link href="~/Scripts/codemirror-2.37/theme/lesser-dark.css" rel="stylesheet" type="text/css" />
 
-<h2>Sample</h2>
+<h2>Проверка кода</h2>
 
 @using (Ajax.BeginForm( "Out", new AjaxOptions
 {
@@ -19,6 +19,7 @@
 }))
 {
     @Html.TextArea("sampleCode", (string)ViewBag.sampleCode, new { rows = "20", cols = "420" })
+    <br>
     <input type="submit" class="btn btn-primary"/>
            @*onclick="location.href='@Url.Action("OutPut", "Practice")'"*@ 
       

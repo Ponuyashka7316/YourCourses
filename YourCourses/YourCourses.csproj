@@ -311,10 +311,12 @@
     <Compile Include="ViewModels\LecturesFormViewModel.cs" />
     <Compile Include="ViewModels\PracticeViewModel.cs" />
     <Compile Include="ViewModels\SubLectureFormViewModel.cs" />
+    <Compile Include="схема.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\1.png" />
     <Content Include="Content\Images\gears.gif" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -325,6 +327,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="Scripts\chatSocketAchex-gh-pages\chatSocketAchex.css" />
+    <Content Include="Scripts\chatSocketAchex-gh-pages\chatSocketAchex.js" />
+    <Content Include="Scripts\chatSocketAchex-gh-pages\css\bootstrap.min.css" />
+    <Content Include="Scripts\chatSocketAchex-gh-pages\css\prism.css" />
+    <Content Include="Scripts\chatSocketAchex-gh-pages\index.html" />
+    <Content Include="Scripts\chatSocketAchex-gh-pages\js\bootstrap.min.js" />
+    <Content Include="Scripts\chatSocketAchex-gh-pages\js\jquery.min.js" />
+    <Content Include="Scripts\chatSocketAchex-gh-pages\js\prism.js" />
     <Content Include="Scripts\codemirror-2.37\keymap\emacs.js" />
     <Content Include="Scripts\codemirror-2.37\keymap\vim.js" />
     <Content Include="Scripts\codemirror-2.37\lib\codemirror.css" />
@@ -428,6 +438,7 @@
     <Content Include="Scripts\codemirror-2.37\mode\pascal\LICENSE" />
     <Content Include="Scripts\codemirror-2.37\mode\coffeescript\LICENSE" />
     <Content Include="Scripts\codemirror-2.37\LICENSE" />
+    <Content Include="Scripts\chatSocketAchex-gh-pages\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\codemirror-2.37\theme\ambiance-mobile.css" />
     <Content Include="Scripts\codemirror-2.37\theme\ambiance.css" />

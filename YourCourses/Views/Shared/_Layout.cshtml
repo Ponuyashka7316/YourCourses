@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Test Practice", "Index", "Practice")</li>
+                    <li>@Html.ActionLink("Проверка кода", "Index", "Practice")</li>
                     <li>@Html.ActionLink("Интерактивные курсы", "Index", "CoursesList")</li>
                     <li>@Html.ActionLink("Опросы", "Index", "Home1")</li>
                     <li><a href="#contact">CONTACT</a></li>
@@ -117,5 +117,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    
 </body>
 </html>

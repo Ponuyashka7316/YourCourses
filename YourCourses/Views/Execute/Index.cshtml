@@ -36,9 +36,13 @@
 
             @using (Html.BeginForm())
             {
+                
                 <div class="form-group">
-                    @Html.LabelFor(m => m.CodeBlock)
+                    @Html.TextArea("First part", (string)Session["FP"])
+                    @Html.Hidden("TEST",(string)Session["TEST"])
+                    @*@Html.LabelFor(m => m.CodeBlock)*@
                     @Html.TextAreaFor(model => model.CodeBlock, new { @class = "form-control", rows = 20 })
+                @Html.TextArea("Last part", (string)Session["LP"])
                 </div>
 
                     <button type="button" class="btn btn-success submit">Execute</button>
@@ -59,7 +63,7 @@
     <script src="//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js"></script>
 
     <script type="text/javascript">
-        //var myJsVariable = ("@(ViewBag.text)").value;
+        var myValue = $('#' + '@(ViewBag.text)').val();
 
 			function openAlert(txt) {
 				$('.alert-content').html(txt);
@@ -77,8 +81,8 @@
 					if($('form').valid()) {
 
 						$.ajax({
-							url: '@Url.RouteUrl(new{ action="Execute", controller="Execute"})',
-                    data: { code: $('#CodeBlock').val() },
+                            url: '@Url.RouteUrl(new{ action="Execute", controller="Execute"})',
+                            data: { code: $('#CodeBlock').val() },
                     type: 'POST',
                     success: function (resp) {
                         openAlert(resp);
@@ -94,12 +98,12 @@
 
     </script>
     <script>
-
+        //CodeBlock
             var editor = CodeMirror.fromTextArea(document.getElementById("CodeBlock"), {
                 lineNumbers: true,
                 matchBrackets: true,
                 mode: "text/x-csharp",
-                compiler: true,
+                //compiler: true,
                 hint: true,
                 //autohint: true,
                 theme: "lesser-dark"

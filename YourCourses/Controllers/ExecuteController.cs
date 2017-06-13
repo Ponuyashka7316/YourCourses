@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using YourCourses.Models;
 using System.Text;
 using System.Net;
-
+using System.Text.RegularExpressions;
 using RestSharp;
 
 namespace YourCourses.Controllers
@@ -28,16 +28,17 @@ namespace YourCourses.Controllers
 			System.Console.WriteLine(s ?? i.ToString());
 		}
 	}
-}";
+";
 
         public const string ApiUrl = "https://dotnetfiddle.net/api/fiddles/";
 
         [HttpGet]
         public ActionResult Index()
         {
+            string text = (string)Session["UI"];
             var model = new FiddleExecuteModel()
             {
-                CodeBlock = StartingCodeBlock
+                CodeBlock = text
             };
 
             return View(model);
@@ -47,7 +48,7 @@ namespace YourCourses.Controllers
         [HttpPost]
         public JsonResult Execute(string code)
         {
-            var result = ExecuteFiddle(GetConsoleSample(code));
+            var result = ExecuteFiddle(GetConsoleSample((string)Session["FP"]+ (string)Session["TEST"] + code+(string)Session["LP"]));
             return Json(result);
         }
 
@@ -74,30 +75,39 @@ namespace YourCourses.Controllers
                 // write usage statistics
                 foreach (var header in response.Headers)
                 {
-                    if (header.Name == "X-RateLimit-Limit")
-                    {
-                        result.AppendLine("Your total per hour limit is " + header.Value);
-                    }
+                    //if (header.Name == "X-RateLimit-Limit")
+                    //{
+                    //    result.AppendLine("Your total per hour limit is " + header.Value);
+                    //}
 
-                    if (header.Name == "X-RateLimit-Remaining")
-                    {
-                        result.AppendLine("Your remaining executions count per hour is " + header.Value);
-                    }
+                    //if (header.Name == "X-RateLimit-Remaining")
+                    //{
+                    //    result.AppendLine("Your remaining executions count per hour is " + header.Value);
+                    //}
 
                     if (header.Name == "X-RateLimit-Reset")
                     {
                         var epochTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
                         epochTime = epochTime.AddSeconds(int.Parse(header.Value.ToString()));
-                        result.AppendLine("UTC Time when limit will be refreshed " + epochTime);
+                        //result.AppendLine("UTC Time when limit will be refreshed " + epochTime);
                     }
                 }
 
-                result.AppendLine();
-                result.AppendLine("Code output:");
+                //result.AppendLine();
+                //result.AppendLine("Code output:");
                 result.AppendLine(response.Data.ConsoleOutput);
             }
+            var resultString = result.Replace(Environment.NewLine, "<br/>").ToString();
+            //Regex regex = new Regex("1");
+            
+            //    if (regex.IsMatch(resultString))
+            //    {
+            //    return "" + resultString;
+            //}
+            
 
-            return result.Replace(Environment.NewLine, "<br/>").ToString();
+            
+            return resultString;
         }
 
         // get code block

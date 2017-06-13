@@ -20,10 +20,12 @@ namespace YourCourses.Models
         public ApplicationUser Artist { get; set; } //Belonging to the user
 
         [DefaultValue(0)]
+        [Display(Name = "Оценка лекции : ")]
         public int CurrentRating { get; set; }
 
         [Required]
         [StringLength(1000)]
+        [Display(Name = "Имя лекции : ")]
         public string SubName { get; set; } //sublect. name
 
         //public int? ImageId { get; set; }
@@ -32,9 +34,11 @@ namespace YourCourses.Models
         //public Image? Image { get; set; } //it's define the type of sublection(only lection or lection + practice) determines the type of image(three images from the Content folder)
 
         [Required]
+        [Display(Name = "Содержимое лекции : ")]
         public string LectureAdminOutput { get; set; } // it is the lecture text
 
         [Required]
+        [Display(Name = "Модуль : ")]
         public int LectureLectureId { get; set; }
 
         [ForeignKey("LectureLectureId")]

@@ -3,7 +3,10 @@
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
+@{ 
 
+    Layout = null;
+}
 <address>
     One Microsoft Way<br />
     Redmond, WA 98052-6399<br />
@@ -15,3 +18,37 @@
     <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
     <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
 </address>
+<!-- Bootstrap and JQuery -->
+<script src="~/Scripts/jquery-1.10.2.min.js"> </script>
+<link rel="stylesheet" href="~/Content/bootstrap.min.css">
+
+<!-- Plugin -->
+<link rel="stylesheet" type="text/css" href="~/Scripts/chatSocketAchex-gh-pages/chatSocketAchex.css">
+<script src="~/Scripts/chatSocketAchex-gh-pages/chatSocketAchex.js"></script>
+
+
+<div  id="example"></div>
+<script>
+$('#example').ChatSocket({
+  Room:"RoomDeveloteca", // important  - room or user
+  pass:"1234", // important - pass of room or user
+  //lblTitulChat:" Chat Develoteca.com ", //Chat Name
+  //lblCampoEntrada:"Menssage",
+  //lblEnviar:"Send",
+  //textoAyuda:"Develoteca", // Help button
+  //Nombre:"Anónimo", // default Name.
+  //urlImg:"http://placehold.it/50/55C1E7/fff&text=U", // Avatar chat
+  //btnEntrar:"btnEntrar",
+  //btnEnviar:"btnEnviar",
+  //lblBtnEnviar:"Enviar",
+  //lblTxtEntrar:"txtEntrar",
+  //lblTxtEnviar:"txtMensaje",
+  //lblBtnEntrar:"Enter",  // Joined button
+  //idDialogo:"DialogoEntrada",
+  //classChat:"",  // add class chat
+  //idOnline:"ListaOnline", // id control users joined
+  //lblUsuariosOnline:"Users joined", // text users online
+  //lblEntradaNombre:"Name:",
+  panelColor:"success"
+    });
+    </script>
