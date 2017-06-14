@@ -4,23 +4,23 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Creating course</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class= "btn btn-success" })
 </p>
-<table class="table">
+<table class="table table-bordered">
     <tr>
-        <th>
+        <th class="success">
             @Html.DisplayNameFor(model => model.CourseName)
         </th>
-        <th>
+        <th class="success">
             @Html.DisplayNameFor(model => model.CourseInfo)
         </th>
-        <th>
+        <th class="success">
             @Html.DisplayNameFor(model => model.DateOfCourseCreation)
         </th>
-        <th></th>
+        <th class="active"></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -35,9 +35,9 @@
             @Html.DisplayFor(modelItem => item.DateOfCourseCreation)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CourseId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CourseId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CourseId })
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.CourseId }, new { @class = "btn btn-primary" }) |*@
+            @Html.ActionLink("Details", "Details", new { id=item.CourseId }, new { @class = "btn btn-info" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.CourseId }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

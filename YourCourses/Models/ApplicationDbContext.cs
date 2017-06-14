@@ -24,13 +24,13 @@ namespace YourCourses.Models
         //for quiz courses
         
 
-        public DbSet<Quiz> Quizs { get; set; }
+       // public DbSet<Quiz> Quizs { get; set; }
 
-        public DbSet<Question> Questions { get; set; }
+       // public DbSet<Question> Questions { get; set; }
 
-        public DbSet<AnswerChoice> AnswerChoices { get; set; }
+        //public DbSet<AnswerChoice> AnswerChoices { get; set; }
 
-        public DbSet<Answer> Answers { get; set; }
+       // public DbSet<Answer> Answers { get; set; }
 
 
         public ApplicationDbContext()
@@ -42,5 +42,7 @@ namespace YourCourses.Models
         {
             return new ApplicationDbContext();
         }
+
+        //public System.Data.Entity.DbSet<YourCourses.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

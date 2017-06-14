@@ -21,6 +21,11 @@ namespace YourCourses.Models
         [Display(Name = "Название практики : ")]
         public string PracticeName { get; set; } //Name of practice exercise
 
+        
+        
+        [Display(Name = "Описание практики : ")]
+        public string PracticeDescription { get; set; }
+
         [Display(Name = "Пользовательский ввод : ")]
         public string PracticeUserInput { get; set; } //user input text from textArea, Sets the default value for textArea
 

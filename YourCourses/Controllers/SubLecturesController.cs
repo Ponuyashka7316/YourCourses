@@ -75,12 +75,22 @@ namespace YourCourses.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SubLecture subLecture)
         {
+            var sublect = new SubLecture
+            {
+                ArtistId = User.Identity.GetUserId(),
+                SubName = subLecture.SubName,
+                LectureLectureId = subLecture.LectureLectureId,
+                LectureAdminOutput = subLecture.LectureAdminOutput,
+                CurrentRating = subLecture.CurrentRating
 
-             //if (ModelState.IsValid)
+
+            };
+            //if (ModelState.IsValid)
             //{
-            db.Entry(subLecture).State = EntityState.Modified;
+            db.Entry(sublect).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
+           
             //}
 
             //ViewBag.LectureLectureId = new SelectList(db.Lectures, "LectureId", "LectureName", subLecture.LectureLectureId);

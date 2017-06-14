@@ -21,11 +21,21 @@
     <script src="~/Scripts/codemirror-2.37/mode/clike/clike.js" type="text/javascript"></script>
     <link href="~/Scripts/codemirror-2.37/lib/codemirror.css" rel="stylesheet" type="text/css" />
     <link href="~/Scripts/codemirror-2.37/theme/lesser-dark.css" rel="stylesheet" type="text/css" />
-
+    <link rel="stylesheet" href="~/Scripts/codemirror-2.37/lib/util/simple-hint.css">
+    <link rel="stylesheet" href="~/Scripts/codemirror-2.37/lib/util/simple-hint.js">
     <style type="text/css">
         .field-validation-error {
             color: #ff0000;
         }
+
+        .CodeMirror-scroll {
+            height: auto;
+            overflow-y: hidden;
+            overflow-x: auto;
+        
+        }
+    
+
     </style>
 </head>
 
@@ -38,13 +48,13 @@
             {
                 
                 <div class="form-group">
-                    @Html.TextArea("First part", (string)Session["FP"])
+                    @Html.TextArea("FirstPart", (string)Session["FP"])
                     @Html.Hidden("TEST",(string)Session["TEST"])
                     @*@Html.LabelFor(m => m.CodeBlock)*@
-                    @Html.TextAreaFor(model => model.CodeBlock, new { @class = "form-control", rows = 20 })
-                @Html.TextArea("Last part", (string)Session["LP"])
+                    @Html.TextAreaFor(model => model.CodeBlock, new { @editable=true, @class = "form-control", rows = 20 })
+                @Html.TextArea("LastPart", (string)Session["LP"])
                 </div>
-
+                <p>Ограничение ввода: не более сотни вызовов в час с текущего IP</p>
                     <button type="button" class="btn btn-success submit">Execute</button>
             }
 
@@ -79,10 +89,10 @@
 				$('.submit').click(function(){
 			console.log('yo');
 					if($('form').valid()) {
-
+                        text = editor.getValue();
 						$.ajax({
                             url: '@Url.RouteUrl(new{ action="Execute", controller="Execute"})',
-                            data: { code: $('#CodeBlock').val() },
+                            data: { code: text },
                     type: 'POST',
                     success: function (resp) {
                         openAlert(resp);
@@ -98,18 +108,41 @@
 
     </script>
     <script>
+
         //CodeBlock
+            var readOnlyCodeMirror = CodeMirror.fromTextArea(document.getElementById('FirstPart'), {
+                mode: "text/x-csharp",
+                theme: "default",
+                lineNumbers: false,
+                readOnly: true,
+                tabSize: 1
+                
+            });
+            
+            var readOnlyCodeMirror2 = CodeMirror.fromTextArea(document.getElementById('LastPart'), {
+                mode: "text/x-csharp",
+                theme: "default",
+                lineNumbers: false,
+                readOnly: true
+            });
             var editor = CodeMirror.fromTextArea(document.getElementById("CodeBlock"), {
                 lineNumbers: true,
                 matchBrackets: true,
                 mode: "text/x-csharp",
-                //compiler: true,
-                hint: true,
-                //autohint: true,
+                compiler: true,
+               hint: true,
+               autohint: true,
+               extraKeys: { "Ctrl-Space": "autocomplete" },
                 theme: "lesser-dark"
 
-
             });
+
+            var text = editor.getValue();
+                
+            
+
     </script>
+    
 </body>
+
 </html>

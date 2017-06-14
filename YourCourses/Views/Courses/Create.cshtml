@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Create";
 }
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="~/Content/bootstrap.css">
 <script>
     $(function () {
         $('#Time').datetimepicker(
@@ -39,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control hasDatepicker" } })
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -65,7 +68,10 @@
         </div>
     </div>
 }
-
+<script>
+    $('#sandbox-container input').datepicker({
+    });
+    </script>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

@@ -45,6 +45,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.PracticeDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.PracticeDescription, 10, 110, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PracticeDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.PracticeUserInput, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.PracticeUserInput, 10, 110, new { htmlAttributes = new { @class = "form-control" } })

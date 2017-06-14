@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-3.1.1.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 <script src="~/Scripts/codemirror-2.37/lib/codemirror.js"></script>
 <script src="~/Scripts/codemirror-2.37/mode/clike/clike.js" type="text/javascript"></script>
@@ -20,32 +20,24 @@
 <link href="~/Scripts/codemirror-2.37/theme/lesser-dark.css" rel="stylesheet" type="text/css" />
 @{ var info=@"//Rextester.Program.Main is the entry point for your code. Don't change it.
 //Compiler version 4.0.30319.17929 for Microsoft (R) .NET Framework 4.5";
-};
+}
 @foreach (var item in Model)
 {
+    <p class="text-success">@Html.Raw(item.PracticeDescription.ToString())</p>
     ViewBag.practiceuserinput= item.PracticeUserInput.ToString();
     Session["UI"] = item.PracticeUserInput.ToString();
     Session["FP"] = item.FirstPart.ToString();
     Session["TEST"] = item.TestsPart.ToString();
-    Session["LP"] = item.PracticeUserInput.ToString();
-    @Html.TextArea("First", item.FirstPart,  new { @class = "form-control", @readonly =true, rows = "15", cols = "200" })
+    Session["LP"] = item.SecondPart.ToString();
+    @*@Html.TextArea("First", item.FirstPart,  new { @class = "form-control", @readonly =true, rows = "15", cols = "200" })*@
     <br>
     //@ViewBag.text= item.PracticeUserInput;
     @*@Ajax.ActionLink(@item.PracticeName, "Show", new {  },
     new AjaxOptions { UpdateTargetId = "results1", LoadingElementId = "loading3" },
     new { @style = "text-transform:capitalize;", @class = "btn btn-outline-info" })
     <div id="results1"></div>*@
-using (Html.BeginForm("Index","Execute"))
-{
-    <div class="form-group">
-        @Html.HiddenFor(Model => item.PracticeUserInput, new { Value = (string)ViewBag.practiceuserinput })
-        <div class="col-md-10">
-            <input type="submit" value="Приступить к выполнению практической части" class="btn btn-default" />
-        </div>
-    </div>
 
-}
-@if (User.IsInRole("admin")|| User.IsInRole("user"))
+if (User.IsInRole("admin") || User.IsInRole("user"))
 {
 @Html.ActionLink("Приступить к выполнению практической части", "Index", "Execute");
 }
@@ -59,7 +51,7 @@ using (Html.BeginForm("Index","Execute"))
         
         //@Html.TextArea("Code", info + "\n" + (string)item.PracticeUserInput, new { rows = "10", cols = "1000" })
         <br>
-    <button type="button" class="btn btn-success submit">Execute</button>
+    @*<button type="button" class="btn btn-success submit">Execute</button>*@
     }
     <div class="alert alert-warning fade">
         <strong><span class="alert-content"></span></strong>
@@ -100,7 +92,7 @@ using (Html.BeginForm("Index","Execute"))
         </script>
 
         <div id="results3"></div>
-        <img id="loading2" src="@Url.Content("~/Content/Images/gears.gif")" style="display:none" />
+        @*<img id="loading2" src="@Url.Content("~/Content/Images/gears.gif")" style="display:none" />*@
 
         }
 

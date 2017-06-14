@@ -8,13 +8,14 @@
     <!-- Theme Made By www.w3schools.com - No Copyright -->
     <title>YourCourses Page</title>
     <meta charset="utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
     <style>
   body {
       font: 400 15px Lato, sans-serif;
@@ -210,10 +211,10 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#about">О НАС</a></li>
                     <li><a href="#services">ВОЗМОЖНОСТИ</a></li>
                     <li><a href="#portfolio">ПРИМЕРЫ</a></li>
-                    <li><a href="#pricing">ЦЕНА</a></li>
+                    <li><a href="#pricing">ПРЕДЛОЖЕНИЯ</a></li>
                     <li><a href="#contact">КОНТАКТ</a></li>
                     <li style="color:aqua">@Html.Partial("_LoginPartial")</li>
                 </ul>
@@ -232,8 +233,8 @@
         <div class="row">
             <div class="col-sm-8">
                 <h2>About Company Page</h2><br>
-                <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <h4>YourCourses - это онлайн-учебное место для существующих и начинающих разработчиков, которые учатся через развлекательный контент. Каждый курс построен вокруг творческой темы делая процесс более увлекательным. Мы комбинируем интерактивные механизмы с лекциями, чтобы сделать обучение интересным и запоминающимся.</h4><br>
+                <p>Навыки кодирования никогда не пользовались повышенным спросом, но традиционные курсы по информатике часто являются дорогостоящими, трудоемкими и не обладают гибкостью, которую требуют многие люди. Между тем, технология движется быстрее, чем когда-либо, и чтобы оставаться в силе, многие разработчики должны постоянно изучать новые навыки за пределами своей дневной работы. Это оставило место для новых подходов к образованию кода.</p>
                 <br><button onclick="location.href='@Url.Action("Index", "CoursesList")'", class="btn btn-default btn-lg">Get in Touch</button>
             </div>
             <div class="col-sm-4">
@@ -361,7 +362,7 @@
     <!-- Container (Pricing Section) -->
     <div id="pricing" class="container-fluid">
         <div class="text-center">
-            <h2>Pricing</h2>
+            <h2>ПРЕДЛОЖЕНИЯ</h2>
             <h4>Choose a payment plan that works for you</h4>
         </div>
         <div class="row slideanim">
@@ -440,14 +441,14 @@
     <div id="googleMap" style="height:400px;width:100%;"></div>
     <script>
 function myMap() {
-var myCenter = new google.maps.LatLng(41.878114, -87.629798);
+    var myCenter = new google.maps.LatLng(46.29761099, 30.64292908);
 var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
 var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 var marker = new google.maps.Marker({position:myCenter});
 marker.setMap(map);
 }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=142282019918-h5ibrj96bb4peduag9bj05tr3mg881m3&callback=myMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjMAfbwzuo434ZuwedGk-hIpKI-Lrn68c&callback=myMap"></script>
     <!--
     To use this code on your website, get a free API key from Google.
     Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp

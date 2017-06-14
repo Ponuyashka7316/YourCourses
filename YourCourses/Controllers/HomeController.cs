@@ -27,5 +27,12 @@ namespace YourCourses.Controllers
 
             return View();
         }
+
+        public ActionResult Search()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
     }
 }

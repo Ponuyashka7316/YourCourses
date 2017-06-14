@@ -49,7 +49,7 @@ namespace YourCourses.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PracticeId,PracticeName,PracticeUserInput,FirstPart,TestsPart,SecondPart,SublectureSubId")] Practice practice)
+        public ActionResult Create([Bind(Include = "PracticeId,PracticeName,PracticeDescription,PracticeUserInput,FirstPart,TestsPart,SecondPart,SublectureSubId")] Practice practice)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace YourCourses.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PracticeId,PracticeName,PracticeUserInput,FirstPart,TestsPart,SecondPart,SublectureSubId")] Practice practice)
+        public ActionResult Edit([Bind(Include = "PracticeId,PracticeName,PracticeDescription,PracticeUserInput,FirstPart,TestsPart,SecondPart,SublectureSubId")] Practice practice)
         {
             if (ModelState.IsValid)
             {
