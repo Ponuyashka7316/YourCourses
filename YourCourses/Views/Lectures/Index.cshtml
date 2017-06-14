@@ -7,17 +7,17 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
 </p>
-<table class="table">
+<table class="table table-bordered">
     <tr>
-        <th>
+        <th class="success">
             @Html.DisplayNameFor(model => model.CourseCourseId)
         </th>
-        <th>
+        <th class="success">
             @Html.DisplayNameFor(model => model.LectureName)
         </th>
-        <th></th>
+        <th class="active"></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.LectureName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LectureId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LectureId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LectureId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.LectureId }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.LectureId }, new { @class = "btn btn-info" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.LectureId }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

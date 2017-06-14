@@ -7,29 +7,29 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
 </p>
-<table class="table">
+<table class="table table-bordered  ">
     <tr>
-        <th>
+        <th class="success">
             @Html.DisplayNameFor(model => model.Sublectures.ArtistId)
         </th>
-        <th>
+        <th class="success">
             @Html.DisplayNameFor(model => model.PracticeName)
         </th>
-        <th>
+        <th class="success">
             @Html.DisplayNameFor(model => model.PracticeUserInput)
         </th>
-        <th>
+        <th class="success">
             @Html.DisplayNameFor(model => model.FirstPart)
         </th>
-        <th>
+        <th class="success">
             @Html.DisplayNameFor(model => model.TestsPart)
         </th>
-        <th>
+        <th class="success">
             @Html.DisplayNameFor(model => model.SecondPart)
         </th>
-        <th></th>
+        <th class="active"></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.SecondPart)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PracticeId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PracticeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PracticeId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.PracticeId }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.PracticeId }, new { @class = "btn btn-info" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.PracticeId }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
