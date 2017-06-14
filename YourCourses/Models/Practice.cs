@@ -50,5 +50,7 @@ namespace YourCourses.Models
 
         [ForeignKey("SublectureSubId")]
         public virtual SubLecture Sublectures { get; set; }
+
+        public virtual List<PracticeAndUserMark> PracticeAndUserMark { get; set; }
     }
 }

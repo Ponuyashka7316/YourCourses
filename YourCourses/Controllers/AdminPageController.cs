@@ -25,7 +25,7 @@ namespace YourCourses.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult InfoAbout()
         {
-            
+            _context.Roles.ToList();
             return View();
         }
 

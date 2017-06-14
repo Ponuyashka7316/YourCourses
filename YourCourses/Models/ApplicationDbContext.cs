@@ -20,17 +20,18 @@ namespace YourCourses.Models
         public DbSet<CorrectAnswer> CorrectAnswers { get; set; }
         public DbSet<CourseType> CourseTypes { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<PracticeAndUserMark> PracticeAndUserMarks { get; set; }
 
         //for quiz courses
-        
 
-       // public DbSet<Quiz> Quizs { get; set; }
 
-       // public DbSet<Question> Questions { get; set; }
+        // public DbSet<Quiz> Quizs { get; set; }
+
+        // public DbSet<Question> Questions { get; set; }
 
         //public DbSet<AnswerChoice> AnswerChoices { get; set; }
 
-       // public DbSet<Answer> Answers { get; set; }
+        // public DbSet<Answer> Answers { get; set; }
 
 
         public ApplicationDbContext()

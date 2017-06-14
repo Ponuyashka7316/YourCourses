@@ -10,12 +10,13 @@
 @model YourCourses.Models.SubLecture
 <br>
 <br>
-<h2>@Html.DisplayFor(Model=>Model.SubName)</h2>
+<h2>@Html.DisplayFor(Model => Model.SubName)</h2>
 @Html.Raw(Model.LectureAdminOutput)
 
 <br>
 
-@Ajax.ActionLink("Показать практическую часть ", "ShowPractice", new { id = Model.SubId }, new AjaxOptions { UpdateTargetId = "results2", LoadingElementId = "loading1" })
+@Ajax.ActionLink("Показать практическую часть ", "ShowPractice", new { id = Model.SubId }, new AjaxOptions { UpdateTargetId = "results2", LoadingElementId = "loading1" },
+    new {@class="btn btn-default btn-lg btn-block"})
 <div role="separator" class="divider"></div>
 <div id="results2"></div>
 

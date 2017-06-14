@@ -6,11 +6,14 @@ using System.Text;
 using System.Net;
 using System.Text.RegularExpressions;
 using RestSharp;
+using Microsoft.AspNet.Identity;
 
 namespace YourCourses.Controllers
 {
     public class ExecuteController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public const string StartingCodeBlock = @"public class Program
 {
 	public static void Main()
@@ -35,6 +38,9 @@ namespace YourCourses.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            Session["CurrentUserId"] = User.Identity.GetUserId();
+           // db.PracticeAndUserMarks.Find(Session["CurrentUserId"], Session["CurrentPractId"]);
+
             string text = (string)Session["UI"];
             var model = new FiddleExecuteModel()
             {
@@ -98,16 +104,16 @@ namespace YourCourses.Controllers
                 result.AppendLine(response.Data.ConsoleOutput);
             }
             var resultString = result.Replace(Environment.NewLine, "<br/>").ToString();
-            //Regex regex = new Regex("1");
-            
-            //    if (regex.IsMatch(resultString))
-            //    {
-            //    return "" + resultString;
-            //}
-            
+            Regex regex = new Regex("error");
+            Regex regex1 = new Regex("exception");
+            if (regex.IsMatch(resultString)|| regex1.IsMatch(resultString))
+            {
+                return "Не верно " + resultString;
+            }
 
-            
-            return resultString;
+
+
+            return "ЗАДАНИЕ ВЫПОЛНЕНО "+resultString;
         }
 
         // get code block

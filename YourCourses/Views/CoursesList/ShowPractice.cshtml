@@ -29,6 +29,8 @@
     Session["FP"] = item.FirstPart.ToString();
     Session["TEST"] = item.TestsPart.ToString();
     Session["LP"] = item.SecondPart.ToString();
+    Session["CurrentPractId"] = item.PracticeId;
+
     @*@Html.TextArea("First", item.FirstPart,  new { @class = "form-control", @readonly =true, rows = "15", cols = "200" })*@
     <br>
     //@ViewBag.text= item.PracticeUserInput;
@@ -37,16 +39,15 @@
     new { @style = "text-transform:capitalize;", @class = "btn btn-outline-info" })
     <div id="results1"></div>*@
 
-if (User.IsInRole("admin") || User.IsInRole("user"))
+
+    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Index", "Execute")'">Вернуться на страницу выбора курсов</button>
+
+//using (Ajax.BeginForm("ShowEditorArea", new AjaxOptions
+//{
+//    UpdateTargetId = "results3",
+//    LoadingElementId = "loading2"
+//}))
 {
-@Html.ActionLink("Приступить к выполнению практической части", "Index", "Execute");
-}
-    using (Ajax.BeginForm("ShowEditorArea", new AjaxOptions
-    {
-        UpdateTargetId = "results3",
-        LoadingElementId = "loading2"
-    }))
-    {
         <br>
         
         //@Html.TextArea("Code", info + "\n" + (string)item.PracticeUserInput, new { rows = "10", cols = "1000" })
@@ -93,8 +94,8 @@ if (User.IsInRole("admin") || User.IsInRole("user"))
 
         <div id="results3"></div>
         @*<img id="loading2" src="@Url.Content("~/Content/Images/gears.gif")" style="display:none" />*@
-
-        }
+    break;
+}
 
         <script>
 
