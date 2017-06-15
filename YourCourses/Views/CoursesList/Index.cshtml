@@ -1,34 +1,74 @@
 ﻿@model IEnumerable<YourCourses.Models.Course>
 
 <link rel="stylesheet" href="~/Content/bootstrap.min.css">
-
+<link rel="stylesheet" href="~/Content/animate.css">
+<link rel="stylesheet" href="~/Content/style.css">
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-3.1.1.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
+<script>
+
+        $(document).ready(function () {
+
+            $(".slideanim").addClass('animated bounceInLeft');
+
+            var h = $(window).height();
+            $(window).scroll(function () {
+                if (($(this).scrollTop() + h) >= $(".slideanim").offset().top) {
+
+                    $(".slideanim").css({ visibility: "visible" });
+
+                    $(".slideanim").eq(0).addClass('animated bounceInLeft');
+                }
+                //if ($(this).scrollTop() == 0) {
+                //    $(".slideanim").each(function () {
+
+                //        if ($(this).hasClass('row')) {
+
+                //            $(this).removeClass().addClass('slideanim row');
+
+                //        } else {
+                //            $(this).removeClass().addClass('slideanim');
+
+                //        }
+                //        $(this).css({ visibility: "hidden" });
+                //    });
+                //}
+
+
+            });
+        });
+    </script>
 <style>
     .panel-footer {
         background-color: white !important;
     }
+
         .panel-footer .btn:hover {
             border: 1px solid #1c1918;
             background-color: #fff !important;
             color: #f4511e;
         }
+
     .panel:hover {
         box-shadow: 5px 0px 40px rgba(0,0,0, .2);
     }
-        .panel-footer h3 {
-            font-size: 23px;
-        }
 
-        .panel-footer h4 {
-            color: #aaa;
-            font-size: 14px;
-        }
+    .panel-footer h3 {
+        font-size: 23px;
+    }
 
-        .panel-footer .btn {
-            margin: 15px 0;
-            background-color: #1c1918;
-            color: #fff;
-        }
+    .panel-footer h4 {
+        color: #aaa;
+        font-size: 14px;
+    }
+
+    .panel-footer .btn {
+        margin: 15px 0;
+        background-color: #1c1918;
+        color: #fff;
+    }
+
     .panel {
         border: 1px solid #1c1b1a;
         border-radius: 0 !important;
@@ -45,72 +85,71 @@
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
     }
-    
-    </style>
+</style>
 <br><br><br>
 <ul class="Courses">
-    
+
     @foreach (var Course in Model)
     {
-       
+
         <li>
-            
-       <div class="row slideanim">
-            <div class="col-sm-7 col-xs-4">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        
-                        <h1 class="glyphicon glyphicon-play logo-small"> @Course.CourseName.ToString()</h1>
-                    </div>
-                    <div class="panel-body">
 
-                        <p><strong>Информация о курсе: </strong> @Html.Raw(Course.CourseInfo)</p>
-                        <p><strong>Дата создания курса</strong> @Course.DateOfCourseCreation.ToString("D");</p>
-                    </div>
+            <div class="row slideanim animated bounceInLeft"  >
+                <div class="col-sm-7 col-xs-4">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
 
-                    <div class="panel-footer">
+                            <h1 class="glyphicon glyphicon-play logo-small"> @Course.CourseName.ToString()</h1>
+                        </div>
+                        <div class="panel-body">
 
-                        <h3><strong>Создатель курса:</strong>@Course.Artist.UserName</h3>
-                        <h4><strong>Тип курса:</strong> @Course.CourseType.Type</h4>
-                        <button onclick="location.href='@Url.Action("Lecture", "CoursesList", new { Id= Course.CourseId })'" class="btn btn-lg ">Learn more &raquo;</button>
+                            <p><strong>Информация о курсе: </strong> @Html.Raw(Course.CourseInfo)</p>
+                            <p><strong>Дата создания курса</strong> @Course.DateOfCourseCreation.ToString("D");</p>
+                        </div>
+
+                        <div class="panel-footer">
+
+                            <h3><strong>Создатель курса:</strong>@Course.Artist.UserName</h3>
+                            <h4><strong>Тип курса:</strong> @Course.CourseType.Type</h4>
+                            <button onclick="location.href='@Url.Action("Lecture", "CoursesList", new { Id= Course.CourseId })'" class="btn btn-lg ">Learn more &raquo;</button>
+                        </div>
                     </div>
                 </div>
             </div>
-           </div>
-                <hr>
-            </li>
+            <hr>
+        </li>
 
             @*<li>
-                <div>
+                    <div>
 
-                    <span class="namecourse">Название курса</span>
-                    <span class="Name">@Course.CourseName.ToString(); </span>
-                </div>
-                <div class="Details">
-                    Описание курса <br>
-                    @Html.Raw(Course.CourseInfo)
-                </div>
-                <div>
-                    <span class="DateTime">
-                        Дата создания
-                        @Course.DateOfCourseCreation.ToString("D");
-                    </span>
-                    <span class="Actor">
-                        Создатель курса
-                        @Course.Artist.UserName
+                        <span class="namecourse">Название курса</span>
+                        <span class="Name">@Course.CourseName.ToString(); </span>
+                    </div>
+                    <div class="Details">
+                        Описание курса <br>
+                        @Html.Raw(Course.CourseInfo)
+                    </div>
+                    <div>
+                        <span class="DateTime">
+                            Дата создания
+                            @Course.DateOfCourseCreation.ToString("D");
+                        </span>
+                        <span class="Actor">
+                            Создатель курса
+                            @Course.Artist.UserName
 
-                    </span>
+                        </span>
 
-                </div>
-                <div class="Type">
-                    Тип курса
-                    @Course.CourseType.Type
-                </div>
-                <p><a class="btn btn-default">Name:@Html.ActionLink("Learn more", "Lecture", "CoursesList", new { id = Course.CourseId }, "") &raquo;</a></p>
+                    </div>
+                    <div class="Type">
+                        Тип курса
+                        @Course.CourseType.Type
+                    </div>
+                    <p><a class="btn btn-default">Name:@Html.ActionLink("Learn more", "Lecture", "CoursesList", new { id = Course.CourseId }, "") &raquo;</a></p>
 
-            </li>*@
-            }
+                </li>*@
+    }
 
-    </ul>
+</ul>
 
 

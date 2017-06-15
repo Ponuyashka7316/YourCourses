@@ -2,14 +2,15 @@
 
 @{
     ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
+}<br><br><br>
+<link rel="stylesheet" href="~/Content/animate.css">
+<link rel="stylesheet" href="~/Content/style.css">
+<h2 class = "animated bounceInLeft">Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success animated bounceInLeft" })
 </p>
-<table class="table table-bordered">
+<table class="table table-bordered animated zoomIn">
     <tr>
         <th class="success">
             @Html.DisplayNameFor(model => model.CourseCourseId)

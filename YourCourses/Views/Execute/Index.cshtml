@@ -23,6 +23,9 @@
     <link href="~/Scripts/codemirror-2.37/theme/lesser-dark.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="~/Scripts/codemirror-2.37/lib/util/simple-hint.css">
     <link rel="stylesheet" href="~/Scripts/codemirror-2.37/lib/util/simple-hint.js">
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+
     <style type="text/css">
         .field-validation-error {
             color: #ff0000;
@@ -41,41 +44,63 @@
 </head>
 
 <body>
-    <button type="button" class="btn btn-default btn-lg btn-block" onclick="location.href='@Url.Action("Index", "CoursesList")'">Вернуться на страницу выбора курсов</button>
-    <div class="container">
+    <button type="button" class="btn btn-default btn-lg btn-block animated zoomInUp" onclick="location.href='@Url.Action("Index", "CoursesList")'">Вернуться на страницу выбора курсов</button>
+    <div class="container animated zoomInUp">
         <div>
             <h1>Прочтите задание и приступайте к выполнению</h1>
             @*Добавить вывод случайной практики из форич, а не первой(как сейчас)*@
             @using (Html.BeginForm())
             {
-                
+
                 @Html.Raw(Session["TEXT"].ToString())
                 <div class="form-group">
                     @Html.TextArea("FirstPart", (string)Session["FP"])
-                    @Html.Hidden("TEST",(string)Session["TEST"])
+                    @Html.Hidden("TEST", (string)Session["TEST"])
                     @*@Html.LabelFor(m => m.CodeBlock)*@
-                    @Html.TextAreaFor(model => model.CodeBlock, new { @editable=true, @class = "form-control", rows = 20 })
-                @Html.TextArea("LastPart", (string)Session["LP"])
+                    @Html.TextAreaFor(model => model.CodeBlock, new { @editable = true, @class = "form-control", rows = 20 })
+                    @Html.TextArea("LastPart", (string)Session["LP"])
                 </div>
                 <p>Ограничение ввода: не более сотни вызовов в час с текущего IP</p>
-                    <button type="button" class="btn btn-success submit">Execute</button>
+                <button type="button" class="btn btn-success submit" data-toggle="modal" data-target="#myModal">Execute</button>
             }
 
             <br /><br />
-            <div class="alert alert-warning fade">
-                <strong><span class="alert-content"></span></strong>
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                <div class="alert alert-warning fade">
+                                    <strong><span class="alert-content"></span></strong>
+                                </div>
+
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                    @*<div class="alert alert-warning fade">
+                        <strong><span class="alert-content"></span></strong>
+                    </div>*@
+                </div>
             </div>
-        </div>
-    </div>
 
-    <!-- JS includes -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+            <!-- JS includes -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+            <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-    <script src="//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js"></script>
+            <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+            <script src="//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js"></script>
 
-    <script type="text/javascript">
+            <script type="text/javascript">
         var myValue = $('#' + '@(ViewBag.text)').val();
 
 			function openAlert(txt) {
@@ -109,43 +134,43 @@
 
             });
 
-    </script>
-    <script>
+            </script>
+            <script>
 
-        //CodeBlock
-            var readOnlyCodeMirror = CodeMirror.fromTextArea(document.getElementById('FirstPart'), {
-                mode: "text/x-csharp",
-                theme: "default",
-                lineNumbers: false,
-                readOnly: true,
-                tabSize: 1
-                
-            });
-            
-            var readOnlyCodeMirror2 = CodeMirror.fromTextArea(document.getElementById('LastPart'), {
-                mode: "text/x-csharp",
-                theme: "default",
-                lineNumbers: false,
-                readOnly: true
-            });
-            var editor = CodeMirror.fromTextArea(document.getElementById("CodeBlock"), {
-                lineNumbers: true,
-                matchBrackets: true,
-                mode: "text/x-csharp",
-                compiler: true,
-               hint: true,
-               autohint: true,
-               extraKeys: { "Ctrl-Space": "autocomplete" },
-                theme: "lesser-dark"
+                //CodeBlock
+                var readOnlyCodeMirror = CodeMirror.fromTextArea(document.getElementById('FirstPart'), {
+                    mode: "text/x-csharp",
+                    theme: "default",
+                    lineNumbers: false,
+                    readOnly: true,
+                    tabSize: 1
 
-            });
+                });
 
-            var text = editor.getValue();
-                
-            
+                var readOnlyCodeMirror2 = CodeMirror.fromTextArea(document.getElementById('LastPart'), {
+                    mode: "text/x-csharp",
+                    theme: "default",
+                    lineNumbers: false,
+                    readOnly: true
+                });
+                var editor = CodeMirror.fromTextArea(document.getElementById("CodeBlock"), {
+                    lineNumbers: true,
+                    matchBrackets: true,
+                    mode: "text/x-csharp",
+                    compiler: true,
+                    hint: true,
+                    autohint: true,
+                    extraKeys: { "Ctrl-Space": "autocomplete" },
+                    theme: "lesser-dark"
 
-    </script>
-    
+                });
+
+                var text = editor.getValue();
+
+
+
+            </script>
+
 </body>
 
 </html>

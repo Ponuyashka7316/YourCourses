@@ -2,12 +2,28 @@
 @{
     ViewBag.Title = "CreateCourse";
 }
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="~/Content/animate.css">
+<link rel="stylesheet" href="~/Content/style.css">
+
+<script>
+
+        $(document).ready(function () {
+
+            $(".btn-default").addClass('animated bounceInLeft');
+            $(".btn-info").addClass('animated bounceInRight');
+            $(".btn-info").addClass('animated bounceInRight');
+            var h = $(window).height();
+            
+                    });
+</script>
+
 <br><br><br>
-<h2>Страница администратора</h2>
+<h2 class="animated bounceInDown">Страница администратора</h2>
 <hr>
 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 
-<strong>Управление курсами:</strong><br>
+<strong class="animated fadeInDown" >Управление курсами:</strong><br>
 <div class="btn-group-vertical">
     <button type="button" onclick="location.href='@Url.Action("Create", "Courses")'" class="btn btn-default ">Создать новый курс</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "Courses")'" class="btn btn-info">Просмотреть список существующих курсов</button>
@@ -15,7 +31,7 @@
     </div>
 <br>
 <hr>
-<strong>Управление модулями:</strong><br>
+<strong class="animated fadeInDown">Управление модулями:</strong><br>
 <div class="btn-group-vertical">
     <button type="button" onclick="location.href='@Url.Action("Create", "Lectures")'" class="btn btn-default ">Создать новый модуль</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "Lectures")'" class="btn btn-info">Просмотреть список существующих модулей</button>
@@ -23,7 +39,7 @@
     </div>
 <br>
 <hr>
-<strong>Управление лекциями:</strong><br>
+<strong class="animated fadeInDown">Управление лекциями:</strong><br>
 <div class="btn-group-vertical">
     <button type="button" onclick="location.href='@Url.Action("Create", "SubLectures")'" class="btn btn-default ">Создать новую лекцию</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "SubLectures")'" class="btn btn-info">Просмотреть список существующих лекций</button>
@@ -31,7 +47,7 @@
 </div>
 <br>
 <hr>
-<strong>Управление практикой:</strong><br>
+<strong class="animated fadeInDown">Управление практикой:</strong><br>
 <div class="btn-group-vertical">
     <button type="button" onclick="location.href='@Url.Action("Create", "PracticesHome")'" class="btn btn-default ">Создать новую практику</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "PracticesHome")'" class="btn btn-info">Просмотреть список существующих практик</button>
@@ -39,7 +55,7 @@
 </div>
 <br>
 <hr>
-<strong>Управление пользователями и ролями:</strong><br>
+<strong class="animated fadeInDown">Управление пользователями и ролями:</strong><br>
 <div class="btn-group-vertical">
     <button type="button" onclick="location.href='@Url.Action("Create", "Admin")'" class="btn btn-default ">Создать нового пользователя</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "Admin")'" class="btn btn-info">Просмотреть список существующих пользователей</button>
@@ -61,4 +77,4 @@
             font-size:20px;
         }
     </style>
-    @Html.ActionLink("Домашняя страница", "Index", "Home", "Home", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Домашняя страница", "Index", "Home", "Home", new { @class = "btn btn-primary animated flipInY" })

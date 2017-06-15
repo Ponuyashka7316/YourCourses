@@ -9,34 +9,40 @@
 <div>
     <h4>Course</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt >
-            @Html.DisplayNameFor(model => model.CourseName)
-        </dt>
+    <div class="alert alert-warning ">
+        <strong>
+            <span class="alert-content">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CourseName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CourseName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.CourseName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CourseInfo)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CourseInfo)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CourseInfo)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.CourseInfo)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfCourseCreation)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DateOfCourseCreation)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateOfCourseCreation)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.DateOfCourseCreation)
+                    </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CourseId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                </dl>
+                </span>
+        </strong>
+    </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CourseId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

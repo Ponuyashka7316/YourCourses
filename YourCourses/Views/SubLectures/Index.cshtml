@@ -2,14 +2,16 @@
 
 @{
     ViewBag.Title = "Index";
-}
+}<br><br><br>
+<link rel="stylesheet" href="~/Content/animate.css">
+<link rel="stylesheet" href="~/Content/style.css">
 
-<h2>Index</h2>
+<h2 class = "animated bounceInLeft">Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success animated bounceInLeft" })
 </p>
-<table class="table table-bordered">
+<table class="table table-bordered animated zoomIn">
     <tr>
         <th class="success">
             @Html.DisplayNameFor(model => model.LectureLectureId)
@@ -30,8 +32,8 @@
                 @Html.DisplayFor(modelItem => item.SubName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.SubId }, new { @class = "btn btn-primary" }) 
-                @Html.ActionLink("Details", "Details", new { id = item.SubId }, new { @class = "btn btn-info" }) 
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.SubId }, new { @class = "btn btn-primary" }) 
+                @Html.ActionLink("Details", "Details", new { id = item.SubId }, new { @class = "btn btn-info" })*@ 
                 @Html.ActionLink("Delete", "Delete", new { id = item.SubId }, new { @class = "btn btn-danger" })
             </td>
         </tr>

@@ -3,62 +3,69 @@
 @{
     ViewBag.Title = "Details";
 }
-
+<br><br><br>
 <h2>Details</h2>
 
 <div>
     <h4>Practice</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Sublectures.ArtistId)
-        </dt>
+    <br><br>
+    <div class="alert alert-warning ">
+        <strong>
+            <span class="alert-content">
+                <dl class="dl-horizontal ">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Sublectures.ArtistId)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Sublectures.ArtistId)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Sublectures.ArtistId)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PracticeName)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PracticeName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PracticeName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.PracticeName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PracticeUserInput)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PracticeUserInput)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PracticeUserInput)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.PracticeUserInput)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstPart)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FirstPart)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstPart)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.FirstPart)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TestsPart)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TestsPart)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TestsPart)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.TestsPart)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SecondPart)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SecondPart)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SecondPart)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.SecondPart)
+                    </dd>
 
-    </dl>
+                </dl>
+            </span>
+        </strong>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.PracticeId }) |

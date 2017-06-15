@@ -9,26 +9,32 @@
 <div>
     <h4>Lecture</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CourseCourseId)
-        </dt>
+    <div class="alert alert-warning ">
+        <strong>
+            <span class="alert-content">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CourseCourseId)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CourseCourseId)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.CourseCourseId)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LectureName)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LectureName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LectureName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.LectureName)
+                    </dd>
 
-    </dl>
+                </dl>
+            </span>
+        </strong>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.LectureId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.LectureId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

@@ -8,11 +8,12 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/bootstrap.css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <link rel="stylesheet" href="~/Content/style.css">
 
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top animated bounceInDown">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -29,7 +30,7 @@
                     <li>@Html.ActionLink(" Курсы", "Index", "CoursesList", null, new { @class= "glyphicon glyphicon-check" })</li>
                     @if (User.IsInRole("admin"))
                     {
-                    <li>@Html.ActionLink(" Страница администратора", "InfoAbout", "AdminPage", null, new { @class = "glyphicon glyphicon-home" })</li>
+                    <li>@Html.ActionLink(" Страница администратора", "InfoAbout", "AdminPage", null, new { @class = "glyphicon glyphicon-user" })</li>
                     }
                     <li>@Html.ActionLink(" Помощь", "Contact", "Home", null, new { @class= "glyphicon glyphicon-question-sign" })</li>
                     <li>@Html.Partial("_LoginPartial")</li>
