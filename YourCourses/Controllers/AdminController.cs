@@ -14,7 +14,7 @@ using YourCourses;
 
 #endregion Includes
 
-namespace EndToEnd.Controllers
+namespace YourCourses.Controllers
 {
     public class AdminController : Controller
     {
@@ -24,7 +24,7 @@ namespace EndToEnd.Controllers
         // Controllers
 
         // GET: /Admin/
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         #region public ActionResult Index(string searchStringUserNameOrEmail)
         public ActionResult Index(string searchStringUserNameOrEmail, string currentFilter, int? page)
         {
@@ -101,7 +101,7 @@ namespace EndToEnd.Controllers
         // Users *****************************
 
         // GET: /Admin/Edit/Create 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         #region public ActionResult Create()
         public ActionResult Create()
         {
@@ -114,7 +114,7 @@ namespace EndToEnd.Controllers
         #endregion
 
         // PUT: /Admin/Create
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         #region public ActionResult Create(ExpandedUserDTO paramExpandedUserDTO)
@@ -179,7 +179,7 @@ namespace EndToEnd.Controllers
         #endregion
 
         // GET: /Admin/Edit/TestUser 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         #region public ActionResult EditUser(string UserName)
         public ActionResult EditUser(string UserName)
         {
@@ -197,7 +197,7 @@ namespace EndToEnd.Controllers
         #endregion
 
         // PUT: /Admin/EditUser
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         #region public ActionResult EditUser(ExpandedUserDTO paramExpandedUserDTO)
@@ -228,7 +228,7 @@ namespace EndToEnd.Controllers
         #endregion
 
         // DELETE: /Admin/DeleteUser
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         #region public ActionResult DeleteUser(string UserName)
         public ActionResult DeleteUser(string UserName)
         {
@@ -269,7 +269,7 @@ namespace EndToEnd.Controllers
         #endregion
 
         // GET: /Admin/EditRoles/TestUser 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         #region ActionResult EditRoles(string UserName)
         public ActionResult EditRoles(string UserName)
         {
@@ -296,7 +296,7 @@ namespace EndToEnd.Controllers
         #endregion
 
         // PUT: /Admin/EditRoles/TestUser 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         #region public ActionResult EditRoles(UserAndRolesDTO paramUserAndRolesDTO)
@@ -337,7 +337,7 @@ namespace EndToEnd.Controllers
         #endregion
 
         // DELETE: /Admin/DeleteRole?UserName="TestUser&RoleName=Administrator
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         #region public ActionResult DeleteRole(string UserName, string RoleName)
         public ActionResult DeleteRole(string UserName, string RoleName)
         {
@@ -359,7 +359,7 @@ namespace EndToEnd.Controllers
                 }
 
                 if (UserName.ToLower() ==
-                    this.User.Identity.Name.ToLower() && RoleName == "Administrator")
+                    this.User.Identity.Name.ToLower() && RoleName == "admin")
                 {
                     ModelState.AddModelError(string.Empty,
                         "Error: Cannot delete Administrator Role for the current user");
@@ -392,7 +392,7 @@ namespace EndToEnd.Controllers
         // Roles *****************************
 
         // GET: /Admin/ViewAllRoles
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         #region public ActionResult ViewAllRoles()
         public ActionResult ViewAllRoles()
         {
@@ -414,7 +414,7 @@ namespace EndToEnd.Controllers
         #endregion
 
         // GET: /Admin/AddRole
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         #region public ActionResult AddRole()
         public ActionResult AddRole()
         {
@@ -425,7 +425,7 @@ namespace EndToEnd.Controllers
         #endregion
 
         // PUT: /Admin/AddRole
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         #region public ActionResult AddRole(RoleDTO paramRoleDTO)
@@ -467,7 +467,7 @@ namespace EndToEnd.Controllers
         #endregion
 
         // DELETE: /Admin/DeleteUserRole?RoleName=TestRole
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         #region public ActionResult DeleteUserRole(string RoleName)
         public ActionResult DeleteUserRole(string RoleName)
         {
@@ -478,7 +478,7 @@ namespace EndToEnd.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                if (RoleName.ToLower() == "administrator")
+                if (RoleName.ToLower() == "admin")
                 {
                     throw new Exception(String.Format("Cannot delete {0} Role.", RoleName));
                 }

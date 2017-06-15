@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using YourCourses.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Configuration;
 
 namespace YourCourses.Controllers
 {
@@ -480,6 +482,23 @@ namespace YourCourses.Controllers
                     properties.Dictionary[XsrfKey] = UserId;
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
+            }
+        }
+        #endregion
+        // Utility
+
+        // Add RoleManager
+        #region public ApplicationRoleManager RoleManager
+        private ApplicationRoleManager _roleManager;
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
             }
         }
         #endregion

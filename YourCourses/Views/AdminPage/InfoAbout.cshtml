@@ -4,42 +4,61 @@
 }
 
 <h2>Страница администратора</h2>
-
+<hr>
 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 
-
-
-
-<div class="btn-group btn-group-lg">
-    <strong>Управление курсами:</strong><br>
+<strong>Управление курсами:</strong><br>
+<div class="btn-group-vertical">
     <button type="button" onclick="location.href='@Url.Action("Create", "Courses")'" class="btn btn-default ">Создать новый курс</button>
-    <button type="button"  onclick="location.href='@Url.Action("Index", "Courses")'" class="btn btn-info">Просмотреть список существующих курсов</button>
-    <br>
-</div>
+    <button type="button" onclick="location.href='@Url.Action("Index", "Courses")'" class="btn btn-info">Просмотреть список существующих курсов</button>
+
+    </div>
 <br>
 <hr>
-    Управление модулями:<br>
-<div class="btn-group btn-group-lg">
+<strong>Управление модулями:</strong><br>
+<div class="btn-group-vertical">
     <button type="button" onclick="location.href='@Url.Action("Create", "Lectures")'" class="btn btn-default ">Создать новый модуль</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "Lectures")'" class="btn btn-info">Просмотреть список существующих модулей</button>
 
     </div>
+<br>
 <hr>
- Управление лекциями:<br>
-<div class="btn-group btn-group-lg">
+<strong>Управление лекциями:</strong><br>
+<div class="btn-group-vertical">
     <button type="button" onclick="location.href='@Url.Action("Create", "SubLectures")'" class="btn btn-default ">Создать новую лекцию</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "SubLectures")'" class="btn btn-info">Просмотреть список существующих лекций</button>
 
 </div>
+<br>
 <hr>
-Управление практикой:<br>
-<div class="btn-group btn-group-lg">
+<strong>Управление практикой:</strong><br>
+<div class="btn-group-vertical">
     <button type="button" onclick="location.href='@Url.Action("Create", "PracticesHome")'" class="btn btn-default ">Создать новую практику</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "PracticesHome")'" class="btn btn-info">Просмотреть список существующих практик</button>
 
 </div>
+<br>
+<hr>
+<strong>Управление пользователями и ролями:</strong><br>
+<div class="btn-group-vertical">
+    <button type="button" onclick="location.href='@Url.Action("Create", "Admin")'" class="btn btn-default ">Создать нового пользователя</button>
+    <button type="button" onclick="location.href='@Url.Action("Index", "Admin")'" class="btn btn-info">Просмотреть список существующих пользователей</button>
+
+</div>
+<br>
+<hr>
+
 
     <br>
     <br>
     <br>
-    @Html.ActionLink("Домашняя страница", "Index", "Home", new { @class = "btn btn-primary" })
+    <style>
+        .btn  {
+            align-items: flex-start;
+            width: unset;
+            display: inline-block;
+            line-height: 26px;
+            font-size:20px;
+        }
+    </style>
+    @Html.ActionLink("Домашняя страница", "Index", "Home", "Home", new { @class = "btn btn-primary" })
