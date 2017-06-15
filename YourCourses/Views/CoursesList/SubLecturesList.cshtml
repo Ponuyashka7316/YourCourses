@@ -1,6 +1,6 @@
 ﻿@{Layout = null;}
 @model IEnumerable<YourCourses.Models.SubLecture>
-
+<link rel="stylesheet" href="~/Content/animate.css">
 <script src="~/Scripts/bootstrap.min.js"></script>
 <div class="btn-group-vertical">
     <br>
@@ -8,15 +8,18 @@
 
     @foreach (var items in Model)
     {
-        
-        
 
+
+        
             @Ajax.ActionLink(" " + @items.SubName, "ShowLecture", new { id = items.SubId },
 new AjaxOptions { UpdateTargetId = "results1"/*, LoadingElementId = "loading3"*/ },
-new { @style = "text-transform:capitalize; padding-top:12px; padding-bottom: 10px;text-align:left; max-width: 300px;font-size:large;",
-    @class = "glyphicon glyphicon-book btn btn-default" })
+new
+{
+    @style = "text-transform:capitalize; padding-top:12px; padding-bottom: 10px;text-align:left; max-width: 300px;font-size:large;",
+    @class = "glyphicon glyphicon-book btn btn-default animated bounceInRight "
+})
 
-        
+       
 
         @*<img id="loading3" src="@Url.Content("~/Content/Images/gears.gif")" style="display:none" />*@
 
@@ -35,7 +38,33 @@ new { @style = "text-transform:capitalize; padding-top:12px; padding-bottom: 10p
 </div>
     <br>
 
-    <div id="results1"></div>
+    
+<section id="ex2"><div id="results1"></div></section>
 
 
+<script>
+    $(document).ready(function () {
+        
+        $("#ex2").on("click", "a", function (event) {
+           
+            //отменяем стандартную обработку нажатия по ссылке
+           
+            event.preventDefault();
+            
+            //забираем идентификатор бока с атрибута href
+           
+            var id = $(this).attr('href'),
+          
+            //узнаем высоту от начала страницы до блока на который ссылается якорь
+           
+            top = $(id).offset().top;
+           
+            //анимируем переход на расстояние - top за 1500 мс
+           
+            $('body,html').animate({ scrollTop: top }, 1500);
+           
+        });
+       
+    });
 
+    </script>

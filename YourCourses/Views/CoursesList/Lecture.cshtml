@@ -12,12 +12,14 @@
 <script src="~/Scripts/codemirror-2.37/mode/clike/clike.js" type="text/javascript"></script>
 <link href="~/Scripts/codemirror-2.37/lib/codemirror.css" rel="stylesheet" type="text/css" />
 <link href="~/Scripts/codemirror-2.37/theme/lesser-dark.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="~/Content/animate.css">
+
 <br><br><br>
-<p>Модули</p>
-<label for="">@ViewBag.id</label>
+<p><h3 class="animated bounceInLeft">Модули</h3></p>
+<label></label>
 @if (User.IsInRole("admin"))
 {
-    @Html.ActionLink(" Добавить модуль ", "Create", "Lectures", null, new { @class = "btn btn-info" })
+    @Html.ActionLink(" Добавить модуль ", "Create", "Lectures", null, new { @class = "btn btn-info animated bounceIn" })
 }
 
 <hr>
@@ -45,20 +47,25 @@
 
 
     <br />
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs animated bounceInLeft">
     @foreach (var s in Model)
             {
         @*<div style="margin-right:8px;float:left;">*@
 
 
-            <li>
-                @Ajax.ActionLink(s.LectureName, "SublecturesList", new { id = s.LectureId, data_toggle = "tab" },
+        <li>
+
+            <div class="btn-group" role="group">
+                <button type="button" id="stars" style="padding-top:15px; padding-bottom: 10px;", class="btn btn-default" >
+                    <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                    @Ajax.ActionLink(s.LectureName, "SublecturesList", new { id = s.LectureId },
            new AjaxOptions { UpdateTargetId = "results"/*, LoadingElementId = "loading"*/ },
-           new {@style = "text-transform:capitalize; padding-top:12px; padding-bottom: 10px;text-align:left; max-width: 300px;font-size:large;"}
+           new { @style = "text-transform:capitalize; color:black; padding-top:22px; padding-bottom: 10px;text-align:left; max-width: 300px;font-size:large;" }
 
            )
-                
-            </li>
+                    </button>
+            </div>
+        </li>
         @*</div>*@
 
 

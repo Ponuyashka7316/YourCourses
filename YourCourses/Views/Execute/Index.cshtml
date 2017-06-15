@@ -45,23 +45,24 @@
 
 <body>
     <button type="button" class="btn btn-default btn-lg btn-block animated zoomInUp" onclick="location.href='@Url.Action("Index", "CoursesList")'">Вернуться на страницу выбора курсов</button>
-    <div class="container animated zoomInUp">
+    <div class="container ">
         <div>
-            <h1>Прочтите задание и приступайте к выполнению</h1>
+            <h1 class="animated zoomInUp">Прочтите задание и приступайте к выполнению</h1>
             @*Добавить вывод случайной практики из форич, а не первой(как сейчас)*@
             @using (Html.BeginForm())
             {
 
-                @Html.Raw(Session["TEXT"].ToString())
-                <div class="form-group">
+                
+                <div class="form-group animated zoomInUp">
+                    @Html.Raw(Session["TEXT"].ToString())
                     @Html.TextArea("FirstPart", (string)Session["FP"])
                     @Html.Hidden("TEST", (string)Session["TEST"])
                     @*@Html.LabelFor(m => m.CodeBlock)*@
                     @Html.TextAreaFor(model => model.CodeBlock, new { @editable = true, @class = "form-control", rows = 20 })
                     @Html.TextArea("LastPart", (string)Session["LP"])
                 </div>
-                <p>Ограничение ввода: не более сотни вызовов в час с текущего IP</p>
-                <button type="button" class="btn btn-success submit" data-toggle="modal" data-target="#myModal">Execute</button>
+                <p class="animated zoomInUp">Ограничение ввода: не более сотни вызовов в час с текущего IP</p>
+                <button type="button" class="btn btn-success submit animated zoomInUp" data-toggle="modal" data-target="#myModal">Execute</button>
             }
 
             <br /><br />
@@ -72,7 +73,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Modal Header</h4>
+                            <h4 class="modal-title">Результат выполнения программы </h4>
                         </div>
                         <div class="modal-body">
                             <p>
