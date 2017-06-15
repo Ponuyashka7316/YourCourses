@@ -1,3 +1,17 @@
 ﻿
 @model YourCourses.Models.Practice
+<br>
+<br>
+<br/>
+<h4>Challenge Mode</h4>
 
+@if (Model.PracticeUserInput != null) { Session["UI"] = Model.PracticeUserInput.ToString(); }
+@if (Model.FirstPart != null) { Session["FP"] = Model.FirstPart.ToString(); }
+    @if (Model.TestsPart != null) { Session["TEST"] = Model.TestsPart.ToString(); }
+    @if (Model.SecondPart != null) { Session["LP"] = Model.SecondPart.ToString(); }
+   @if (Model.PracticeDescription!= null) { Session["TEXT"]=Model.PracticeDescription.ToString(); }
+   
+<br>
+<h2>Это режим челенджа. Для мотивации выполнения заданий предусмотрена система оценивания, которая зависит от умения пользователя решать задачи.
+    Перейдите по ссылке чтобы начать выполнять задание</h2>
+<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Index", "ExecuteChallenge")'">Перейти на страницу выполнения практической части</button>

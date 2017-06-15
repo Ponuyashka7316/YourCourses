@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using YourCourses.Models;
 using System.Data.Entity;
 using System.Collections.Generic;
-
+using System.Data.Entity.SqlServer;
 
 namespace YourCourses.Controllers
 {
@@ -16,6 +16,7 @@ namespace YourCourses.Controllers
     //        return enumerable.ElementAt(index);
     //    }
     //}
+    
 
     public class ChallengeController : Controller
     {
@@ -23,28 +24,35 @@ namespace YourCourses.Controllers
         Random rnd = new Random();
         public ChallengeController() {
             var countSuccess = 0;
-            Session["startmark"] = 0;
+            var countFails = 0;
+            
            
         }
         // GET: Challenge
         [Authorize]
         public ActionResult Index()
         {
-            
+            Session["startmark"] = 0;
+            Session["Correct"] = false;
+            var strtmark = (int)Session["startmark"];
             var curPr = db.Practices
-                .Include(c => c.Mark== (int)Session["startmark"]);
-            
-            var PR_number = rnd.Next(curPr.Count());
-            var PR = curPr.ElementAt(PR_number);
+                .Where(c => c.Mark== strtmark);
+            int count = curPr.Count();
+
+            int random = new Random().Next(0, count);
+            var PR = curPr.AsEnumerable().ElementAt(random);//rnd.Next((int)curPr.Count());
+           
 
             return View(PR);
         }
+
+       
         //public static T RandomElement<T>(this IEnumerable<T> enumerable)
         //{
         //    return enumerable.RandomElementUsing<T>(new Random());
         //}
 
-       
+
 
         // Usage:
         //var ints = new int[] { 1, 2, 3 };
@@ -53,7 +61,7 @@ namespace YourCourses.Controllers
         // If you have a preexisting `Random` instance, rand, use it:
         // this is important e.g. if you are in a loop, because otherwise you will create new
         // `Random` instances every time around, with nearly the same seed every time.
-       
+
 
 
 

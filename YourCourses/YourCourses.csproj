@@ -269,6 +269,7 @@
     <Compile Include="Controllers\ChallengeController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\CoursesListController.cs" />
+    <Compile Include="Controllers\ExecuteChallengeController.cs" />
     <Compile Include="Controllers\ExecuteController.cs" />
     <Compile Include="Controllers\Home1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -864,6 +865,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\ViewAllRoles.cshtml" />
     <Content Include="Views\Challenge\Index.cshtml" />
+    <Content Include="Views\ExecuteChallenge\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
