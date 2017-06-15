@@ -20,7 +20,7 @@ namespace YourCourses.Controllers
             var practices = db.Practices.Include(p => p.Sublectures);
             return View(practices.ToList());
         }
-
+        [Authorize(Roles = "admin")]
         // GET: PracticesHome/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,7 +35,7 @@ namespace YourCourses.Controllers
             }
             return View(practice);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: PracticesHome/Create
         public ActionResult Create()
         {
@@ -47,6 +47,7 @@ namespace YourCourses.Controllers
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "admin")]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PracticeId,PracticeName,PracticeDescription,PracticeUserInput,FirstPart,TestsPart,SecondPart,SublectureSubId")] Practice practice)
@@ -61,7 +62,7 @@ namespace YourCourses.Controllers
             ViewBag.SublectureSubId = new SelectList(db.SubLectures, "SubId", "SubName", practice.SublectureSubId);
             return View(practice);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: PracticesHome/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -77,7 +78,7 @@ namespace YourCourses.Controllers
             ViewBag.SublectureSubId = new SelectList(db.SubLectures, "SubId", "SubName", practice.SublectureSubId);
             return View(practice);
         }
-
+        [Authorize(Roles = "admin")]
         // POST: PracticesHome/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -95,7 +96,7 @@ namespace YourCourses.Controllers
             ViewBag.SublectureSubId = new SelectList(db.SubLectures, "SubId", "SubName", practice.SublectureSubId);
             return View(practice);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: PracticesHome/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -110,7 +111,7 @@ namespace YourCourses.Controllers
             }
             return View(practice);
         }
-
+        [Authorize(Roles = "admin")]
         // POST: PracticesHome/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

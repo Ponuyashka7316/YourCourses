@@ -29,6 +29,7 @@
     Session["FP"] = item.FirstPart.ToString();
     Session["TEST"] = item.TestsPart.ToString();
     Session["LP"] = item.SecondPart.ToString();
+    Session["TEXT"] = item.PracticeDescription.ToString();
     Session["CurrentPractId"] = item.PracticeId;
 
     @*@Html.TextArea("First", item.FirstPart,  new { @class = "form-control", @readonly =true, rows = "15", cols = "200" })*@
@@ -40,7 +41,7 @@
     <div id="results1"></div>*@
 
 
-    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Index", "Execute")'">Вернуться на страницу выбора курсов</button>
+    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Index", "Execute")'">Перейти на страницу выполнения практической части</button>
 
 //using (Ajax.BeginForm("ShowEditorArea", new AjaxOptions
 //{

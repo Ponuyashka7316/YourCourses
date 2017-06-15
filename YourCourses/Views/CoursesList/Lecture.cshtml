@@ -12,13 +12,14 @@
 <script src="~/Scripts/codemirror-2.37/mode/clike/clike.js" type="text/javascript"></script>
 <link href="~/Scripts/codemirror-2.37/lib/codemirror.css" rel="stylesheet" type="text/css" />
 <link href="~/Scripts/codemirror-2.37/theme/lesser-dark.css" rel="stylesheet" type="text/css" />
-
-<p>Lectures</p>
+<br><br><br>
+<p>Модули</p>
 <label for="">@ViewBag.id</label>
 @if (User.IsInRole("admin"))
 {
     @Html.ActionLink(" Добавить модуль ", "Create", "Lectures", null, new { @class = "btn btn-info" })
 }
+
 <hr>
 <style>
     hr {
@@ -50,9 +51,10 @@
         @*<div style="margin-right:8px;float:left;">*@
 
 
-            <li >
+            <li>
                 @Ajax.ActionLink(s.LectureName, "SublecturesList", new { id = s.LectureId, data_toggle = "tab" },
-           new AjaxOptions { UpdateTargetId = "results"/*, LoadingElementId = "loading"*/ }
+           new AjaxOptions { UpdateTargetId = "results"/*, LoadingElementId = "loading"*/ },
+           new {@style = "text-transform:capitalize; padding-top:12px; padding-bottom: 10px;text-align:left; max-width: 300px;font-size:large;"}
 
            )
                 

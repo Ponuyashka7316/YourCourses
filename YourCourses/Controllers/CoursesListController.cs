@@ -29,6 +29,7 @@ namespace YourCourses.Controllers
         public const string ApiUrl = "https://dotnetfiddle.net/api/fiddles/";
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: CoursesList
+       
         public ActionResult Index()
         {
             var upcoming = db.Courses
@@ -37,6 +38,7 @@ namespace YourCourses.Controllers
             var viewCurses = db.Courses.ToList();
             return View(upcoming);
         }
+
 
         public ActionResult Lecture(int? id)
         {
@@ -86,6 +88,7 @@ namespace YourCourses.Controllers
 
         }
 
+        [Authorize]
         public ActionResult ShowPractice(int? id)
         {
             if (id.HasValue)
@@ -129,7 +132,7 @@ namespace YourCourses.Controllers
            
         }
 
-       
+        [Authorize]
         [HttpPost]
         public JsonResult Execute(string code)
         {

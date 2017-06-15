@@ -34,7 +34,7 @@ namespace YourCourses.Controllers
 ";
 
         public const string ApiUrl = "https://dotnetfiddle.net/api/fiddles/";
-
+        [Authorize]
         [HttpGet]
         public ActionResult Index()
         {
@@ -50,7 +50,7 @@ namespace YourCourses.Controllers
             return View(model);
         }
 
-
+        [Authorize]
         [HttpPost]
         public JsonResult Execute(string code)
         {

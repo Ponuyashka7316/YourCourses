@@ -167,11 +167,16 @@
             color: #f4511e !important;
             background-color: #fff !important;
         }
-
-        .navbar-default .navbar-toggle {
-            border-color: transparent;
-            color: #fff !important;
+        _LoginPartial {
+            border-color:red;
+        color:grey !important;
         }
+        
+            
+            .navbar-default .navbar-toggle {
+                border-color: transparent;
+                color: #fff !important;
+            }
 
         footer .glyphicon {
             font-size: 20px;
@@ -265,7 +270,7 @@
                     <li><a href="#portfolio">ПРИМЕРЫ</a></li>
                     <li><a href="#pricing">ПРЕДЛОЖЕНИЯ</a></li>
                     <li><a href="#contact">КОНТАКТ</a></li>
-                    <li style="color:aqua">@Html.Partial("_LoginPartial")</li>
+                    @*<li style="color:aqua">@Html.Partial("_LoginPartial")</li>*@
                 </ul>
             </div>
         </div>
@@ -291,7 +296,7 @@
                 <h2>Интерактивная система обучения </h2><br>
                 <h4>YourCourses - это онлайн-учебное место для существующих и начинающих разработчиков, которые учатся через развлекательный контент. Каждый курс построен вокруг творческой темы делая процесс более увлекательным. Мы комбинируем интерактивные механизмы с лекциями, чтобы сделать обучение интересным и запоминающимся.</h4><br>
                 <p>Навыки кодирования никогда не пользовались повышенным спросом, но традиционные курсы по информатике часто являются дорогостоящими, трудоемкими и не обладают гибкостью, которую требуют многие люди. Между тем, технология движется быстрее, чем когда-либо, и чтобы оставаться в силе, многие разработчики должны постоянно изучать новые навыки за пределами своей дневной работы. Это оставило место для новых подходов к образованию кода.</p>
-                <br><button onclick="location.href='@Url.Action("Index", "CoursesList")'" , class="btn btn-default btn-lg">Get in Touch</button>
+                <br><button onclick="location.href='@Url.Action("Index", "CoursesList")'" , class="btn btn-default btn-lg">Просмотреть курсы</button>
             </div>
             <div class="col-sm-4">
                 <span class="glyphicon glyphicon-signal logo"></span>
@@ -305,11 +310,11 @@
                 <span class="glyphicon glyphicon-globe logo slideanim"></span>
             </div>
             <div class="col-sm-8">
-                <h2>Our Values</h2><br>
-                <h4><strong>MISSION:</strong> Our mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
+                <h2>Наше значение</h2><br>
+                <h4><strong>О Интерактивном обучении:</strong> Интерактивные системы обучения(ИСО) используются для  обучения новичков, и для тех, кто хочет углубить уже имеющиеся знания различным информационным технологиям и основам программирования. </h4><br>
                 <p>
-                    <strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    <strong>Преимущества:</strong> С целью создать новую уникальную ИСО была разработана информационная система включающая более сотни типовых задач и лекций.
+                    Технологии позволяют сэкономить время. Если Вы автоматизируете то, что Вам приходится делать снова и снова, у Вас высвободится огромное количество свободного времени. Например,  Вы можете записать видео с объяснением  материала, и Вам не придется объяснять  его в классе. .
                 </p>
             </div>
         </div>
@@ -334,7 +339,7 @@
             <div class="col-sm-4">
                 <span class="glyphicon glyphicon-lock logo-small"></span>
                 <h4>JOB DONE</h4>
-                <p>Lorem ipsum dolor sit amet..</p>
+                <p>The work will be done in any case</p>
             </div>
         </div>
         <br><br>
@@ -356,12 +361,12 @@
     <!-- Container (Portfolio Section) -->
     <div id="portfolio" class="container-fluid text-center bg-grey">
         <h2>Примеры</h2><br>
-        <h4>Что мы создали</h4>
+        <h4>Какие типы заданий мы предлагаем</h4>
         <div class="row text-center slideanim">
             <div class="col-sm-4">
                 <div class="thumbnail">
                     <img src="~/Content/Images/1.png" alt="Paris" width="400" height="300">
-                    <p><strong>Онлайн компилятор</strong></p>
+                    <p><strong>Практические задания</strong></p>
                     <p>Компиляция и выполнение любых консольных приложений</p>
                 </div>
             </div>

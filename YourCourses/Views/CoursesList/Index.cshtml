@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<YourCourses.Models.Course>
-@{int i = 0; }
+
 <link rel="stylesheet" href="~/Content/bootstrap.min.css">
 
 <script src="~/Scripts/bootstrap.min.js"></script>
@@ -47,11 +47,12 @@
     }
     
     </style>
-<br>
+<br><br><br>
 <ul class="Courses">
+    
     @foreach (var Course in Model)
     {
-        i++;
+       
         <li>
             
        <div class="row slideanim">
