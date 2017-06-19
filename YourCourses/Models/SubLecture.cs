@@ -42,6 +42,7 @@ namespace YourCourses.Models
         public int LectureLectureId { get; set; }
 
         [ForeignKey("LectureLectureId")]
+        [Display(Name = "Модуль : ")]
         public virtual Lecture Lecture { get; set; }
 
         public virtual List<Practice> Practices { get; set; } //each lecture can contain {0; 10} practices

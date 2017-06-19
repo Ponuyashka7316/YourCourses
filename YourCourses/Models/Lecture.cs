@@ -27,6 +27,7 @@ namespace YourCourses.Models
         public int CourseCourseId { get; set; }
 
         [ForeignKey("CourseCourseId")]
+        [Display(Name = "Курс : ")]
         public virtual Course Course { get; set; }
     }
 }

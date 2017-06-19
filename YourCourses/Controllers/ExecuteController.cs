@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Web.Mvc;
-
+using System.Data;
+using System.Data.Entity;
 using YourCourses.Models;
 using System.Text;
 using System.Net;
+using System.Linq;
 using System.Text.RegularExpressions;
 using RestSharp;
 using Microsoft.AspNet.Identity;
@@ -34,12 +36,14 @@ namespace YourCourses.Controllers
 ";
 
         public const string ApiUrl = "https://dotnetfiddle.net/api/fiddles/";
+        public static bool correct = false;
         [Authorize]
         [HttpGet]
         public ActionResult Index()
         {
+            Session["res"] = false;
             Session["CurrentUserId"] = User.Identity.GetUserId();
-           // db.PracticeAndUserMarks.Find(Session["CurrentUserId"], Session["CurrentPractId"]);
+            // db.PracticeAndUserMarks.Find(Session["CurrentUserId"], Session["CurrentPractId"]);
 
             string text = (string)Session["UI"];
             var model = new FiddleExecuteModel()
@@ -50,12 +54,84 @@ namespace YourCourses.Controllers
             return View(model);
         }
 
+        public ActionResult UpdateMark(int? id)
+        {
+            if (id.HasValue)
+            {
+                var user = User.Identity.GetUserId();
+                var upcoming = db.PracticeAndUserMarks
+
+                .Include(c => c.Artist)
+                .Include(c => c.Practice)
+                .Where(c => c.ArtistId == user)
+                .Where(c => c.PracticePracticeId == id);
+
+                if (upcoming.Count() == 0)
+                {
+                    var model = new PracticeAndUserMark
+                    {
+                        ArtistId = User.Identity.GetUserId(),
+                        Mark = 0,
+                        PracticePracticeId = id.Value
+
+
+                    };
+                    if (ModelState.IsValid)
+                    {
+                        db.PracticeAndUserMarks.Add(model);
+                        db.SaveChanges();
+
+                    }
+                }
+                else
+                    return PartialView(upcoming);
+            }
+            return PartialView();
+        }
+
         [Authorize]
         [HttpPost]
         public JsonResult Execute(string code)
         {
-            var result = ExecuteFiddle(GetConsoleSample((string)Session["FP"]+ (string)Session["TEST"] + code+(string)Session["LP"]));
+            Session["correct"] = false;
+            var result = ExecuteFiddle(GetConsoleSample((string)Session["FP"] + (string)Session["TEST"] + code + (string)Session["LP"]));
+            Session["correct"] = correct;
             return Json(result);
+        }
+
+        public void Close(int? id)
+        {
+            if ((bool)Session["correct"])
+            {
+                if (id.HasValue)
+                {
+
+                    var user = User.Identity.GetUserId();
+                    var upcoming = db.PracticeAndUserMarks
+
+                    .Include(c => c.Artist)
+                    .Include(c => c.Practice)
+                    .Where(c => c.ArtistId == user)
+                    .Where(c => c.PracticePracticeId == id);
+
+                    var up = upcoming.Single(c => c.PracticePracticeId == id.Value);
+                    var up_id = up.Id;
+                    var model = new PracticeAndUserMark
+                    {
+                        ArtistId = user,
+                        Mark = 5,
+                        PracticePracticeId = id.Value,
+                        Id = up_id
+                       
+                    };
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(model).State = EntityState.Modified;
+                        db.SaveChanges();
+
+                    }
+                }
+            }
         }
 
         private static string ExecuteFiddle(FiddleExecuteModel model)
@@ -106,14 +182,15 @@ namespace YourCourses.Controllers
             var resultString = result.Replace(Environment.NewLine, "<br/>").ToString();
             Regex regex = new Regex("error");
             Regex regex1 = new Regex("exception");
-            if (regex.IsMatch(resultString)|| regex1.IsMatch(resultString))
+            if (regex.IsMatch(resultString.ToLower()) || regex1.IsMatch(resultString.ToLower()))
             {
+                correct = false;
                 return "Не верно " + resultString;
             }
 
 
-
-            return "ЗАДАНИЕ ВЫПОЛНЕНО "+resultString;
+            correct = true;
+            return "ЗАДАНИЕ ВЫПОЛНЕНО " + resultString;
         }
 
         // get code block

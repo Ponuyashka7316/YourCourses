@@ -68,13 +68,7 @@ tinymce.init({
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PracticeUserInput, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.PracticeUserInput, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PracticeUserInput, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        
 
         <div class="form-group">
             @Html.LabelFor(model => model.FirstPart, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -89,6 +83,14 @@ tinymce.init({
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.TestsPart, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TestsPart, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PracticeUserInput, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.PracticeUserInput, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PracticeUserInput, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -205,6 +205,9 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Controllers\GenericTest1.GenericTest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Scripts\codemirror-2.37\LICENSE" />
     <None Include="Scripts\codemirror-2.37\mode\coffeescript\LICENSE" />

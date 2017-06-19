@@ -866,6 +866,7 @@
     <Content Include="Views\Admin\ViewAllRoles.cshtml" />
     <Content Include="Views\Challenge\Index.cshtml" />
     <Content Include="Views\ExecuteChallenge\Index.cshtml" />
+    <Content Include="Views\Execute\UpdateMark.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,10 @@
+﻿@model IEnumerable<YourCourses.Models.PracticeAndUserMark>
+
+<br>
+
+
+@foreach (var item in Model)
+{
+   <p> Текущая оценка составляет </p>
+<p>@item.Mark  @Html.Label("баллов")</p>
+}
