@@ -16,20 +16,21 @@ namespace YourCourses.Controllers
         // GET: SubLectures
         public ActionResult Index()
         {
-            var subLectures = db.SubLectures.Include(s=>s.Lecture);
+            var subLectures = db.SubLectures.Include(s => s.Lecture);
             return View(subLectures.ToList());
-            
+
         }
 
         public ActionResult Create()
         {
             ViewBag.LectureLectureId = new SelectList(db.Lectures, "LectureId", "LectureName");
             return View();
-            
+
         }
 
         [HttpPost]
         [ValidateInput(false)]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create(SubLecture subLecture)
         {
@@ -37,17 +38,17 @@ namespace YourCourses.Controllers
             {
                 ArtistId = User.Identity.GetUserId(),
                 SubName = subLecture.SubName,
-                LectureLectureId=subLecture.LectureLectureId,
+                LectureLectureId = subLecture.LectureLectureId,
                 LectureAdminOutput = subLecture.LectureAdminOutput,
-                CurrentRating=subLecture.CurrentRating
+                CurrentRating = subLecture.CurrentRating
 
 
             };
             //if (ModelState.IsValid)
             //{
-                db.SubLectures.Add(sublect);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            db.SubLectures.Add(sublect);
+            db.SaveChanges();
+            return RedirectToAction("Index");
             //}
 
             ViewBag.LectureLectureId = new SelectList(db.Lectures, "LectureId", "LectureName", subLecture.LectureLectureId);
@@ -65,33 +66,36 @@ namespace YourCourses.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LectureLectureId = new SelectList(db.SubLectures, "SubId", "SubName");
+            ViewBag.LectureLectureId = new SelectList(db.Lectures, "LectureId", "LectureName", sublecture.LectureLectureId);
             return View(sublecture);
 
         }
 
         [HttpPost]
         [ValidateInput(false)]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SubLecture subLecture)
         {
-            var sublect = new SubLecture
-            {
-                ArtistId = User.Identity.GetUserId(),
-                SubName = subLecture.SubName,
-                LectureLectureId = subLecture.LectureLectureId,
-                LectureAdminOutput = subLecture.LectureAdminOutput,
-                CurrentRating = subLecture.CurrentRating
-
-
-            };
-            //if (ModelState.IsValid)
+            //var sublect = new SubLecture
             //{
-            db.Entry(sublect).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index");
-           
-            //}
+            //    ArtistId = User.Identity.GetUserId(),
+            //    SubName = subLecture.SubName,
+            //    LectureLectureId = subLecture.LectureLectureId,
+            //    LectureAdminOutput = subLecture.LectureAdminOutput,
+            //    CurrentRating = subLecture.CurrentRating,
+            //    SubId = subLecture.SubId
+                
+                
+
+            //};
+            if (ModelState.IsValid)
+            {
+                db.Entry(subLecture).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
 
             //ViewBag.LectureLectureId = new SelectList(db.Lectures, "LectureId", "LectureName", subLecture.LectureLectureId);
             return View(subLecture);
@@ -113,6 +117,7 @@ namespace YourCourses.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             SubLecture sublect = db.SubLectures.Find(id);

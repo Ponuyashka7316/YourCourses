@@ -49,8 +49,7 @@ namespace YourCourses.Controllers
             .Where(c => c.ArtistId == user)
             .Where(c => c.PracticePracticeId == id);
 
-            var Iddd = upcoming.Single(c => c.PracticePracticeId == id.Value);
-            Session["Id"] = Iddd.Id;
+            
             if (upcoming.Count() == 0)
             {
                 var model1 = new PracticeAndUserMark
@@ -68,6 +67,8 @@ namespace YourCourses.Controllers
 
                 }
             }
+            var Iddd = upcoming.Single(c => c.PracticePracticeId == id.Value);
+            Session["Id"] = Iddd.Id;
             var up = upcoming.Single();
 
             Session["mark"] = up.Mark.ToString();
@@ -159,6 +160,7 @@ namespace YourCourses.Controllers
                         Id= d
 
                     };
+                    Session["mark"] = model.Mark;
                     if (ModelState.IsValid)
                     {
                         db.Entry(model).State = EntityState.Modified;

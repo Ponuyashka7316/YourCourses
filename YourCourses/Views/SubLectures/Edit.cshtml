@@ -46,8 +46,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.LectureLectureId, "LectureLectureId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.LectureLectureId, new SelectList(ViewBag.LectureLectureId, "value", "text"), htmlAttributes: new { @class = "form-control" })
-                @*@Html.DropDownList("CourseCourseId", null, htmlAttributes: new { @class = "form-control" })*@
+@Html.DropDownListFor(model => model.LectureLectureId, new SelectList(ViewBag.LectureLectureId, "value", "text"), htmlAttributes: new { @class = "form-control" })
+                @*@Html.DropDownList("LectureLectureId", null, htmlAttributes: new { @class = "form-control" })*@
                 @Html.ValidationMessageFor(model => model.LectureLectureId, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -275,6 +275,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LecturesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PracticeAndUserMarksController.cs" />
     <Compile Include="Controllers\PracticeController.cs" />
     <Compile Include="Controllers\PracticesHomeController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
@@ -868,6 +869,7 @@
     <Content Include="Views\ExecuteChallenge\Index.cshtml" />
     <Content Include="Views\Execute\UpdateMark.cshtml" />
     <Content Include="Views\Execute\Close.cshtml" />
+    <Content Include="Views\PracticeAndUserMarks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

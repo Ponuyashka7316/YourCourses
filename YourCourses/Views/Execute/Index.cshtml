@@ -59,6 +59,8 @@
                     @Html.TextArea("LastPart", (string)Session["LP"])
                 </div>
                 <p class="animated zoomInUp">Ограничение ввода: не более сотни вызовов в час с текущего IP</p>
+                <div id="results5">Текущая оценка составляет <br><b><h3>@Session["mark"] баллов</h3></b></div>
+
                 <button type="button" class="btn btn-success submit animated zoomInUp" data-toggle="modal" data-target="#myModal">Execute</button>
 
 
@@ -87,8 +89,8 @@
                             @Ajax.ActionLink("Учесть результаты ", "Close",
                                new { id = (int)Session["CurrentPractId"] },
                              new AjaxOptions { UpdateTargetId = "results5" },
-                            new { @class = "btn btn-success btn-lg " })
-                            <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
+                            new { @class = "btn btn-success btn-lg ", @data_dismiss="modal" })
+                            @*<button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>*@
                         </div>
                     </div>
                     @*@Ajax.ActionLink("Обновить оценку", "UpdateMark", new { id = (int)Session["CurrentPractId"] },
@@ -104,7 +106,7 @@
                        new { id = (int)Session["CurrentPractId"] },
                        new AjaxOptions { UpdateTargetId = "results5"},
                 new { @class = "btn btn-default btn-lg " })*@
-            <div id="results5">@Session["mark"]</div>
+           
             <!-- JS includes -->
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
             <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>

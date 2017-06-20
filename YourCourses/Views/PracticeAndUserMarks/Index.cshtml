@@ -1,0 +1,46 @@
+﻿@model IEnumerable<YourCourses.Models.PracticeAndUserMark>
+
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" href="~/Content/animate.css">
+<link rel="stylesheet" href="~/Content/style.css">
+
+
+<br><br><br>
+<h2>Index</h2>
+
+
+<table class="table table-bordered animated zoomIn">
+    <tr>
+        <th class="success">
+            @Html.DisplayNameFor(model => model.Artist.UserName)
+        </th>
+        <th class="success">
+            @Html.DisplayNameFor(model => model.Mark)
+        </th>
+        <th class="success">
+            @Html.DisplayNameFor(model => model.Practice.PracticeName)
+        </th>
+       
+        
+    </tr>
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(Model => item.Artist.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => item.Mark)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => item.Practice.PracticeName)
+            </td>
+            
+           
+        </tr>
+    }
+
+</table>
