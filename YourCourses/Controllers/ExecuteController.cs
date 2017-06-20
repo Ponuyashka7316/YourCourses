@@ -39,8 +39,38 @@ namespace YourCourses.Controllers
         public static bool correct = false;
         [Authorize]
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+            var user = User.Identity.GetUserId();
+            var upcoming = db.PracticeAndUserMarks
+
+            .Include(c => c.Artist)
+            .Include(c => c.Practice)
+            .Where(c => c.ArtistId == user)
+            .Where(c => c.PracticePracticeId == id);
+
+            var Iddd = upcoming.Single(c => c.PracticePracticeId == id.Value);
+            Session["Id"] = Iddd.Id;
+            if (upcoming.Count() == 0)
+            {
+                var model1 = new PracticeAndUserMark
+                {
+                    ArtistId = User.Identity.GetUserId(),
+                    Mark = 0,
+                    PracticePracticeId = id.Value
+
+
+                };
+                if (ModelState.IsValid)
+                {
+                    db.PracticeAndUserMarks.Add(model1);
+                    db.SaveChanges();
+
+                }
+            }
+            var up = upcoming.Single();
+
+            Session["mark"] = up.Mark.ToString();
             Session["res"] = false;
             Session["CurrentUserId"] = User.Identity.GetUserId();
             // db.PracticeAndUserMarks.Find(Session["CurrentUserId"], Session["CurrentPractId"]);
@@ -65,7 +95,8 @@ namespace YourCourses.Controllers
                 .Include(c => c.Practice)
                 .Where(c => c.ArtistId == user)
                 .Where(c => c.PracticePracticeId == id);
-
+                //var Iddd= upcoming.Single(c => c.PracticePracticeId == id.Value);
+                //Session["Id"] = Iddd.Id;
                 if (upcoming.Count() == 0)
                 {
                     var model = new PracticeAndUserMark
@@ -99,7 +130,7 @@ namespace YourCourses.Controllers
             return Json(result);
         }
 
-        public void Close(int? id)
+        public ActionResult Close(int? id)
         {
             if ((bool)Session["correct"])
             {
@@ -107,22 +138,26 @@ namespace YourCourses.Controllers
                 {
 
                     var user = User.Identity.GetUserId();
-                    var upcoming = db.PracticeAndUserMarks
+                    //var upcoming = db.PracticeAndUserMarks
 
-                    .Include(c => c.Artist)
-                    .Include(c => c.Practice)
-                    .Where(c => c.ArtistId == user)
-                    .Where(c => c.PracticePracticeId == id);
+                    //.Include(c => c.Artist)
+                    //.Include(c => c.Practice)
+                    //.Where(c => c.ArtistId == user)
+                    //.Where(c => c.PracticePracticeId == id);
 
-                    var up = upcoming.Single(c => c.PracticePracticeId == id.Value);
-                    var up_id = up.Id;
+                    //var up = upcoming.Single(c => c.PracticePracticeId == id.Value);
+
+
+                    //var up_id = up.Id;
+                    //int idd = (int)Session["Id"];
+                    int d = (int)Session["Id"];
                     var model = new PracticeAndUserMark
                     {
                         ArtistId = user,
                         Mark = 5,
                         PracticePracticeId = id.Value,
-                        Id = up_id
-                       
+                        Id= d
+
                     };
                     if (ModelState.IsValid)
                     {
@@ -132,6 +167,7 @@ namespace YourCourses.Controllers
                     }
                 }
             }
+            return PartialView();
         }
 
         private static string ExecuteFiddle(FiddleExecuteModel model)

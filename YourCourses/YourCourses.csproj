@@ -867,6 +867,7 @@
     <Content Include="Views\Challenge\Index.cshtml" />
     <Content Include="Views\ExecuteChallenge\Index.cshtml" />
     <Content Include="Views\Execute\UpdateMark.cshtml" />
+    <Content Include="Views\Execute\Close.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

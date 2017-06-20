@@ -25,13 +25,13 @@
 {
     <p class="text-success">@Html.Raw(item.PracticeDescription.ToString())</p>
     ViewBag.practiceuserinput= item.PracticeUserInput.ToString();
-    Session["UI"] = item.PracticeUserInput.ToString();
-    Session["FP"] = item.FirstPart.ToString();
-    Session["TEST"] = item.TestsPart.ToString();
-    Session["LP"] = item.SecondPart.ToString();
-    Session["TEXT"] = item.PracticeDescription.ToString();
-    Session["CurrentPractId"] = item.PracticeId;
-   
+    if (item.PracticeUserInput != null) { Session["UI"] = item.PracticeUserInput.ToString(); }
+    if (item.FirstPart != null) { Session["FP"] = item.FirstPart.ToString(); }
+    if (item.TestsPart != null) { Session["TEST"] = item.TestsPart.ToString(); }
+    if (item.SecondPart != null) { Session["LP"] = item.SecondPart.ToString(); }
+    if (item.PracticeDescription != null) { Session["TEXT"] = item.PracticeDescription.ToString(); }
+     Session["CurrentPractId"] = item.PracticeId; 
+
 
     @*@Html.TextArea("First", item.FirstPart,  new { @class = "form-control", @readonly =true, rows = "15", cols = "200" })*@
     <br>
@@ -42,7 +42,7 @@
     <div id="results1"></div>*@
 
 
-    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Index", "Execute")'">Перейти на страницу выполнения практической части</button>
+    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Index", "Execute", new { id = item.PracticeId})'">Перейти на страницу выполнения практической части</button>
 
 //using (Ajax.BeginForm("ShowEditorArea", new AjaxOptions
 //{
