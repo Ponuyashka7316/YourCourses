@@ -7,13 +7,13 @@ namespace YourCourses.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddFK1 : IMigrationMetadata
+    public sealed partial class answer : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddFK1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(answer));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706141754011_AddFK1"; }
+            get { return "201706250655030_answer"; }
         }
         
         string IMigrationMetadata.Source

@@ -23,8 +23,7 @@ namespace YourCourses.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         Random rnd = new Random();
         public ChallengeController() {
-            var countSuccess = 0;
-            var countFails = 0;
+            
             
            
         }
@@ -32,7 +31,9 @@ namespace YourCourses.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            Session["startmark"] = 0;
+            Session["countSuccess"] = 0;
+            Session["countFails"] = 0;
+            Session["startmark"] = 0; // это текущий уровень(сложность)
             Session["Correct"] = false;
             var strtmark = (int)Session["startmark"];
             var curPr = db.Practices

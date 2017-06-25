@@ -223,12 +223,12 @@ namespace YourCourses.Controllers
             if (regex.IsMatch(resultString.ToLower()) || regex1.IsMatch(resultString.ToLower()))
             {
                 correct = false;
-                return "Не верно " + resultString;
+                return "Не верно <br/>" + resultString;
             }
 
 
             correct = true;
-            return "ЗАДАНИЕ ВЫПОЛНЕНО " + resultString;
+            return "ЗАДАНИЕ ВЫПОЛНЕНО <br/>" + resultString;
         }
 
         // get code block

@@ -14,6 +14,7 @@ namespace YourCourses.Controllers
 {
     public class ExecuteChallengeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public const string ApiUrl = "https://dotnetfiddle.net/api/fiddles/";
         public static bool correct = false;
         // GET: ExecuteChallenge
@@ -22,17 +23,58 @@ namespace YourCourses.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-
+            var l = new List<int>();
             Session["CurrentUserId"] = User.Identity.GetUserId();
-
-            string text = (string)Session["UI"];
-            
-            var model = new FiddleExecuteModel()
+            if ((bool)Session["correct"])
             {
-                CodeBlock = text
-            };
+                Session["countSuccess"] = (int)Session["countSuccess"] + 1;
+                if ((int)Session["countSuccess"]==1) {
+                    Session["countSuccess"] = 0;
+                    //тут будет выполняться переход на след ур-нь
+                    Session["startmark"] = ((int)Session["startmark"]) + 1;
+                }
+                
+                Session["correct"] = false;
+                var strtmark = (int)Session["startmark"];
+                var curPr = db.Practices
+                    .Where(c => c.Mark == strtmark);
+                if (curPr.Count() == 0)
+                {
+                    
+                    return View("ShowResults");
+                }
+                int count = curPr.Count();
 
-            return View(model);
+                int random = new Random().Next(0, count);
+                foreach (var item in l)
+                {
+                    if (random==item) random = new Random().Next(0, count);
+                }
+                l.Add(random);
+                var PR = curPr.AsEnumerable().ElementAt(random);   //получаем случайную практику из базы для текущей сложности
+                if (PR.PracticeUserInput != null) { Session["UI"] = PR.PracticeUserInput.ToString(); }
+                if (PR.FirstPart != null) { Session["FP"] = PR.FirstPart.ToString(); }
+                if (PR.TestsPart != null) { Session["TEST"] = PR.TestsPart.ToString(); }
+                if (PR.SecondPart != null) { Session["LP"] = PR.SecondPart.ToString(); }
+                if (PR.PracticeDescription != null) { Session["TEXT"] = PR.PracticeDescription.ToString(); }  //записываем все в переменные сессии
+
+
+                return RedirectToAction("Index", "ExecuteChallenge");
+            }
+            else
+            {
+               
+                Session["countFails"] = (int)Session["countFails"] - 1;
+
+                string text = (string)Session["UI"];
+
+                var model = new FiddleExecuteModel()
+                {
+                    CodeBlock = text
+                };
+
+                return View(model);
+            }
         }
 
         [Authorize]
@@ -45,9 +87,35 @@ namespace YourCourses.Controllers
             return Json(result);
         }
 
+        [Authorize]
+        public ActionResult ReExecute()
+        {
+            if ((bool)Session["correct"])
+            {
+                Session["startmark"] = ((int)Session["startmark"])+1;
+                Session["correct"] = false;
+                var strtmark = (int)Session["startmark"];
+                var curPr = db.Practices
+                    .Where(c => c.Mark == strtmark);
+                int count = curPr.Count();  
+
+                int random = new Random().Next(0, count);
+                var PR = curPr.AsEnumerable().ElementAt(random);   //получаем случайную практику из базы для текущей сложности
+                if(PR.PracticeUserInput != null) { Session["UI"] = PR.PracticeUserInput.ToString(); }
+                if(PR.FirstPart != null) { Session["FP"] = PR.FirstPart.ToString(); }
+                if(PR.TestsPart != null) { Session["TEST"] = PR.TestsPart.ToString(); }
+                if(PR.SecondPart != null) { Session["LP"] = PR.SecondPart.ToString(); }
+                if(PR.PracticeDescription != null) { Session["TEXT"] = PR.PracticeDescription.ToString(); }  //записываем все в переменные сессии
+
+
+                return RedirectToAction("Index", "ExecuteChallenge"); 
+            }
+            return View();
+        }
+
         private static string ExecuteFiddle(FiddleExecuteModel model)
         {
-            
+
             var client = new RestClient(ApiUrl);
 
             // execute request through API
@@ -94,7 +162,7 @@ namespace YourCourses.Controllers
             var resultString = result.Replace(Environment.NewLine, "<br/>").ToString();
             Regex regex = new Regex("error");
             Regex regex1 = new Regex("exception");
-            if (regex.IsMatch(resultString) || regex1.IsMatch(resultString))
+            if (regex.IsMatch(resultString.ToLower()) || regex1.IsMatch(resultString.ToLower()))
             {
                 correct = false;
                 return "Не верно " + resultString;
@@ -115,6 +183,14 @@ namespace YourCourses.Controllers
                 ProjectType = ProjectType.Console,
                 CodeBlock = code
             };
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

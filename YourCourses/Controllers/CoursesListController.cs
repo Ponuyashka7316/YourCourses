@@ -23,13 +23,14 @@ namespace YourCourses.Controllers
 {
     public class CoursesListController : Controller
     {
-        public void CoursesController() {
+        public void CoursesController()
+        {
 
         }
         public const string ApiUrl = "https://dotnetfiddle.net/api/fiddles/";
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: CoursesList
-       
+
         public ActionResult Index()
         {
             var upcoming = db.Courses
@@ -93,11 +94,24 @@ namespace YourCourses.Controllers
         {
             if (id.HasValue)
             {
+                var a = db.PracticeAndUserMarks
+                    .Where(c => c.Mark != 5);
+
                 var practice = db.Practices
-                    .Where(c => c.SublectureSubId == id);
+                    .Where(c => c.SublectureSubId == id)
+                    //.Where(c=>c.PracticeAndUserMark==a)
+                ;
+                int count = practice.Count();
 
-
-                return View(practice);
+                int random = new Random().Next(0, count);
+                var PR = practice.AsEnumerable().ElementAt(random);
+                Session["ans"] = "Ответ: ";
+                foreach (var item in db.CorrectAnswers)
+                {
+                    if (item.PracticePracticeId==PR.PracticeId)
+                    Session["ans"] += "\n \t"+item.Answer + "\n \t";
+                }
+                return View(PR);
 
             }
 
@@ -108,7 +122,7 @@ namespace YourCourses.Controllers
             }
 
         }
-        
+
         public ActionResult Show()
         {
 
@@ -129,7 +143,7 @@ namespace YourCourses.Controllers
             };
 
             return View(model);
-           
+
         }
 
         [Authorize]
@@ -251,5 +265,5 @@ namespace YourCourses.Controllers
     //    }
     //    return View(lecture);
     //}
-    
+
 }

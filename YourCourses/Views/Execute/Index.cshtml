@@ -63,8 +63,44 @@
 
                 <button type="button" class="btn btn-success submit animated zoomInUp" data-toggle="modal" data-target="#myModal">Execute</button>
 
-
+                if (User.IsInRole("admin")) { 
+                <button type="button" class="btn btn-success animated zoomInUp" data-toggle="modal" data-target="#myModal1">Показать ответы</button>
+                }
             }
+           @Session["ans"]
+            <div class="modal fade" id="myModal1" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Решение задачи </h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                @Session["ans"]
+                                @*<div class="alert alert-warning fade">
+                                    <strong>@Session["ans"]</strong>
+                                    @Session["ans"]
+                                </div>*@
+                               
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            
+                            @*<button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>*@
+                        </div>
+                    </div>
+                    @*@Ajax.ActionLink("Обновить оценку", "UpdateMark", new { id = (int)Session["CurrentPractId"] },
+                new AjaxOptions { UpdateTargetId = "results5" })*@
+
+                    @*<div class="alert alert-warning fade">
+                    <strong><span class="alert-content"></span></strong>
+                </div>*@
+                </div>
+            </div>
+
 
 
             <br /><br />

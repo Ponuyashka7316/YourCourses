@@ -1,0 +1,40 @@
+﻿@model IEnumerable<YourCourses.Models.CorrectAnswer>
+
+@{
+   
+    ViewBag.Title = "Index";
+}
+<br><br><br>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success animated bounceInLeft" })
+</p>
+<table class="table table-bordered animated zoomIn ">
+    <tr>
+        <th class="success">
+            @Html.DisplayNameFor(model => model.Practices.PracticeName)
+        </th>
+        <th class="success">
+            @Html.DisplayNameFor(model => model.Answer)
+        </th>
+        <th class="active"></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Practices.PracticeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Answer)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.Id }, new { @class = "btn btn-info" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

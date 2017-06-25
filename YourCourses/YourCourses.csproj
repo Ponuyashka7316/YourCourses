@@ -267,6 +267,7 @@
     <Compile Include="Controllers\AnswerChoicesController.cs" />
     <Compile Include="Controllers\AnswersController.cs" />
     <Compile Include="Controllers\ChallengeController.cs" />
+    <Compile Include="Controllers\CorrectAnswersController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\CoursesListController.cs" />
     <Compile Include="Controllers\ExecuteChallengeController.cs" />
@@ -308,9 +309,9 @@
     <Compile Include="Migrations\201706141737253_AddMark.Designer.cs">
       <DependentUpon>201706141737253_AddMark.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706141754011_AddFK1.cs" />
-    <Compile Include="Migrations\201706141754011_AddFK1.Designer.cs">
-      <DependentUpon>201706141754011_AddFK1.cs</DependentUpon>
+    <Compile Include="Migrations\201706250655030_answer.cs" />
+    <Compile Include="Migrations\201706250655030_answer.Designer.cs">
+      <DependentUpon>201706250655030_answer.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -870,6 +871,12 @@
     <Content Include="Views\Execute\UpdateMark.cshtml" />
     <Content Include="Views\Execute\Close.cshtml" />
     <Content Include="Views\PracticeAndUserMarks\Index.cshtml" />
+    <Content Include="Views\ExecuteChallenge\ShowResults.cshtml" />
+    <Content Include="Views\CorrectAnswers\Create.cshtml" />
+    <Content Include="Views\CorrectAnswers\Delete.cshtml" />
+    <Content Include="Views\CorrectAnswers\Details.cshtml" />
+    <Content Include="Views\CorrectAnswers\Edit.cshtml" />
+    <Content Include="Views\CorrectAnswers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -910,8 +917,8 @@
     <EmbeddedResource Include="Migrations\201706141737253_AddMark.resx">
       <DependentUpon>201706141737253_AddMark.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706141754011_AddFK1.resx">
-      <DependentUpon>201706141754011_AddFK1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706250655030_answer.resx">
+      <DependentUpon>201706250655030_answer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
