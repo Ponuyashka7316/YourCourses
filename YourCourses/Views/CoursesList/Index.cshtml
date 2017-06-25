@@ -73,6 +73,7 @@
         border: 1px solid #1c1b1a;
         border-radius: 0 !important;
         transition: box-shadow 0.3s;
+        box-shadow: 5px 0px 40px rgba(0,0,0, .2);
     }
 
     .panel-heading {
@@ -84,41 +85,171 @@
         border-top-right-radius: 10px;
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
+
+
+
     }
+    .bs-calltoaction{
+    position: relative;
+    width:auto;
+    padding: 15px 25px;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+    .bs-calltoaction > .row{
+        display:table;
+        width: calc(100% + 30px);
+    }
+
+        .bs-calltoaction > .row > [class^="col-"],
+        .bs-calltoaction > .row > [class*=" col-"]{
+            float:none;
+            display:table-cell;
+            vertical-align:middle;
+        }
+
+            .cta-contents{
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+                .cta-title{
+                    margin: 0 auto 15px;
+                    padding: 0;
+                }
+
+                .cta-desc{
+                    padding: 0;
+                }
+
+                .cta-desc p:last-child{
+                    margin-bottom: 0;
+                }
+
+            .cta-button{
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+media (max-width: 991px){
+    .bs-calltoaction > .row{
+        display:block;
+        width: auto;
+    }
+
+        .bs-calltoaction > .row > [class^="col-"],
+        .bs-calltoaction > .row > [class*=" col-"]{
+            float:none;
+            display:block;
+            vertical-align:middle;
+            position: relative;
+        }
+
+        .cta-contents{
+            text-align: center;
+        }
+}
+
+
+
+.bs-calltoaction.bs-calltoaction-default{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.bs-calltoaction.bs-calltoaction-primary{
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.bs-calltoaction.bs-calltoaction-info{
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
+.bs-calltoaction.bs-calltoaction-success{
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.bs-calltoaction.bs-calltoaction-warning{
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+
+.bs-calltoaction.bs-calltoaction-danger{
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.bs-calltoaction.bs-calltoaction-primary .cta-button .btn,
+.bs-calltoaction.bs-calltoaction-info .cta-button .btn,
+.bs-calltoaction.bs-calltoaction-success .cta-button .btn,
+.bs-calltoaction.bs-calltoaction-warning .cta-button .btn,
+.bs-calltoaction.bs-calltoaction-danger .cta-button .btn{
+    border-color:#fff;
+}
 </style>
 <br><br><br>
-<ul class="Courses">
+<div class="container animated bounceInLeft">
+    <div class="bs-calltoaction bs-calltoaction-primary">
+        <div class="row">
+            <div class="col-md-9 cta-contents">
+                <h1 class="cta-title">Challenge</h1>
+                <div class="cta-desc">
+                    <p><strong>Создатель курса:</strong> admin@mail.ru</p>
+                    <p><strong>Дата создания курса</strong> 1.1.2017</p>
+                    <p><strong>Информация о курсе: </strong> Режим состоит исключительно из практических заданий</p>
+                </div>
+            </div>
+            <div class="col-md-3 cta-button">
+                <a href="#" onclick="location.href='@Url.Action("Index", "Challenge")'" class="btn btn-lg btn-block btn-primary">Go for It!  &raquo;</a>
+            </div>
+        </div>
+    </div>
+    </div>
 
-    @foreach (var Course in Model)
-    {
+    <ul class="Courses">
 
-        <li>
+        @foreach (var Course in Model)
+        {
 
-            <div class="row slideanim animated bounceInLeft"  >
-                <div class="col-sm-7 col-xs-4">
-                    <div class="panel panel-default text-center">
-                        <div class="panel-heading">
+            <li>
 
-                            <h1 class="glyphicon glyphicon-play logo-small"> @Course.CourseName.ToString()</h1>
-                        </div>
-                        <div class="panel-body">
+                <div class="row slideanim animated bounceInLeft">
+                    <div class="col-sm-7 col-xs-4">
+                        <div class="panel panel-default text-center">
+                            <div class="panel-heading">
 
-                            <p><strong>Информация о курсе: </strong> @Html.Raw(Course.CourseInfo)</p>
-                            <p><strong>Дата создания курса</strong> @Course.DateOfCourseCreation.ToString("D");</p>
-                        </div>
+                                <h1 class="glyphicon glyphicon-play logo-small"> @Course.CourseName.ToString()</h1>
+                            </div>
+                            <div class="panel-body">
 
-                        <div class="panel-footer">
+                                <p><strong>Информация о курсе: </strong> @Html.Raw(Course.CourseInfo)</p>
+                                <p><strong>Дата создания курса</strong> @Course.DateOfCourseCreation.ToString("D");</p>
+                            </div>
 
-                            <h3><strong>Создатель курса:</strong>@Course.Artist.UserName</h3>
-                            <h4><strong>Тип курса:</strong> @Course.CourseType.Type</h4>
-                            <button onclick="location.href='@Url.Action("Lecture", "CoursesList", new { Id= Course.CourseId })'" class="btn btn-lg ">Learn more &raquo;</button>
+                            <div class="panel-footer">
+
+                                <h3><strong>Создатель курса:</strong>@Course.Artist.UserName</h3>
+                                <h4><strong>Тип курса:</strong> @Course.CourseType.Type</h4>
+                                <button onclick="location.href='@Url.Action("Lecture", "CoursesList", new { Id= Course.CourseId })'" class="btn btn-lg ">Learn more &raquo;</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <hr>
-        </li>
-        
+                <hr>
+            </li>
+
             @*<li>
                     <div>
 
@@ -148,34 +279,34 @@
                     <p><a class="btn btn-default">Name:@Html.ActionLink("Learn more", "Lecture", "CoursesList", new { id = Course.CourseId }, "") &raquo;</a></p>
 
                 </li>*@
-    }
-    <li>
+        }
+        <li style="align-self:flex-end">
 
-        <div class="row slideanim animated bounceInLeft">
-            <div class="col-sm-7 col-xs-4">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading", style="background-color:brown !important">
+            <div class="row slideanim animated bounceInLeft ">
+                <div class="col-sm-7 col-xs-4">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading" , style="background-color:brown !important">
 
-                        <h1 class="glyphicon glyphicon-play logo-small"> Режим челленджа</h1>
-                    </div>
-                    <div class="panel-body">
+                            <h1 class="glyphicon glyphicon-play logo-small"> Режим челленджа</h1>
+                        </div>
+                        <div class="panel-body">
 
-                        <p><strong>Информация о курсе: </strong> Режим состоит исключительно из практических заданий</p>
-                        <p><strong>Дата создания курса</strong> 1.1.2017</p>
-                    </div>
+                            <p><strong>Информация о курсе: </strong> Режим состоит исключительно из практических заданий</p>
+                            <p><strong>Дата создания курса</strong> 1.1.2017</p>
+                        </div>
 
-                    <div class="panel-footer">
+                        <div class="panel-footer">
 
-                        <h3><strong>Создатель курса:</strong>admin@mail.ru</h3>
-                        <h4><strong>Тип курса:</strong> -</h4>
-                        <button onclick="location.href='@Url.Action("Index", "Challenge")'" class="btn btn-lg ">Learn more &raquo;</button>
+                            <h3><strong>Создатель курса:</strong>admin@mail.ru</h3>
+                            <h4><strong>Тип курса:</strong> -</h4>
+                            <button onclick="location.href='@Url.Action("Index", "Challenge")'" class="btn btn-lg ">Learn more &raquo;</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </li>
-</ul>
+        </li>
+    </ul>
 
 
 

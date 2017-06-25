@@ -31,8 +31,15 @@ namespace YourCourses.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            var maxMark = 0.0;
+            foreach (var item in db.Practices)
+            {
+                if (item.Mark > maxMark) maxMark = item.Mark;
+            }
+            Session["maxMark"]=maxMark+1;
+            Session["totalFails"] = -1;
             Session["countSuccess"] = 0;
-            Session["countFails"] = 0;
+            Session["countFails"] = -1;
             Session["startmark"] = 0; // это текущий уровень(сложность)
             Session["Correct"] = false;
             var strtmark = (int)Session["startmark"];
@@ -42,7 +49,12 @@ namespace YourCourses.Controllers
 
             int random = new Random().Next(0, count);
             var PR = curPr.AsEnumerable().ElementAt(random);//rnd.Next((int)curPr.Count());
-           
+            Session["ans1"] = "Ответ: ";
+            foreach (var item in db.CorrectAnswers)
+            {
+                if (item.PracticePracticeId == PR.PracticeId)
+                    Session["ans1"] += "\n \t" + item.Answer + "\n \t";
+            }
 
             return View(PR);
         }

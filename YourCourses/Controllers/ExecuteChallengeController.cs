@@ -23,6 +23,11 @@ namespace YourCourses.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            
+            if ((int)Session["totalFails"] == 5)
+            {
+                return View("ShowResults");
+            }
             var l = new List<int>();
             Session["CurrentUserId"] = User.Identity.GetUserId();
             if ((bool)Session["correct"])
@@ -33,25 +38,39 @@ namespace YourCourses.Controllers
                     //тут будет выполняться переход на след ур-нь
                     Session["startmark"] = ((int)Session["startmark"]) + 1;
                 }
-                
+                if ((int)Session["countFails"] == 2)
+                {
+                    Session["countFails"] = 0;
+                    //тут будет выполняться переход на след ур-нь
+                    Session["startmark"] = ((int)Session["startmark"]) - 1;
+                }
+
+
                 Session["correct"] = false;
                 var strtmark = (int)Session["startmark"];
                 var curPr = db.Practices
                     .Where(c => c.Mark == strtmark);
+                
                 if (curPr.Count() == 0)
                 {
                     
                     return View("ShowResults");
                 }
                 int count = curPr.Count();
-
+                Link:
                 int random = new Random().Next(0, count);
                 foreach (var item in l)
                 {
                     if (random==item) random = new Random().Next(0, count);
                 }
+                
                 l.Add(random);
                 var PR = curPr.AsEnumerable().ElementAt(random);   //получаем случайную практику из базы для текущей сложности
+                if (PR == (Practice)Session["lastPr"])
+                {
+                    goto Link;
+                }
+                Session["lastPr"] = PR;
                 if (PR.PracticeUserInput != null) { Session["UI"] = PR.PracticeUserInput.ToString(); }
                 if (PR.FirstPart != null) { Session["FP"] = PR.FirstPart.ToString(); }
                 if (PR.TestsPart != null) { Session["TEST"] = PR.TestsPart.ToString(); }
@@ -63,8 +82,8 @@ namespace YourCourses.Controllers
             }
             else
             {
-               
-                Session["countFails"] = (int)Session["countFails"] - 1;
+                Session["totalFails"] = (int)Session["totalFails"] + 1;
+                Session["countFails"] = (int)Session["countFails"] + 1;
 
                 string text = (string)Session["UI"];
 
