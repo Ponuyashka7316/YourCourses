@@ -53,7 +53,7 @@ namespace YourCourses.Controllers
             foreach (var item in db.CorrectAnswers)
             {
                 if (item.PracticePracticeId == PR.PracticeId)
-                    Session["ans1"] += "\n \t" + item.Answer + "\n \t";
+                    Session["ans1"] += "\n \t" + item.Answer + "\n \t"+"//"+new string('_', 30);
             }
 
             return View(PR);

@@ -41,6 +41,7 @@ namespace YourCourses.Controllers
         [HttpGet]
         public ActionResult Index(int? id)
         {
+            Session["curstate"] = 5;
             var user = User.Identity.GetUserId();
             var upcoming = db.PracticeAndUserMarks
 
@@ -152,12 +153,13 @@ namespace YourCourses.Controllers
                     //var up_id = up.Id;
                     //int idd = (int)Session["Id"];
                     int d = (int)Session["Id"];
+                    int mark = (int)Session["curstate"];
                     var model = new PracticeAndUserMark
                     {
                         ArtistId = user,
-                        Mark = 5,
+                        Mark = mark, //5
                         PracticePracticeId = id.Value,
-                        Id= d
+                        Id = d
 
                     };
                     Session["mark"] = model.Mark;
@@ -167,6 +169,12 @@ namespace YourCourses.Controllers
                         db.SaveChanges();
 
                     }
+                }
+            }
+            else {
+                if ((int)Session["curstate"] > 2)
+                {
+                    Session["curstate"] = (int)Session["curstate"] - 1;
                 }
             }
             return PartialView();

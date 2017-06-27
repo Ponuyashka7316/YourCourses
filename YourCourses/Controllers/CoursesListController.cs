@@ -33,6 +33,7 @@ namespace YourCourses.Controllers
 
         public ActionResult Index()
         {
+            Session["us"] = User.Identity.GetUserName();
             var upcoming = db.Courses
                 .Include(c => c.Artist)
                 .Include(c => c.CourseType);
@@ -94,6 +95,21 @@ namespace YourCourses.Controllers
         {
             if (id.HasValue)
             {
+                var user = User.Identity.GetUserId();
+            var upcoming = db.PracticeAndUserMarks
+ 
+       .Include(f => f.Artist)
+       .Include(f => f.Practice)
+       .Where(f => f.ArtistId == user)
+       .Where(f => f.PracticePracticeId == id);
+                if (upcoming.Count() != 0)
+                {
+                    var up = upcoming.Single();
+                    Session["mark"] = up.Mark.ToString();
+                }
+            }
+            if (id.HasValue)
+            {
                 var a = db.PracticeAndUserMarks
                     .Where(c => c.Mark != 5);
 
@@ -101,6 +117,9 @@ namespace YourCourses.Controllers
                     .Where(c => c.SublectureSubId == id)
                     //.Where(c=>c.PracticeAndUserMark==a)
                 ;
+               
+
+
                 int count = practice.Count();
 
                 int random = new Random().Next(0, count);
@@ -109,7 +128,7 @@ namespace YourCourses.Controllers
                 foreach (var item in db.CorrectAnswers)
                 {
                     if (item.PracticePracticeId==PR.PracticeId)
-                    Session["ans"] += "\n \t"+item.Answer + "\n \t";
+                    Session["ans"] += "\n \t"+item.Answer + "\n \t"+"//"+new string('_', 30);
                 }
                 return View(PR);
 

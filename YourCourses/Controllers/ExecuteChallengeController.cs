@@ -32,6 +32,8 @@ namespace YourCourses.Controllers
             Session["CurrentUserId"] = User.Identity.GetUserId();
             if ((bool)Session["correct"])
             {
+                Session["totalFails"] = (int)Session["totalFails"] - 1;
+                Session["countFails"] = (int)-1;
                 Session["countSuccess"] = (int)Session["countSuccess"] + 1;
                 if ((int)Session["countSuccess"]==1) {
                     Session["countSuccess"] = 0;
@@ -76,15 +78,66 @@ namespace YourCourses.Controllers
                 if (PR.TestsPart != null) { Session["TEST"] = PR.TestsPart.ToString(); }
                 if (PR.SecondPart != null) { Session["LP"] = PR.SecondPart.ToString(); }
                 if (PR.PracticeDescription != null) { Session["TEXT"] = PR.PracticeDescription.ToString(); }  //записываем все в переменные сессии
-
+                Session["ans1"] = "Ответ: ";
+                foreach (var item in db.CorrectAnswers)
+                {
+                    if (item.PracticePracticeId == PR.PracticeId)
+                        Session["ans1"] += "\n \t" + item.Answer + "\n \t" + "//" + new string('_', 30);
+                }
 
                 return RedirectToAction("Index", "ExecuteChallenge");
             }
-            else
+            if (!(bool)Session["correct"])
             {
                 Session["totalFails"] = (int)Session["totalFails"] + 1;
                 Session["countFails"] = (int)Session["countFails"] + 1;
+                if ((int)Session["countFails"] == 2)
+                {
+                    Session["countFails"] = -1;
+                    //тут будет выполняться переход на след ур-нь
+                    
+                    Session["startmark"] = ((int)Session["startmark"]) - 1;
+                    var strtmark = (int)Session["startmark"];
+                    var curPr = db.Practices
+                        .Where(c => c.Mark == strtmark);
 
+                    if (curPr.Count() == 0)
+                    {
+                        if ((int)Session["startmark"]<0)
+                        Session["startmark"] = 0;
+                        return View("ShowResults");
+                    }
+                    int count = curPr.Count();
+                    Link:
+                    int random = new Random().Next(0, count);
+                    foreach (var item in l)
+                    {
+                        if (random == item) random = new Random().Next(0, count);
+                    }
+
+                    l.Add(random);
+                    var PR = curPr.AsEnumerable().ElementAt(random);   //получаем случайную практику из базы для текущей сложности
+                    if (PR == (Practice)Session["lastPr"])
+                    {
+                        goto Link;
+                    }
+                    Session["lastPr"] = PR;
+                    if (PR.PracticeUserInput != null) { Session["UI"] = PR.PracticeUserInput.ToString(); }
+                    if (PR.FirstPart != null) { Session["FP"] = PR.FirstPart.ToString(); }
+                    if (PR.TestsPart != null) { Session["TEST"] = PR.TestsPart.ToString(); }
+                    if (PR.SecondPart != null) { Session["LP"] = PR.SecondPart.ToString(); }
+                    if (PR.PracticeDescription != null) { Session["TEXT"] = PR.PracticeDescription.ToString(); }  //записываем все в переменные сессии
+                    Session["ans1"] = "Ответ: ";
+                    foreach (var item in db.CorrectAnswers)
+                    {
+                        if (item.PracticePracticeId == PR.PracticeId)
+                            Session["ans1"] += "\n \t" + item.Answer + "\n \t" + "//" + new string('_', 30);
+                    }
+
+                    return RedirectToAction("Index", "ExecuteChallenge");
+
+
+                }
                 string text = (string)Session["UI"];
 
                 var model = new FiddleExecuteModel()
@@ -92,6 +145,17 @@ namespace YourCourses.Controllers
                     CodeBlock = text
                 };
 
+                return View(model);
+            }
+            else
+            {
+                string text = (string)Session["UI"];
+
+                var model = new FiddleExecuteModel()
+                {
+                    CodeBlock = text
+                };
+                Session["startmark"] = 0;
                 return View(model);
             }
         }

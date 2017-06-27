@@ -3,7 +3,16 @@
 @{
     ViewBag.Title = "Error";
 }
+<br><br><br>
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="danger">An Error has occured</h1>
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+        <p class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Danger, @Session["us"] Danger!
+        </p>
 
+    </div>
+</div>

@@ -64,9 +64,9 @@
                     <tr>
                         <p>
                         <th class="success">Текущий уровень: @Session["startmark"] </th> 
-                        <th class="success"> Количество ошибок: @Session["totalFails"]</th> 
+                        <th class="success"> Общее количество ошибок: @Session["totalFails"]</th> 
                         <th class="success"> Количество правильных ответов подряд: @Session["countSuccess"] </th>
-                        <th class="success">Общее число ошибок: @Session["totalFails"]</th></p>
+                        <th class="success">Количество число ошибок: @Session["countFails"]</th></p>
 </tr>
                 </table>
                         <button type="button" class="btn btn-success submit animated zoomInUp" data-toggle="modal" data-target="#myModal">Execute</button>
@@ -86,7 +86,8 @@
                         </div>
                         <div class="modal-body">
                             <p>
-                                @Session["ans1"]
+                                @Html.TextArea("ANS", (string)Session["ans1"], 22, 50, new { @readonly = true })
+                               
 
 
                             </p>

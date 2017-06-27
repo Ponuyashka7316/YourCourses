@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    
     <script src="~/Scripts/codemirror-2.37/lib/codemirror.js"></script>
     <script src="~/Scripts/codemirror-2.37/mode/clike/clike.js" type="text/javascript"></script>
     <link href="~/Scripts/codemirror-2.37/lib/codemirror.css" rel="stylesheet" type="text/css" />
@@ -25,7 +26,7 @@
     <link rel="stylesheet" href="~/Scripts/codemirror-2.37/lib/util/simple-hint.js">
     <link rel="stylesheet" href="~/Content/animate.css">
     <link rel="stylesheet" href="~/Content/style.css">
-
+    <link rel="stylesheet" href="~/Scripts/bootstrap.min.js">
     <style type="text/css">
         .field-validation-error {
             color: #ff0000;
@@ -78,14 +79,21 @@
                             <h4 class="modal-title">Решение задачи </h4>
                         </div>
                         <div class="modal-body">
-                            <p>
-                                @Session["ans"]
+                            
+                                @Html.TextArea("ANS", (string)Session["ans"], 22,50, new { @readonly = true })
+                               
+                                <script>
+                                   
+
+                                  
+                                   
+                                </script>
                                 @*<div class="alert alert-warning fade">
                                     <strong>@Session["ans"]</strong>
                                     @Session["ans"]
                                 </div>*@
                                
-                            </p>
+                            
                         </div>
                         <div class="modal-footer">
                             
@@ -104,13 +112,14 @@
 
 
             <br /><br />
-            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal" role="dialog">
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                            @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
                             <h4 class="modal-title">Результат выполнения программы </h4>
                         </div>
                         <div class="modal-body">
@@ -151,6 +160,7 @@
             <script src="//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js"></script>
 
             <script type="text/javascript">
+
         var myValue = $('#' + '@(ViewBag.text)').val();
 
 			function openAlert(txt) {
@@ -203,6 +213,7 @@
                     lineNumbers: false,
                     readOnly: true
                 });
+               
                 var editor = CodeMirror.fromTextArea(document.getElementById("CodeBlock"), {
                     lineNumbers: true,
                     matchBrackets: true,
@@ -215,6 +226,20 @@
 
                 });
 
+               
+
+
+               
+                $('#myModal1').on('shown', function () {
+                    $(".CodeMirror").css({
+                        'height': function () {
+                            return ($(document).height() * .5) + 'px';
+                        }
+                    });
+                }).on('hidden', function () {
+                    editor3.refresh();
+                })
+               
                 var text = editor.getValue();
 
 
