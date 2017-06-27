@@ -124,6 +124,7 @@ namespace YourCourses.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateInput(false)]
         public JsonResult Execute(string code)
         {
             Session["correct"] = false;

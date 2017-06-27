@@ -12,6 +12,26 @@
    @if (Model.PracticeDescription!= null) { Session["TEXT"]=Model.PracticeDescription.ToString(); }
    
 <br>
-<h2>Это режим челенджа. Для мотивации выполнения заданий предусмотрена система оценивания, которая зависит от умения пользователя решать задачи.
-    Перейдите по ссылке чтобы начать выполнять задание</h2>
-<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Index", "ExecuteChallenge")'">Перейти на страницу выполнения практической части</button>
+<div class="container" >
+    <div class="row text-center">
+        <div class="col-sm-10 col-sm-offset-1">
+            <br><br> <h2 style="color:#0fad00">Добро пожаловать в новый режим</h2>
+            <img src="http://osmhotels.com//assets/check-true.jpg">
+            <h3>
+                
+                    Это режим челенджа. Для мотивации выполнения заданий предусмотрена система оценивания, которая зависит от умения пользователя решать задачи.
+                    Перейдите по ссылке чтобы начать выполнять задание
+               
+
+            </h3>
+            <p style="font-size:20px;color:#5C5C5C;">
+               
+            </p>
+            <button type="button" class="btn btn-success btn-lg btn-block" onclick="location.href='@Url.Action("Index", "ExecuteChallenge")'">Перейти на страницу выполнения практической части</button>            <br><br>
+        </div>
+
+    </div>
+</div>
+
+
+

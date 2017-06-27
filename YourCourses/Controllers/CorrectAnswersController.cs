@@ -48,6 +48,7 @@ namespace YourCourses.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "Id,Answer,PracticePracticeId")] CorrectAnswer correctAnswer)
         {
             if (ModelState.IsValid)
@@ -82,6 +83,7 @@ namespace YourCourses.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "Id,Answer,PracticePracticeId")] CorrectAnswer correctAnswer)
         {
             if (ModelState.IsValid)

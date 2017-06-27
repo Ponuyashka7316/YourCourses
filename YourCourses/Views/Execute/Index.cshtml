@@ -37,6 +37,14 @@
             overflow-y: hidden;
             overflow-x: auto;
         }
+        .box {
+            width: 100%;
+            margin: 5px auto;
+            position: relative;
+            background: #ffffff;
+            padding: 5px;
+            border: 1px solid black;
+        }
     </style>
 
 </head>
@@ -52,114 +60,117 @@
 
 
                 <div class="form-group animated zoomInUp">
-                    @Html.Raw(Session["TEXT"].ToString())
-                    @Html.TextArea("FirstPart", (string)Session["FP"])
-                    @Html.Hidden("TEST", (string)Session["TEST"])
-                    @*@Html.LabelFor(m => m.CodeBlock)*@
-                    @Html.TextAreaFor(model => model.CodeBlock, new { @editable = true, @class = "form-control", rows = 20 })
-                    @Html.TextArea("LastPart", (string)Session["LP"])
-                </div>
-                <p class="animated zoomInUp">Ограничение ввода: не более сотни вызовов в час с текущего IP</p>
-                <div id="results5">Текущая оценка составляет <br><b><h3>@Session["mark"] баллов</h3></b></div>
-
-                <button type="button" class="btn btn-success submit animated zoomInUp" data-toggle="modal" data-target="#myModal">Execute</button>
-
-                if (User.IsInRole("admin")) { 
-                <button type="button" class="btn btn-warning animated zoomInUp" data-toggle="modal" data-target="#myModal1">Показать ответы</button>
-                }
-            }
-           
-            <div class="modal fade" id="myModal1" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Решение задачи </h4>
-                        </div>
-                        <div class="modal-body">
-                            
-                                @Html.TextArea("ANS", (string)Session["ans"], 22,50, new { @readonly = true })
-                               
-                                <script>
-                                   
-
-                                  
-                                   
-                                </script>
-                                @*<div class="alert alert-warning fade">
-                                    <strong>@Session["ans"]</strong>
-                                    @Session["ans"]
-                                </div>*@
-                               
-                            
-                        </div>
-                        <div class="modal-footer">
-                            
-                            @*<button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>*@
-                        </div>
+                    <div class="box">
+                        @Html.Raw(Session["TEXT"].ToString()) </div>
+                        @Html.TextArea("FirstPart", (string)Session["FP"])
+                        @Html.Hidden("TEST", (string)Session["TEST"])
+                        @*@Html.LabelFor(m => m.CodeBlock)*@
+                        @Html.TextAreaFor(model => model.CodeBlock, new { @editable = true, @class = "form-control", rows = 20 })
+                        @Html.TextArea("LastPart", (string)Session["LP"])
                     </div>
-                    @*@Ajax.ActionLink("Обновить оценку", "UpdateMark", new { id = (int)Session["CurrentPractId"] },
-                new AjaxOptions { UpdateTargetId = "results5" })*@
-
-                    @*<div class="alert alert-warning fade">
-                    <strong><span class="alert-content"></span></strong>
-                </div>*@
-                </div>
-            </div>
-
-
-
-            <br /><br />
-            <div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-
-                            @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                            <h4 class="modal-title">Результат выполнения программы </h4>
+                    <div class="box" style="background-color:burlywood; color:black">
+                        <p class="animated zoomInUp">Ограничение ввода: не более сотни вызовов в час с текущего IP</p>
                         </div>
-                        <div class="modal-body">
-                            <p>
-                                <div class="alert alert-warning fade">
-                                    <strong><span class="alert-content"></span></strong>
+                        <div id="results5">Текущая оценка составляет <br><b><h3>@Session["mark"] балла(ов)</h3></b></div>
+
+                        <button type="button" class="btn btn-success submit animated zoomInUp" data-toggle="modal" data-target="#myModal">Execute</button>
+
+                        if (User.IsInRole("admin")) {
+                        <button type="button" class="btn btn-warning animated zoomInUp" data-toggle="modal" data-target="#myModal1">Показать ответы</button>
+                        }
+                        }
+
+                        <div class="modal fade" id="myModal1" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Решение задачи </h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        @Html.TextArea("ANS", (string)Session["ans"], 22, 50, new { @readonly = true })
+
+                                        <script>
+
+
+
+
+                                        </script>
+                                        @*<div class="alert alert-warning fade">
+                                        <strong>@Session["ans"]</strong>
+                                        @Session["ans"]
+                                    </div>*@
+
+
+                                    </div>
+                                    <div class="modal-footer">
+
+                                        @*<button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>*@
+                                    </div>
                                 </div>
+                                @*@Ajax.ActionLink("Обновить оценку", "UpdateMark", new { id = (int)Session["CurrentPractId"] },
+                            new AjaxOptions { UpdateTargetId = "results5" })*@
 
-                            </p>
+                                @*<div class="alert alert-warning fade">
+                                <strong><span class="alert-content"></span></strong>
+                            </div>*@
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            @Ajax.ActionLink("Учесть результаты ", "Close",
+
+
+
+                        <br /><br />
+                        <div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+
+                                        @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                                        <h4 class="modal-title">Результат выполнения программы </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            <div class="alert alert-warning fade">
+                                                <strong><span class="alert-content"></span></strong>
+                                            </div>
+
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        @Ajax.ActionLink("Учесть результаты ", "Close",
                                new { id = (int)Session["CurrentPractId"] },
                              new AjaxOptions { UpdateTargetId = "results5" },
-                            new { @class = "btn btn-success btn-lg ", @data_dismiss="modal" })
-                            @*<button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>*@
+                            new { @class = "btn btn-success btn-lg ", @data_dismiss = "modal" })
+                                        @*<button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>*@
+                                    </div>
+                                </div>
+                                @*@Ajax.ActionLink("Обновить оценку", "UpdateMark", new { id = (int)Session["CurrentPractId"] },
+                            new AjaxOptions { UpdateTargetId = "results5" })*@
+
+                                @*<div class="alert alert-warning fade">
+                                <strong><span class="alert-content"></span></strong>
+                            </div>*@
+                            </div>
                         </div>
-                    </div>
-                    @*@Ajax.ActionLink("Обновить оценку", "UpdateMark", new { id = (int)Session["CurrentPractId"] },
-                   new AjaxOptions { UpdateTargetId = "results5" })*@
 
-                    @*<div class="alert alert-warning fade">
-                            <strong><span class="alert-content"></span></strong>
-                        </div>*@
-                </div>
-            </div>
-            
-            @*@Ajax.ActionLink("Обновить оценку ", "UpdateMark",
-                       new { id = (int)Session["CurrentPractId"] },
-                       new AjaxOptions { UpdateTargetId = "results5"},
-                new { @class = "btn btn-default btn-lg " })*@
-           
-            <!-- JS includes -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-            <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+                        @*@Ajax.ActionLink("Обновить оценку ", "UpdateMark",
+                           new { id = (int)Session["CurrentPractId"] },
+                           new AjaxOptions { UpdateTargetId = "results5"},
+                    new { @class = "btn btn-default btn-lg " })*@
 
-            <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-            <script src="//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js"></script>
+                        <!-- JS includes -->
+                        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+                        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-            <script type="text/javascript">
+                        <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+                        <script src="//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js"></script>
+
+                        <script type="text/javascript">
 
         var myValue = $('#' + '@(ViewBag.text)').val();
 
@@ -194,57 +205,57 @@
 
             });
 
-            </script>
-            <script>
+                        </script>
+                        <script>
 
-                //CodeBlock
-                var readOnlyCodeMirror = CodeMirror.fromTextArea(document.getElementById('FirstPart'), {
-                    mode: "text/x-csharp",
-                    theme: "default",
-                    lineNumbers: false,
-                    readOnly: true,
-                    tabSize: 1
+                            //CodeBlock
+                            var readOnlyCodeMirror = CodeMirror.fromTextArea(document.getElementById('FirstPart'), {
+                                mode: "text/x-csharp",
+                                theme: "default",
+                                lineNumbers: false,
+                                readOnly: true,
+                                tabSize: 1
 
-                });
+                            });
 
-                var readOnlyCodeMirror2 = CodeMirror.fromTextArea(document.getElementById('LastPart'), {
-                    mode: "text/x-csharp",
-                    theme: "default",
-                    lineNumbers: false,
-                    readOnly: true
-                });
-               
-                var editor = CodeMirror.fromTextArea(document.getElementById("CodeBlock"), {
-                    lineNumbers: true,
-                    matchBrackets: true,
-                    mode: "text/x-csharp",
-                    compiler: true,
-                    hint: true,
-                    autohint: true,
-                    extraKeys: { "Ctrl-Space": "autocomplete" },
-                    theme: "lesser-dark"
+                            var readOnlyCodeMirror2 = CodeMirror.fromTextArea(document.getElementById('LastPart'), {
+                                mode: "text/x-csharp",
+                                theme: "default",
+                                lineNumbers: false,
+                                readOnly: true
+                            });
 
-                });
+                            var editor = CodeMirror.fromTextArea(document.getElementById("CodeBlock"), {
+                                lineNumbers: true,
+                                matchBrackets: true,
+                                mode: "text/x-csharp",
+                                compiler: true,
+                                hint: true,
+                                autohint: true,
+                                extraKeys: { "Ctrl-Space": "autocomplete" },
+                                theme: "lesser-dark"
 
-               
-
-
-               
-                $('#myModal1').on('shown', function () {
-                    $(".CodeMirror").css({
-                        'height': function () {
-                            return ($(document).height() * .5) + 'px';
-                        }
-                    });
-                }).on('hidden', function () {
-                    editor3.refresh();
-                })
-               
-                var text = editor.getValue();
+                            });
 
 
 
-            </script>
+
+
+                            $('#myModal1').on('shown', function () {
+                                $(".CodeMirror").css({
+                                    'height': function () {
+                                        return ($(document).height() * .5) + 'px';
+                                    }
+                                });
+                            }).on('hidden', function () {
+                                editor3.refresh();
+                            })
+
+                            var text = editor.getValue();
+
+
+
+                        </script>
 
 </body>
 

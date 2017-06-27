@@ -5,7 +5,17 @@
 }
 
 <h2>Edit</h2>
-
+<style>
+    textarea {
+        resize: both;
+        overflow: auto; /* Horizontal and vertical scrollbar*/
+        overflow-y: scroll;
+        height: 300px;
+        width: 800px;
+        max-width: 1200px;
+        overflow-x: scroll;
+    }
+</style>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -27,7 +37,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CourseInfo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CourseInfo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.CourseInfo, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CourseInfo, "", new { @class = "text-danger" })
             </div>
         </div>

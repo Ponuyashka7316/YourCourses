@@ -43,6 +43,26 @@
     .panel-footer {
         background-color: white !important;
     }
+    .navbar {
+        margin-bottom: 0;
+        background-color: #1c1918;
+        z-index: 9999;
+        border: 0;
+        font-size: 12px !important;
+        line-height: 1.42857143 !important;
+        letter-spacing: 4px;
+        border-radius: 0;
+        font-family: Montserrat, sans-serif;
+    }
+
+        .navbar li a, .navbar .navbar-brand {
+            color: #fff !important;
+        }
+
+    .navbar-nav li a:hover, .navbar-nav li.active a {
+        color: #f4511e !important;
+        background-color: #fff !important;
+    }
 
         .panel-footer .btn:hover {
             border: 1px solid #1c1918;
@@ -73,7 +93,7 @@
         border: 1px solid #1c1b1a;
         border-radius: 0 !important;
         transition: box-shadow 0.3s;
-        box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+        box-shadow: 5px 0px 20px rgba(0,0,0, .2);
     }
 
     .panel-heading {
@@ -202,7 +222,7 @@ media (max-width: 991px){
 
 <br><br><br>
 <div class="container animated bounceInLeft">
-    <div class="bs-calltoaction bs-calltoaction-primary">
+    <div class="bs-calltoaction bs-calltoaction-default" style="background-color:wheat">
         <div class="row">
             <div class="col-md-9 cta-contents">
                 <h1 class="cta-title">Challenge</h1>
@@ -212,8 +232,8 @@ media (max-width: 991px){
                     <p><strong>Информация о курсе: </strong> Режим состоит исключительно из практических заданий</p>
                 </div>
             </div>
-            <div class="col-md-3 cta-button">
-                <a href="#" onclick="location.href='@Url.Action("Index", "Challenge")'" class="btn btn-lg btn-block btn-primary">Go for It!  &raquo;</a>
+            <div class="col-md-3 cta-button " >
+                <a href="#" onclick="location.href='@Url.Action("Index", "Challenge")'" class="btn btn-lg btn-block btn-default" >Посмотреть описание режима  &raquo;</a>
             </div>
         </div>
     </div>
@@ -243,7 +263,7 @@ media (max-width: 991px){
 
                                 <h3><strong>Создатель курса:</strong>@Course.Artist.UserName</h3>
                                 <h4><strong>Тип курса:</strong> @Course.CourseType.Type</h4>
-                                <button onclick="location.href='@Url.Action("Lecture", "CoursesList", new { Id= Course.CourseId })'" class="btn btn-lg ">Learn more &raquo;</button>
+                                <button onclick="location.href='@Url.Action("Lecture", "CoursesList", new { Id= Course.CourseId })'" class="btn btn-lg ">Открыть страницу курса &raquo;</button>
                             </div>
                         </div>
                     </div>
@@ -281,7 +301,7 @@ media (max-width: 991px){
 
                 </li>*@
         }
-        <li style="align-self:flex-end">
+        @*<li style="align-self:flex-end">
 
             <div class="row slideanim animated bounceInLeft ">
                 <div class="col-sm-7 col-xs-4">
@@ -306,7 +326,7 @@ media (max-width: 991px){
                 </div>
             </div>
 
-        </li>
+        </li>*@
     </ul>
 
 
