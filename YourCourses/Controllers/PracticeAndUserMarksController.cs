@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using YourCourses.Models;
+using System.Data.Entity;
+using PagedList;
 
 namespace YourCourses.Controllers
 {
@@ -11,10 +13,24 @@ namespace YourCourses.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: PracticeAndUserMarks
-        public ActionResult Index()
+        [Authorize(Roles = "admin")]
+        public ActionResult Index(string q, int? page)
         {
-            var up = db.PracticeAndUserMarks.ToList();
-            return View(up);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            var up = db.PracticeAndUserMarks
+                .Include(c=>c.Artist)
+                .Include(c=>c.Practice)
+                .ToList();
+
+            if (!String.IsNullOrEmpty(q))
+            {
+                ViewBag.SStr = q;
+                up = up
+                       .Where(p => p.Artist.UserName.Contains(q)).ToList();
+
+            }
+            return View(up.OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize));
         }
     }
 }

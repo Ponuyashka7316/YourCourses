@@ -38,10 +38,12 @@
             @Html.DisplayFor(modelItem => item.DateOfCourseCreation)
         </td>
         <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.CourseId }, new { @class = "btn btn-primary" }) |*@
-            @Html.ActionLink("Details", "Details", new { id=item.CourseId }, new { @class = "btn btn-info" }) 
-            @Html.ActionLink("Delete", "Delete", new { id=item.CourseId }, new { @class = "btn btn-danger" })
-        </td>
+            <div class="btn-group-vertical">
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.CourseId }, new { @class = "btn btn-primary" }) |*@
+                @Html.ActionLink("Details", "Details", new { id = item.CourseId }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.CourseId }, new { @class = "btn btn-danger" })
+</div>
+</td>
     </tr>
 }
 

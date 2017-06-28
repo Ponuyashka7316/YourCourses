@@ -1,5 +1,5 @@
-﻿@model IEnumerable<YourCourses.Models.PracticeAndUserMark>
-
+﻿@model PagedList.IPagedList<YourCourses.Models.PracticeAndUserMark>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
 }
@@ -8,19 +8,26 @@
 
 
 <br><br><br>
-<h2>Index</h2>
+<h2>Данные по оценкам</h2>
 
-
+@using (Html.BeginForm("Index", "PracticeAndUserMarks", new { @class = "form-control" }))
+{
+    <div class="search">
+        <input type="search"  name="q" placeholder="Поиск..." value="@ViewBag.SStr">
+        <input type="submit" value=">">
+    </div>
+}
+<br>
 <table class="table table-bordered animated zoomIn">
     <tr>
         <th class="success">
-            @Html.DisplayNameFor(model => model.Artist.UserName)
+            @Html.Label("Имя пользователя")
         </th>
         <th class="success">
-            @Html.DisplayNameFor(model => model.Mark)
+            @Html.Label("Оценка по пятибальной системе")
         </th>
         <th class="success">
-            @Html.DisplayNameFor(model => model.Practice.PracticeName)
+            @Html.Label("Название практики")
         </th>
        
         
@@ -30,7 +37,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(Model => item.Artist.Email)
+                @Html.DisplayFor(Model => item.Artist.UserName)
             </td>
             <td>
                 @Html.DisplayFor(Model => item.Mark)
@@ -44,3 +51,73 @@
     }
 
 </table>
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+<style>
+    .search {
+        width: 300px; /* Ширина поля с кнопкой */
+        border: 1px solid #000; /* Параметры рамки */
+        min-height: 20px; /* Минимальная высота */
+    }
+
+    input[type="search"] {
+        border: none; /* Убираем рамку */
+        outline: none; /* Убираем свечение в Chrome и Safari */
+        -webkit-appearance: none; /* Убираем рамку в Chrome и Safari */
+        width: 274px; /* Ширина поля */
+        vertical-align: middle; /* Выравнивание по середине */
+    }
+
+    input[type="submit"] {
+        width: 20px; /* Ширина кнопки */
+        height: 30px; /* Высота кнопки */
+        border: none; /* Убираем рамку */
+        background-color: burlywood; /* Параметры фона */
+    }
+    li {
+        float: left;
+        border-right: 0px solid #bbb;
+    }
+
+        li:last-child {
+            border-right: none;
+        }
+
+        li a {
+            display: block;
+            color: Black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+            li a:hover:not(.active) {
+                background-color: #4CAF50;
+            }
+
+    .active {
+        background-color: #4CAF50;
+    }
+
+    .search {
+        width: 300px; /* Ширина поля с кнопкой */
+        border: 1px solid #000; /* Параметры рамки */
+        min-height: 20px; /* Минимальная высота */
+    }
+
+    input[type="search"] {
+        border: none; /* Убираем рамку */
+        outline: none; /* Убираем свечение в Chrome и Safari */
+        -webkit-appearance: none; /* Убираем рамку в Chrome и Safari */
+        width: 274px; /* Ширина поля */
+        vertical-align: middle; /* Выравнивание по середине */
+    }
+
+    input[type="submit"] {
+        width: 20px; /* Ширина кнопки */
+        height: 30px; /* Высота кнопки */
+        border: none; /* Убираем рамку */
+        background-color: burlywood; /* Параметры фона */
+    }
+</style>

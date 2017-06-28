@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using YourCourses.Models;
+using PagedList.Mvc;
+using PagedList;
 
 namespace YourCourses.Controllers
 {
@@ -14,11 +16,32 @@ namespace YourCourses.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //public ActionResult Search(string q)
+        //{
+        //    if (q != null)
+        //    {
+        //        var practices = db.Practices.Include(p => p.Sublectures)
+        //            .Where(p => p.PracticeName.Contains(q));
+        //    }
+        //        return View(practices.ToList(), "Index");
+        //}
+
         // GET: PracticesHome
-        public ActionResult Index()
+        public ActionResult Index(string q, int? page)
         {
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
             var practices = db.Practices.Include(p => p.Sublectures);
-            return View(practices.ToList());
+            if (!String.IsNullOrEmpty(q))
+            {
+                ViewBag.SStr = q;
+                practices = practices
+                       .Where(p => p.PracticeName.Contains(q));
+                
+            }
+               
+                
+            return View(practices.OrderBy(x=>x.PracticeId).ToPagedList(pageNumber, pageSize));
         }
         [Authorize(Roles = "admin")]
         // GET: PracticesHome/Details/5

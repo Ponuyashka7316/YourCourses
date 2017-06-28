@@ -1,35 +1,66 @@
-﻿@model IEnumerable<YourCourses.Models.Practice>
+﻿@model PagedList.IPagedList<YourCourses.Models.Practice>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<style>
+    .search {
+        width: 300px; /* Ширина поля с кнопкой */
+        border: 1px solid #000; /* Параметры рамки */
+        min-height: 20px; /* Минимальная высота */
+    }
 
+    input[type="search"] {
+        border: none; /* Убираем рамку */
+        outline: none; /* Убираем свечение в Chrome и Safari */
+        -webkit-appearance: none; /* Убираем рамку в Chrome и Safari */
+        width: 274px; /* Ширина поля */
+        vertical-align: middle; /* Выравнивание по середине */
+    }
+
+    input[type="submit"] {
+        width: 20px; /* Ширина кнопки */
+        height: 30px; /* Высота кнопки */
+        border: none; /* Убираем рамку */
+        background-color:burlywood; /* Параметры фона */
+    }
+
+</style>
 @{
     ViewBag.Title = "Index";
 }<br><br><br>
 <link rel="stylesheet" href="~/Content/animate.css">
 <link rel="stylesheet" href="~/Content/style.css">
 
-<h2 class = "animated bounceInLeft">Index</h2>
-
+<h2 class = "animated bounceInLeft">Данные практик</h2>
+@using (Html.BeginForm("Index", "PracticesHome", new { @class = "form-control"}))
+{
+   <div class="search">
+        <input type="search" name="q" placeholder="Поиск..." value="@ViewBag.SStr">
+        <input type="submit" value=">">
+    </div>
+}
+<br>
 <p>
     @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success animated bounceInLeft" })
 </p>
 <table class="table table-bordered animated zoomIn ">
     <tr>
         <th class="success">
-            @Html.DisplayNameFor(model => model.Sublectures.ArtistId)
+            @Html.Label("Id пользователя")
         </th>
         <th class="success">
-            @Html.DisplayNameFor(model => model.PracticeName)
+            @Html.Label("Название практики")
         </th>
         <th class="success">
-            @Html.DisplayNameFor(model => model.PracticeUserInput)
+            @Html.Label("Пользовательский ввод по умолчанию")
         </th>
         <th class="success">
-            @Html.DisplayNameFor(model => model.FirstPart)
+            @Html.Label("Первая часть")
         </th>
         <th class="success">
-            @Html.DisplayNameFor(model => model.TestsPart)
+            @Html.Label("Тестовая часть")
         </th>
         <th class="success">
-            @Html.DisplayNameFor(model => model.SecondPart)
+            @Html.Label("Вторая часть")
         </th>
         <th class="active"></th>
     </tr>
@@ -55,10 +86,12 @@
             @Html.DisplayFor(modelItem => item.SecondPart)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PracticeId }, new { @class = "btn btn-primary" }) 
-            @Html.ActionLink("Details", "Details", new { id=item.PracticeId }, new { @class = "btn btn-info" }) 
-            @Html.ActionLink("Delete", "Delete", new { id=item.PracticeId }, new { @class = "btn btn-danger" })
-        </td>
+            <div class="btn-group-vertical">
+                @Html.ActionLink("Edit", "Edit", new { id = item.PracticeId }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Details", "Details", new { id = item.PracticeId }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.PracticeId }, new { @class = "btn btn-danger" })
+            </div>
+                </td>
     </tr>
 }
 
@@ -66,3 +99,35 @@
 <p>
     @Html.ActionLink("Добавить ответы", "Create", "CorrectAnswers", null, new { @class = "btn btn-success animated bounceInLeft" })
 </p>
+
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+<style>
+   
+
+    li {
+        float: left;
+        border-right: 0px solid #bbb;
+    }
+
+        li:last-child {
+            border-right: none;
+        }
+
+        li a {
+            display: block;
+            color: Black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+            li a:hover:not(.active) {
+                background-color: #4CAF50;
+            }
+
+    .active {
+        background-color: #4CAF50;
+    }
+    </style>

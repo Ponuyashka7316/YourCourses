@@ -19,59 +19,44 @@
 </script>
 
 <br><br><br>
+<div class="btn-group-vertical">
 <h2 class="animated bounceInDown">Страница администратора</h2>
 <hr>
 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 
-<br><button type="button" onclick="location.href='@Url.Action("Index", "PracticeAndUserMarks")'" class="btn btn-default ">Просмотреть оценки пользователей</button>
+<br><button type="button" onclick="location.href='@Url.Action("Index", "PracticeAndUserMarks")'" class="btn btn-default " style="float:right">Просмотреть оценки пользователей</button>
 <br>
 <strong class="animated fadeInDown" >Управление курсами:</strong><br>
-<div class="btn-group-vertical">
+<div class="btn-group-vertical" style="float:left">
+
     <button type="button" onclick="location.href='@Url.Action("Create", "Courses")'" class="btn btn-default ">Создать новый курс</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "Courses")'" class="btn btn-info">Просмотреть список существующих курсов</button>
-
-    </div>
-<br>
-<hr>
-<strong class="animated fadeInDown">Управление модулями:</strong><br>
-<div class="btn-group-vertical">
+    <hr>
+    <strong class="animated fadeInDown">Управление модулями:</strong><br>
     <button type="button" onclick="location.href='@Url.Action("Create", "Lectures")'" class="btn btn-default ">Создать новый модуль</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "Lectures")'" class="btn btn-info">Просмотреть список существующих модулей</button>
-
-    </div>
-<br>
-<hr>
-<strong class="animated fadeInDown">Управление лекциями:</strong><br>
-<div class="btn-group-vertical">
+    <hr>
+    <strong class="animated fadeInDown">Управление лекциями:</strong><br>
     <button type="button" onclick="location.href='@Url.Action("Create", "SubLectures")'" class="btn btn-default ">Создать новую лекцию</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "SubLectures")'" class="btn btn-info">Просмотреть список существующих лекций</button>
-
-</div>
-<br>
-<hr>
-<strong class="animated fadeInDown">Управление практикой:</strong><br>
-<div class="btn-group-vertical">
+    <hr>
+    <strong class="animated fadeInDown">Управление практикой:</strong><br>
     <button type="button" onclick="location.href='@Url.Action("Create", "PracticesHome")'" class="btn btn-default ">Создать новую практику</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "PracticesHome")'" class="btn btn-info">Просмотреть список существующих практик</button>
-
-</div>
-<br>
-<hr>
-<strong class="animated fadeInDown">Управление пользователями и ролями:</strong><br>
-<div class="btn-group-vertical">
+    <hr>
+    <strong class="animated fadeInDown">Управление пользователями и ролями:</strong><br>
     <button type="button" onclick="location.href='@Url.Action("Create", "Admin")'" class="btn btn-default ">Создать нового пользователя</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "Admin")'" class="btn btn-info">Просмотреть список существующих пользователей</button>
-
-</div>
-<br>
-<hr>
-<strong class="animated fadeInDown">Управление ответами:</strong><br>
-<div class="btn-group-vertical">
+    <hr>
+    <strong class="animated fadeInDown">Управление ответами:</strong><br>
     <button type="button" onclick="location.href='@Url.Action("Create", "CorrectAnswers")'" class="btn btn-default ">Создать новый ответ</button>
     <button type="button" onclick="location.href='@Url.Action("Index", "CorrectAnswers")'" class="btn btn-info">Просмотреть список существующих ответов</button>
 
-</div>
+    </div>
+<br>
 
+
+    </div>
     <br>
     <br>
     <br>

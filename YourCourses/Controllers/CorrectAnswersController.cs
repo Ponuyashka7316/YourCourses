@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using YourCourses.Models;
+using PagedList.Mvc;
+using PagedList;
 
 namespace YourCourses.Controllers
 {
@@ -15,10 +17,21 @@ namespace YourCourses.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: CorrectAnswers
-        public ActionResult Index()
+        public ActionResult Index(string q, int? page)
         {
-            var correctAnswers = db.CorrectAnswers.Include(c => c.Practices);
-            return View(correctAnswers.ToList());
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            
+            var correctAnswers = db.CorrectAnswers.Include(p => p.Practices);
+            if (!String.IsNullOrEmpty(q))
+            {
+                ViewBag.SStr = q;
+                correctAnswers = correctAnswers
+                       .Where(p => p.Practices.PracticeName.Contains(q));
+
+            }
+           
+            return View(correctAnswers.OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: CorrectAnswers/Details/5

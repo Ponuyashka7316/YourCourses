@@ -7,6 +7,8 @@ using System.Data.Entity;
 using YourCourses.Models;
 using Microsoft.AspNet.Identity;
 using System.Net;
+using PagedList.Mvc;
+using PagedList;
 
 namespace YourCourses.Controllers
 {
@@ -14,11 +16,21 @@ namespace YourCourses.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: SubLectures
-        public ActionResult Index()
+        public ActionResult Index(string q, int? page)
         {
-            var subLectures = db.SubLectures.Include(s => s.Lecture);
-            return View(subLectures.ToList());
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            var subLectures = db.SubLectures.Include(p => p.Lecture);
+            if (!String.IsNullOrEmpty(q))
+            {
+                ViewBag.SStr = q;
+                subLectures = subLectures
+                       .Where(p => p.SubName.Contains(q));
 
+            }
+
+
+            return View(subLectures.OrderBy(x => x.SubId).ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult Create()
